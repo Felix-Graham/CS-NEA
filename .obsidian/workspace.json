@@ -1,0 +1,200 @@
+{
+  "main": {
+    "id": "cad1271ccaeb3521",
+    "type": "split",
+    "children": [
+      {
+        "id": "f62ba187d7d31261",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c09502ecc29268e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "greenfootNotes/Video 5 - Maze Game 2.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Video 5 - Maze Game 2"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3b01cdce237dc587",
+    "type": "split",
+    "children": [
+      {
+        "id": "941598b3de1f9fb6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "28e24b32634d3791",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "83c8f681643e054a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "7bec1370b0b12f94",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "803eec71350d6a3c",
+    "type": "split",
+    "children": [
+      {
+        "id": "93dd8ae73774e256",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d868902f9781b144",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "admin/references.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for references"
+            }
+          },
+          {
+            "id": "1939026df47cf223",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "admin/references.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from references"
+            }
+          },
+          {
+            "id": "8a68679b85b5fac1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "0f1d7dd21a9977f0",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "37a51dfe0b7c6992",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "admin/references.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of references"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "8c09502ecc29268e",
+  "lastOpenFiles": [
+    "greenfootNotes/Greenfoot Games/Maze Game/MyWorld.ctxt",
+    "greenfootNotes/Greenfoot Games/Maze Game/MyWorld.class",
+    "greenfootNotes/Greenfoot Games/Maze Game/MyWorld.java",
+    "greenfootNotes/Greenfoot Games/Maze Game/sounds",
+    "greenfootNotes/Greenfoot Games/Maze Game/images",
+    "greenfootNotes/Greenfoot Games/Maze Game/project.greenfoot",
+    "greenfootNotes/Greenfoot Games/Maze Game/README.TXT",
+    "greenfootNotes/Greenfoot Games/Maze Game",
+    "greenfootNotes/Greenfoot Games",
+    "admin/references.md"
+  ]
+}
