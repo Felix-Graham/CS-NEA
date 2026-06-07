@@ -1,1 +1,0 @@
-A GUI must be instanced from a class. One easy method is an actor with the display image of what it should display. The american was yapping. Nothing productive from this.
