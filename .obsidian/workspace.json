@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "greenfootNotes/Video 22 - Maze Game.md",
+                "file": "greenfootNotes/Video 24 - Covid Simulation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Video 22 - Maze Game"
+              "title": "Video 24 - Covid Simulation"
             }
           },
           {
@@ -92,7 +92,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 423.5
+    "width": 423.5,
+    "collapsed": true
   },
   "right": {
     "id": "803eec71350d6a3c",
@@ -200,13 +201,24 @@
   },
   "active": "8c09502ecc29268e",
   "lastOpenFiles": [
+    "greenfootNotes/Greenfoot Games/covidSim/Button.ctxt",
+    "greenfootNotes/Greenfoot Games/covidSim/Button.class",
+    "greenfootNotes/Greenfoot Games/covidSim/Button.java",
+    "greenfootNotes/Greenfoot Games/covidSim/Person.ctxt",
+    "greenfootNotes/Greenfoot Games/covidSim/Person.class",
+    "greenfootNotes/Greenfoot Games/covidSim/Person.java",
+    "greenfootNotes/Greenfoot Games/covidSim/MyWorld.ctxt",
+    "greenfootNotes/Greenfoot Games/covidSim/MyWorld.class",
+    "greenfootNotes/Greenfoot Games/covidSim/MyWorld.java",
+    "greenfootNotes/Greenfoot Games/covidSim/sounds",
+    "greenfootNotes/Greenfoot Games/covidSim/images",
+    "greenfootNotes/Video 22 - Maze Game 2.md",
+    "greenfootNotes/Video 25 - Tower Defense Part1.md",
+    "greenfootNotes/Video 23 - Interactive Calendar.md",
     "greenfootNotes/Video 27 - Point and Shoot.md",
     "greenfootNotes/Viedo 10 - Space Shooter Game.md",
     "greenfootNotes/Video 26 - Tower Defense Part2.md",
-    "greenfootNotes/Video 25 - Tower Defense Part1.md",
     "greenfootNotes/Video 24 - Covid Simulation.md",
-    "greenfootNotes/Video 23 - Interactive Calendar.md",
-    "greenfootNotes/Video 22 - Maze Game.md",
     "greenfootNotes/Video 21 - Healthbar.md",
     "greenfootNotes/Video 20 - Score Counter.md",
     "greenfootNotes/Video 19 - Adding Stuff.md",
@@ -225,19 +237,8 @@
     "greenfootNotes/files/Video 26 - Tower Defense Part 2.md",
     "greenfootNotes/files/Video 25 - Tower Defense Part 1.md",
     "greenfootNotes/files/Video 3 - Finish the Game.md",
-    "greenfootNotes/files/Video 24 - Covid-19 Simulation.md",
-    "greenfootNotes/files",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Counter.ctxt",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Counter.class",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Counter.java",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Projectile.ctxt",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Projectile.class",
     "greenfootNotes/Greenfoot Games/spaceInvaders/images/steel-ball.png",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Projectile.java",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Enemy2.ctxt",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Enemy2.class",
     "greenfootNotes/Greenfoot Games/spaceInvaders/images/man.png",
-    "greenfootNotes/Greenfoot Games/spaceInvaders/Enemy2.java",
     "greenfootNotes/Greenfoot Games/spaceInvaders/images/person.png",
     "greenfootNotes/Greenfoot Games/spaceInvaders/images/rocket.png",
     "greenfootNotes/Greenfoot Games/spaceInvaders/images/space.jpg",
