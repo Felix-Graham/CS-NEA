@@ -1,0 +1,1 @@
+These videos covered nothing new. I skim watched all of them but they were largely longer tutorials of already-done projects such as the [[Video 4 - Maze Game]]. However, this did come with a slight addition. None of this addition was anything new though.
