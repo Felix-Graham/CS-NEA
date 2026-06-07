@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=MyWorld
+comment0.text=\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=amount
+comment1.target=void\ increaseScore(int)
+comment2.params=
+comment2.target=MyWorld()
+comment3.params=
+comment3.target=void\ act()
+numComments=4

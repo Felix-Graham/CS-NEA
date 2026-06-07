@@ -13,12 +13,40 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "greenfootNotes/Video 5 - Maze Game 2.md",
-                "mode": "source",
+                "file": "greenfootNotes/Video 12 - Score Counter (GUI).md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Video 5 - Maze Game 2"
+              "title": "Video 12 - Score Counter (GUI)"
+            }
+          },
+          {
+            "id": "2b78c04db467ecee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "greenfootNotes/Methods.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Methods"
+            }
+          },
+          {
+            "id": "76702ad4a82fcf29",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "greenfootNotes/Video 4 - Maze Game.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Video 4 - Maze Game"
             }
           }
         ]
@@ -186,15 +214,46 @@
   },
   "active": "8c09502ecc29268e",
   "lastOpenFiles": [
-    "greenfootNotes/Greenfoot Games/Maze Game/MyWorld.ctxt",
-    "greenfootNotes/Greenfoot Games/Maze Game/MyWorld.class",
-    "greenfootNotes/Greenfoot Games/Maze Game/MyWorld.java",
-    "greenfootNotes/Greenfoot Games/Maze Game/sounds",
-    "greenfootNotes/Greenfoot Games/Maze Game/images",
-    "greenfootNotes/Greenfoot Games/Maze Game/project.greenfoot",
-    "greenfootNotes/Greenfoot Games/Maze Game/README.TXT",
-    "greenfootNotes/Greenfoot Games/Maze Game",
-    "greenfootNotes/Greenfoot Games",
+    "greenfootNotes/Video 13 -  Platformer Game, Gravity.md",
+    "greenfootNotes/Video 12 - Score Counter (GUI).md",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Counter.ctxt",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Counter.class",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Counter.java",
+    "greenfootNotes/Video 4 - Maze Game.md",
+    "greenfootNotes/Methods.md",
+    "greenfootNotes/Video 11 - Score Counter, Health Bar, Timer.md",
+    "greenfootNotes/Video 8 - Changing Images.md",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Projectile.ctxt",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Projectile.class",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/images/steel-ball.png",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Projectile.java",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Enemy2.ctxt",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Enemy2.class",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/images/man.png",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Enemy2.java",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/Enemy1.ctxt",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/images/person.png",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/images/rocket.png",
+    "greenfootNotes/Greenfoot Games/spaceInvaders/images/space.jpg",
+    "greenfootNotes/Video 3 - GUIs.md",
+    "greenfootNotes/Video 19 - Adding Stuff.md",
+    "greenfootNotes/Greenfoot Games/AsteroidGame/images/beeper.png",
+    "greenfootNotes/Video 18 - Asteroid Game 1.md",
+    "greenfootNotes/Greenfoot Games/AsteroidGame/images/space1.jpg",
+    "greenfootNotes/Greenfoot Games/AsteroidGame/images/rocket.png",
+    "greenfootNotes/Greenfoot Games/AsteroidGame/images/rock.png",
+    "greenfootNotes/Video 15 - Scrolling Background.md",
+    "greenfootNotes/Greenfoot Games/changingImages/images/bee.png",
+    "greenfootNotes/Viedo 10 - Space Shooter Game.md",
+    "greenfootNotes/Video 21 - Healthbar.md",
+    "greenfootNotes/Video 20 - Score Counter.md",
+    "greenfootNotes/Video 17 - Start Screen.md",
+    "greenfootNotes/Video 16 -.md",
+    "greenfootNotes/Video 13 - Healthbar.md",
+    "greenfootNotes/Video 9 - Using a Mouse.md",
+    "greenfootNotes/Video 6 - Random Enemies & Timer.md",
+    "greenfootNotes/Video 7 - Operators.md",
+    "greenfootNotes/Video 5 - Maze Game 2.md",
     "admin/references.md"
   ]
 }
