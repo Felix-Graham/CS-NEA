@@ -18,7 +18,6 @@ Here lies my computer science coursework git repository. This includes at presen
 |                            |> "Further Explanation of Potion Brewing.md"
 |                            |> "Further Explanation of Spotify Client.md"
 |                            |> "Further Explanation of Smart Speaker.md"
-
 |                     |> "Ideas & Planning.md"
 |                     |> longlist.md
 |                     |> shortList.md
