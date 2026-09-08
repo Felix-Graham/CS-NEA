@@ -1,0 +1,17 @@
+filters:
+  and:
+    - '!file.path.contains("greenfoot")'
+views:
+  - type: table
+    name: Table
+    filters:
+      and:
+        - file.folder != "greenfootNotes"
+        - '!file.path.contains("greenfoot")'
+  - type: table
+    name: View
+    indentProperties: true
+    markers: bullet
+    cardSize: 410
+    imageAspectRatio: 0.25
+    imageFit: contain
