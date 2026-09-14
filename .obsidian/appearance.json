@@ -1,3 +1,7 @@
 {
-  "cssTheme": "Theme-That-Shall-Not-Be-Named"
+  "cssTheme": "Material Flat",
+  "accentColor": "#393d6f",
+  "interfaceFontFamily": "CaskaydiaCove Nerd Font",
+  "textFontFamily": "DejaVu Sans",
+  "monospaceFontFamily": "Liberation Mono"
 }
