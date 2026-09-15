@@ -8,13 +8,7 @@
 | Can the player attack?                                               | The attack animation is displayed after the relevant keyboard input.                   |
 | Does the player fall to the ground after jumping?                    | The player falls from the air after jumping, giving the impression of gravity.         |
 | Does the player have values for `health`, `stamina` and `knockback`? | Yes, with relevant methods to get this data.                                           |
-### Stage 2 - Data Collection
-
-| Test                                                                                                               | Outcome                                                           |
-| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| Do methods for returning data for character attributes such as `Health` and `Stamina` return accurate information? | The methods used to find and return data are accurate.            |
-| Is the method to calculate and return the distance between the player and enemy accurate?                          | The method is accurate, returning data in a form which is usable. |
-### Stage 3 - Enemy Creation 
+### Stage 2 - Enemy Creation 
 A class called `Enemy` would have been created in order for above stages. This stage populates that class with data, actions and methods.
 
 | Test                                                              | Outcome                                                                |
@@ -24,6 +18,13 @@ A class called `Enemy` would have been created in order for above stages. This s
 | Is the enemy able to move in response to data about the player?   | The enemy uses the getter methods from stage 2 to decide when to move. |
 | Can the enemy attack and decide when to through received data?    | The enemy uses data such as player proximity to "decide" to attack.    |
 | Does the enemy have data for `health`, `stamina` and `knockback`? | Yes, with methods to return them.                                      |
+### Stage 3 - Data Collection
+
+| Test                                                                                                               | Outcome                                                           |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| Do methods for returning data for character attributes such as `Health` and `Stamina` return accurate information? | The methods used to find and return data are accurate.            |
+| Is the method to calculate and return the distance between the player and enemy accurate?                          | The method is accurate, returning data in a form which is usable. |
+
 ### Stage 4 - HUD
 
 | Test                                                                           | Outcome                                                                                                                                                      |
@@ -41,7 +42,13 @@ A class called `Enemy` would have been created in order for above stages. This s
 | Does this start menu include a difficulty slider?                                              | Yes.                                                                              |
 | Does the difficulty slider accurately update a value which affects the difficulty of the game? | Yes.                                                                              |
 | Does the start button start the game?                                                          | On click, the start button begins the game with both the player and enemy set up? |
-### Stage 6 - Condition Checks
+### Stage 6 - Better Attacks
+
+| Test                                                                | Outcome |
+| ------------------------------------------------------------------- | ------- |
+| Do attacks have a value for knockback as well as damage?            | Yes.    |
+| Is knockback applied accurately to either character when necessary? | Yes.    |
+### Stage 7 - Condition Checks
 
 | Test                                                                           | Outcome                                                                         |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
@@ -51,12 +58,6 @@ A class called `Enemy` would have been created in order for above stages. This s
 | Does the stamina amount regenerate exponentially after a period of inactivity? | Yes.                                                                            |
 | Can the player use an attack when it is on `Cooldown`?                         | No, they must wait until the `Cooldown` timer has ended.                        |
 | Is a character removed when their health is 0?                                 | The character is removed from the scene.                                        |
-### Stage 7 - Better Attacks
-
-| Test                                                                | Outcome |
-| ------------------------------------------------------------------- | ------- |
-| Do attacks have a value for knockback as well as damage?            | Yes.    |
-| Is knockback applied accurately to either character when necessary? | Yes.    |
 
 ### Stage 8 - Better Enemies
 
