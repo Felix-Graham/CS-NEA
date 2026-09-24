@@ -1,4 +1,4 @@
-[[exam board spec.pdf]] [[exam board guidance.pdf]] [[longList]] [[shortList]]
+
 # Ideas 
 ### Platformers / Movement / Speed
 1. 
@@ -60,5 +60,5 @@ A two dimensional retro boxing game, similar to Mortal Combat and Half Sword.
 | Health                        |                         |                               |
 
 ### Setting
-Wetherspoons.
+A dimly lit put in a small village. It should feel quite cramped and dingy.
 
