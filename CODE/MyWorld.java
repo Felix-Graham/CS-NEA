@@ -20,6 +20,7 @@ public class MyWorld extends World
         super(600, 400, 1); 
         prepare();
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -27,6 +28,6 @@ public class MyWorld extends World
     private void prepare()
     {
         Player player = new Player();
-        addObject(player,286,306);
+        addObject(player,483,306);
     }
 }

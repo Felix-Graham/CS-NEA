@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Person
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Character\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment2.params=SPEED\ JUMP
+comment2.target=void\ movement(int,\ int)
+comment3.params=
+comment3.target=boolean\ isOnGround()
+comment4.params=
+comment4.target=boolean\ onCooldown()
+comment5.params=t
+comment5.target=void\ cooldown(int)
+comment6.params=d
+comment6.target=void\ damage(int)
+comment7.params=k
+comment7.target=void\ knockback(int)
+numComments=8

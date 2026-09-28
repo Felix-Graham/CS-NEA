@@ -6,42 +6,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Player extends Actor
+public class Player extends Person
 {
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    // Constants
-    int FLOOR = 306;
-
-    // attributes
-    boolean isOnGround = true;
-
+    final int SPEED = 5;
+    final int JUMP = 70;
+    final int DAMAGE_PUNCH = 15;
+    final int DAMAGE_KICK = 25;
+    final int KNOCKBACK_PUNCH = 3;
+    final int KNOCKBACK_KICK = 7;
+    
+    int cooldown = 0;
+    int health = 100;
     public void act()
     {
-        movement();
-        if(getY() <= FLOOR){
-            isOnGround = false;
-        }
-        while(isOnGround == false){
-            setLocation(getX(), getY()+1);
-            if(getY() >= FLOOR){
-                isOnGround = true;
-            }
-        }
+        movement(5, 70);
     }
 
-    public void movement(){
-        if(Greenfoot.isKeyDown("d")){
-            move(2);
-        } else if(Greenfoot.isKeyDown("a")){
-            move(-2);
-        }
-        if(Greenfoot.isKeyDown("space") && isOnGround == true){
-            // jump
-            setLocation(getX(), getY()-1000);
-        }
-
+    private void punch(){
+        setImage("player_punch");
+        /*
+         * enemy = getOneIntersectingObject(Enemy)
+         * enemy.damage(DAMAGE_PUNCH);
+         * enemy.knockback(KNOCKBACK_PUNCH);
+         */
+        cooldown(10);
     }
 }
