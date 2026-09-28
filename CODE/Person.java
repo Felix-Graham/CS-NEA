@@ -1,4 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
  * Write a description of class Character here.
@@ -53,11 +55,15 @@ public class Person extends Actor
     
     
     // setters
-    public void cooldown(int t){ // t in seconds
-        this.cooldown = t*60; // greenfoot tick speed is 60 per second, this allows t to be passed as seconds
-        for(int c = this.cooldown; c>=0; c--){ // uses this.cooldown to reference object's value
-            this.cooldown--; // eventually sets cooldown back to 0
-        }
+    public void cooldown(double t){
+	  double unrounded_cooldown = t*60;
+	  DecimalFormat df = new DecimalFormat("###"); // where unused digits are 0
+	  df.setRoundingMode(RoundingMode.CEILING); // rounds up from t*60
+	  
+    this.cooldown = df.format(unrounded_cooldown); // sets the cooldown to appropriate integer
+	  for(int c = this.cooldown; c>=0; c--){ // same logic as if it were an int
+	    this.cooldown--;
+      }
     }
 
     public void damage(int d){

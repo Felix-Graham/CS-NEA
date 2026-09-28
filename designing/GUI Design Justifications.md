@@ -1,6 +1,7 @@
 # Main Screen 
 ![[GUI.png]]
 The above is a rough outline of what I hope my project might become. As of this, details such as non-important colours including background and player sprites are not shown above. 
+This screen is the most detailed, because it will be displayed the majority of the time.
 ## Bars 
 Above each will be coloured bars to display data about metrics corresponding to each character. The amount of the bar coloured in would be the percentage of the metric from full, for example if the player had 40 health remaining down from 100, the health bar would be 40% full. 
 ### Colours
@@ -24,6 +25,7 @@ The background in the image above is a rough simplification. I plan to keep elem
 # Start Menu 
 ![[start_menu_gui.png]]
 Like the main game GUI mock up, this is an abstraction of what I hope the actual thing looks like. Some features above are exaggerated so that they are quicker to find, and more obvious to make. Furthermore, there is no background image, hence the white background.
+I have this main menu in order to bridge the gap between loading the game and fighting. This allows the player to spend time selecting a difficulty and preparing themselves.
 
 ## Difficulty Slider 
 The difficulty slider above is coloured based on its difficulty. The cursor/selector would be set at medium by default, making the colour system intuitive to the user. The idea of moving the selector with arrow keys may be a little confusing, or not explicitly obvious, so I would like to have a label for this information. I also have deliberately put it on the left, such that the start screen is dominated by itself and the play buttons - the two main features of my start screen. As well as this, the position of the difficulty slider echoes games of a similar category, and the colour scheme would demonstrate this further. The result is a dynamic looking menu, with a clear colour scheme which evidences itself to its genre.
