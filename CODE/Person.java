@@ -36,7 +36,6 @@ public class Person extends Actor
         }
     }
 
-    
     // getters
     public boolean isOnGround(){
         if(getY()==306){
@@ -51,19 +50,15 @@ public class Person extends Actor
         }
         return false;
     }
-    
-    
-    
+
     // setters
     public void cooldown(double t){
-	  double unrounded_cooldown = t*60;
-	  DecimalFormat df = new DecimalFormat("###"); // where unused digits are 0
-	  df.setRoundingMode(RoundingMode.CEILING); // rounds up from t*60
-	  
-    this.cooldown = df.format(unrounded_cooldown); // sets the cooldown to appropriate integer
-	  for(int c = this.cooldown; c>=0; c--){ // same logic as if it were an int
-	    this.cooldown--;
-      }
+        double unrounded_cooldown = t*60.0; // converts from seconds to greenfoot ticks
+        this.cooldown = round(unrounded_cooldown, "###"); // sets the cooldown to appropriate integer
+        for(int c = this.cooldown; c>=0; c--){ // same logic as if it were an int
+            this.cooldown--; // reduces by 1 each call
+            wait2(1);
+        }
     }
 
     public void damage(int d){
@@ -72,6 +67,25 @@ public class Person extends Actor
 
     public void knockback(int k){
         move(-k);
+    }
+
+    // misc
+    public int round(double target, String format){
+        DecimalFormat df = new DecimalFormat(format); // where unused digits are 0
+        df.setRoundingMode(RoundingMode.CEILING); // round up 
+        return Integer.parseInt(df.format(target)); // returns the integer result. 
+    }
+
+    public void wait2(double secs){     // named as such because wait() is already a builtin (just not what I want)
+        int ticks = round(secs*6000, "###"); // rounds value for how many greenfoot ticks to wait
+        int ticks_remaining = ticks; // copy of ticks to iterate down
+        for(int i=0; i<=ticks; i++){ // ticks used here because ticks_remaining will be constantly decreasing and thus invalid
+            if(ticks_remaining == 0){
+                return;
+            } else{
+                ticks_remaining--;
+            }
+        }
     }
 
 }
