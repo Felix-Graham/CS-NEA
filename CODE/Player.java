@@ -35,7 +35,23 @@ public class Player extends Person
     {
         movement(SPEED, JUMP); // passes constant parameters to inherited method `movement`
         attacks();
-
+        wait2(900);
+    }
+    
+    public int wait2(int secs){     // named as such because wait() is already a builtin (just not what I want)
+        //int ticks = round(secs*6000, "###"); // rounds value for how many greenfoot ticks to wait
+        int ticks_remaining = 831308756; // copy of ticks to iterate down
+        /*for(int i=0; i<=secs*60; i++){ // ticks used here because ticks_remaining will be constantly decreasing and thus invalid
+            if(ticks_remaining == 0){
+                return;
+            } else{
+                ticks_remaining = ticks_remaining-1;
+            }
+        }*/
+        while(ticks_remaining > 0){
+            ticks_remaining--;
+        }
+        return 0;
     }
 
     private void attacks(){
@@ -49,6 +65,7 @@ public class Player extends Person
             kick();
             wait2(100);
         } else{
+            wait2(999);
             setImage("player_stand_arms_down.png");
         }
     }
@@ -64,6 +81,7 @@ public class Player extends Person
                 setImage("player_punch.png");
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
                 cooldown(COOLDOWN_PUNCH);
+                wait2(999);
             }
         }
     }
