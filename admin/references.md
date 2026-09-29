@@ -1,3 +1,5 @@
+## Image Resizing 
+I have used https://imageresizer.com/ to resize my player sprites at 14:28 on the 29/09/2026. I did this because after drawing them on my laptop, they were too large to have effectively in my game. Had I not done this, the player sprite would have been too large to play and therefore been a detriment to player experience.
 ## How to round to an integer
 https://www.geeksforgeeks.org/java/java-program-to-round-a-number-to-n-decimal-places/
 Accessed at 10:28 on the 28th of September 2026.
