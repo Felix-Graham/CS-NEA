@@ -17,6 +17,4 @@ comment7.params=k
 comment7.target=void\ knockback(int)
 comment8.params=target\ format
 comment8.target=int\ round(double,\ java.lang.String)
-comment9.params=secs
-comment9.target=void\ wait2(double)
-numComments=10
+numComments=9

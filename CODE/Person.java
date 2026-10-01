@@ -57,7 +57,6 @@ public class Person extends Actor
         this.cooldown = round(unrounded_cooldown, "###"); // sets the cooldown to appropriate integer
         for(int c = this.cooldown; c>=0; c--){ // same logic as if it were an int
             this.cooldown--; // reduces by 1 each call
-            wait2(1);
         }
     }
 
@@ -76,16 +75,6 @@ public class Person extends Actor
         return Integer.parseInt(df.format(target)); // returns the integer result. 
     }
 
-    public void wait2(double secs){     // named as such because wait() is already a builtin (just not what I want)
-        int ticks = round(secs*6000, "###"); // rounds value for how many greenfoot ticks to wait
-        int ticks_remaining = ticks+831308756; // copy of ticks to iterate down
-        for(int i=0; i<=ticks; i++){ // ticks used here because ticks_remaining will be constantly decreasing and thus invalid
-            if(ticks_remaining == 0){
-                return;
-            } else{
-                ticks_remaining = ticks_remaining-1;
-            }
-        }
-    }
+ 
 
 }
