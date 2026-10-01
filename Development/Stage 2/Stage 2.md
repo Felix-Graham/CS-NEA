@@ -16,7 +16,7 @@ Stage 2 plans to implement the enemy to the game, allowing further stages with i
 - [ ] Enemy can knock back
 ## Class Diagram 
 
-![[EnemyClassDiagram.svg.svg]]
+![[EnemyClassDiagram.svg]]
 
 ## Methods 
 ![[DecisionFlowChart.svg]]
