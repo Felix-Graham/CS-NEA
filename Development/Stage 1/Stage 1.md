@@ -9,7 +9,7 @@ Stage 1 involves creating the player with adequate movement abilities. This exte
 ### Tests 
 - [x] Player sprite displayed?
 - [x] Accurate movement?
-- [ ] Attack animation displayed?
+- [x] Attack animation displayed?
 - [x] Gravity?
 - [x] Health Values?
 
@@ -91,3 +91,32 @@ public void knockback(int k){
 }
 ```
 This takes a heuristic approach, assuming that the player will always be on the left, attacking right. It is far more concise than the flow chart demands it be, which is why I have decided that it is currently the best option.
+### Fixing A Rounding Error 
+In the previous fix for the `cooldown` method, I employed the libraries `math.RoundingMode` and `text.DecimalFormat`. This is shown in [[#Old Cooldown Method]]. I have since dealt with an error produced by the `df.format()'` call. As it happens, this method returns a string type, which caused a problem with `cooldown`, being defined as an integer. I fixed this by adding 
+``` java 
+Integer.parseInt(df.format(target));
+```
+thus converting the "string" to the desired integer. 
+### Round() Method 
+Whilst implementing a `wait2()` method (further explained later), I was going to reuse the rounding code from my `cooldown(double t)` method. Instead of doing this, I optimised the code by introducing a new `round(double target)` function. 
+``` java 
+public int round(double target){
+	DecimalFormat df = new DecimalFormat('###');
+	df.setRoundingMode(RoundingMode.CEILING);
+	return Integer.parseInt(df.format(target));
+}
+```
+### Sprite Setting 
+Whilst I had technically completed my test plan, I had not accounted for some of the problems which I may have encountered. One of them is that I had not checked that the player's sprite would revert back to the default after an attack sprite is displayed. 
+![[attack_sprite_timing_error.mp4]]
+![[attack_method_setimage_not_working.png]]
+I thought that it would be an easy fix like in the above image. Sadly this does not work. I was able to trace the point of vulnerability to the `wait2()` which I then tried to fix.
+![[dodgy_wait2_function.png]]
+As you can see in 
+``` java 
+int ticks_remaining = ticks+831308756;
+```
+I tested the function by iterating through arbitrarily large numbers. This is because the core idea of the function is that if each second runs 60 frames, then 60 frames can be populated with a 'spinner loop' to accurately wait 1 second. My test would have accounted for a minimum of 13855145.93333333... seconds. Unfortunately this did not work so I theorised that the error stemmed from the fact that it was an inherited method and so might be running in a different thread.
+![[wait2_method_in_player.png]]
+Unfortunately this was to the same effect, even with slight modification as below:
+![[wait2_with_while.png]]
