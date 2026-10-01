@@ -109,6 +109,8 @@ public int round(double target){
 ### Sprite Setting 
 Whilst I had technically completed my test plan, I had not accounted for some of the problems which I may have encountered. One of them is that I had not checked that the player's sprite would revert back to the default after an attack sprite is displayed. 
 ![[attack_sprite_timing_error.mp4]]
+(attack_sprite_timing_error.mp4)
+
 ![[attack_method_setimage_not_working.png]]
 I thought that it would be an easy fix like in the above image. Sadly this does not work. I was able to trace the point of vulnerability to the `wait2()` which I then tried to fix.
 ![[dodgy_wait2_function.png]]
@@ -120,3 +122,10 @@ I tested the function by iterating through arbitrarily large numbers. This is be
 ![[wait2_method_in_player.png]]
 Unfortunately this was to the same effect, even with slight modification as below:
 ![[wait2_with_while.png]]
+### Fixing the Sprite Setting 
+Today (01.10.26) I fixed the sprite setting issue. I realised that it was caused by the fact that it was the **main act method** which called 60 times per second. This in conjunction with my broken `wait2()` function led to me implementing a manual timer held in the Player act method. 
+![[image_change_fix.png]]
+The fact that this solution works is making me consider a solution to the initial wait problem. As a result, in my next stage I might include a similar wait method with the decrementing number is stored in a super class outside of the method. It could be added to with the act method responsible for decreasing the cooldown value once per tick.
+Proof:
+![[fixed_sprite_changes.mp4]]
+(fixed_sprite_changes.mp4)
