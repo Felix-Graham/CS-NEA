@@ -18,17 +18,18 @@ public class Person extends Actor
     int health = 0;
     public void act()
     {
-        movement(5, 100);
+        //movement(5, 100);
     }
 
-    public void movement(int SPEED, int JUMP){
-        if(Greenfoot.isKeyDown("a")){
+    public void movement(int SPEED, int JUMP, int dir){ // where dir stands for direction to allow enemy to use
+        // dir -1> null / 0> left / 1> right / 2> up
+        if(Greenfoot.isKeyDown("a") || dir == 0){
             move(-SPEED); // moves backwards when key pressed is a
         }
-        if(Greenfoot.isKeyDown("d")){
+        if(Greenfoot.isKeyDown("d") || dir == 1){
             move(SPEED); // forward when key pressed is d
         }
-        if(Greenfoot.isKeyDown("space") && isOnGround()){
+        if((Greenfoot.isKeyDown("space") || dir== 2) && isOnGround()){
             setLocation(getX(), getY()-JUMP); // moves up the screen by variable JUMP
         }
         if(!isOnGround()){

@@ -52,7 +52,8 @@ public class Player extends Person
         }
 
         // methods
-        movement(SPEED, JUMP); // passes constant parameters to inherited method `movement`
+        
+        movement(SPEED, JUMP, -1); // passes constant parameters to inherited method `movement`
         attacks();
     }
 

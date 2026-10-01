@@ -27,7 +27,11 @@ public class MyWorld extends World
      */
     private void prepare()
     {
+
         Player player = new Player();
-        addObject(player,483,306);
+        addObject(player,137,306);
+        // int SPEED, int JUMP, int SM, int DM, int KM
+        //Enemy enemy = new Enemy(5, 200, 100, 2, 3);
+        //addObject(enemy,395,306);
     }
 }
