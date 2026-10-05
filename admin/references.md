@@ -55,3 +55,6 @@ Whilst implementing the enemy `Damage Multiplier`, I forgot how to reference dat
 Player p = (Player) getWorld().getObjects(Player.class).get(0);
 int x = p.getX(); // test 
 ```
+Note, I ended up not using this after 05/10/2026 when I decided to pass the player class directly to the enemy class, thus removing this error.
+## Removing Image Backgrounds 
+I used https://remove.bg  to remove the backgrounds of the player sprites. This means that their previously white backgrounds do not block out the other player sprite. Had I not done this it would have been hard to see the other character when they were close.
