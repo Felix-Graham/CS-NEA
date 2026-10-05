@@ -17,14 +17,14 @@ public class Player extends Person
     final int SPEED = 5;
     final int JUMP = 70;
     final int STAMINA_MAX = 100;
-    final int DAMAGE_PUNCH = 15;
+    final static int DAMAGE_PUNCH = 15;
     final int STAMINA_DRAIN_PUNCH = 10;
     final double COOLDOWN_PUNCH = 0.2;
     final double COOLDOWN_KICK = 0.5;
     final int STAMINA_DRAIN_KICK = 20;
-    final int DAMAGE_KICK = 25;
-    final int KNOCKBACK_PUNCH = 3;
-    final int KNOCKBACK_KICK = 7;
+    final static int DAMAGE_KICK = 25;
+    final static int KNOCKBACK_PUNCH = 3;
+    final static int KNOCKBACK_KICK = 7;
 
     // Mutable variables
     public int stamina = 100;

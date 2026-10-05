@@ -18,7 +18,6 @@ public class Person extends Actor
     int health = 0;
     public void act()
     {
-        //movement(5, 100);
     }
 
     public void movement(int SPEED, int JUMP, int dir){ // where dir stands for direction to allow enemy to use

@@ -13,6 +13,8 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
+    public final int PlayerStartX = 137;
+    public final int PlayerStartY = 306;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -29,9 +31,9 @@ public class MyWorld extends World
     {
 
         Player player = new Player();
-        addObject(player,137,306);
+        addObject(player,PlayerStartX,PlayerStartY);
         // int SPEED, int JUMP, int SM, int DM, int KM
-        //Enemy enemy = new Enemy(5, 200, 100, 2, 3);
-        //addObject(enemy,395,306);
+        Enemy enemy = new Enemy(5, 200, 100, 2, 3);
+        addObject(enemy,395,306);
     }
 }

@@ -37,20 +37,16 @@ public class Enemy extends Person
         this.JUMP = JUMP;
         this.STAMINA_MAX = SM;
         // DM stands for Damage Multiplier and takes 1 as player attributes
-        if((Player) getWorld().getObjects(Player.class) != null){
-            Player p = ((Player) getWorld().getObjects(Player.class)); // gets player class
+        World w = (World) getWorld();
+        //Player p = (Player) w.getObjects(Player.class); // gets player class
 
-            this.DAMAGE_PUNCH = round((p.DAMAGE_PUNCH * DM), "###");
-            this.DAMAGE_KICK = round((p.DAMAGE_KICK * DM), "###");
-            // KM stands for knockback multiplier and takes from player 
-            this.KNOCKBACK_PUNCH = round((p.KNOCKBACK_PUNCH * DM), "###");
-            this.KNOCKBACK_KICK = round((p.KNOCKBACK_KICK * DM), "###");
-        } else{
-
-        }
+        this.DAMAGE_PUNCH = round((Player.DAMAGE_PUNCH * DM), "###");
+        this.DAMAGE_KICK = round((Player.DAMAGE_KICK * DM), "###");
+        // KM stands for knockback multiplier and takes from player 
+        this.KNOCKBACK_PUNCH = round((Player.KNOCKBACK_PUNCH * DM), "###");
+        this.KNOCKBACK_KICK = round((Player.KNOCKBACK_KICK * DM), "###");
 
     }
-
     public void act()
     {
         // Add your action code here.
