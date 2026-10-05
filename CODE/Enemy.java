@@ -37,8 +37,6 @@ public class Enemy extends Person
         this.JUMP = JUMP;
         this.STAMINA_MAX = SM;
         // DM stands for Damage Multiplier and takes 1 as player attributes
-        World w = (World) getWorld();
-        //Player p = (Player) w.getObjects(Player.class); // gets player class
 
         this.DAMAGE_PUNCH = round((Player.DAMAGE_PUNCH * DM), "###");
         this.DAMAGE_KICK = round((Player.DAMAGE_KICK * DM), "###");
@@ -49,6 +47,83 @@ public class Enemy extends Person
     }
     public void act()
     {
-        // Add your action code here.
+        decide();
+    }
+    
+    public int proximity(){
+        int prox;
+        // prox will work with the X axis alone both for ease and practicality
+        Player p = (Player) getWorld().getObjects(Player.class);
+        prox = (this.getX() - p.getX());
+        if(prox > 0){ // as if 5
+            return prox;
+        } else{ // as if -5
+            return -prox;
+        }
+        // above if statement functions as modulus because negative proximity would not be possible
+        // proximity would be negative if the player is on the other side to the enemy as planned
+    }
+    private void runToward(){
+        Player p = (Player) getWorld().getObjects(Player.class);
+        int locX = p.getX();
+        // left of player where (0, 0) at left of screen 
+        if(locX < this.getX()){ // this.getX() used for clarity over "getX()" on its own
+            movement(SPEED, JUMP, 1); // dir (final parameter) 0 as left, 1 as right
+        } else if(locX > this.getX()){
+            movement(SPEED, JUMP, 0);
+        }
+    }
+    private void runAway(){
+        Player p = (Player) getWorld().getObjects(Player.class);
+        int locX = p.getX();
+        // left of player where (0, 0) at left of screen 
+        if(locX < this.getX()){ // this.getX() used for clarity over "getX()" on its own
+            movement(SPEED, JUMP, 0); // dir (final parameter) 0 as left, 1 as right
+        } else if(locX > this.getX()){
+            movement(SPEED, JUMP, 1);
+        }
+        // code copy and pasted from runToward method with movement parameters modified
+    }
+    private void decide(){
+    /*
+     * Conditions:
+     * p.stamina > this.stamina
+     * p.health > this.health
+     * proximity < 5
+     */
+        Player p = (Player) getWorld().getObjects(Player.class);
+        
+        boolean staminaDiff = (p.stamina > this.stamina);
+        boolean healthDiff = (p.health > this.health);
+        int proximity = proximity();
+        
+        // staminaDiff condition:
+        if(staminaDiff){
+            // run away from player
+            runAway();
+        } else{
+            // run toward player
+            runToward();
+        }
+        
+        // healthDiff condition
+        if(healthDiff){
+            //run away
+            runAway();
+        } else{
+            //run toward
+            runToward();
+        }
+        
+        // proximity condition
+        if(proximity < 5){
+            // attack
+            /* if(!kickCooldown && stamina > kickStaminaDrain){
+             *      kick();
+             *  } else{
+             *      punch();
+             *  }
+             */
+        }
     }
 }
