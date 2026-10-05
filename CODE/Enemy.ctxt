@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Enemy
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Enemy\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=SPEED\ JUMP\ SM\ DM\ KM
-comment1.target=Enemy(int,\ int,\ int,\ int,\ int)
+comment1.params=SPEED\ JUMP\ SM\ DM\ KM\ nemesis
+comment1.target=Enemy(int,\ int,\ int,\ int,\ int,\ Player)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
@@ -13,4 +13,10 @@ comment5.params=
 comment5.target=void\ runAway()
 comment6.params=
 comment6.target=void\ decide()
-numComments=7
+comment7.params=
+comment7.target=void\ punch()
+comment8.params=
+comment8.target=void\ kick()
+comment9.params=
+comment9.target=void\ changeImage()
+numComments=10

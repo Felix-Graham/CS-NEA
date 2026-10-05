@@ -33,7 +33,7 @@ public class MyWorld extends World
         Player player = new Player();
         addObject(player,PlayerStartX,PlayerStartY);
         // int SPEED, int JUMP, int SM, int DM, int KM
-        Enemy enemy = new Enemy(5, 200, 100, 2, 3);
+        Enemy enemy = new Enemy(5, 200, 100, 2, 3, player);
         addObject(enemy,395,306);
     }
 }

@@ -36,6 +36,22 @@ public class Person extends Actor
         }
     }
 
+    public void enemovement(int SPEED, int JUMP, int dir){ // where dir stands for direction to allow enemy to use
+        // dir -1> null / 0> left / 1> right / 2> up
+        if(dir == 0){
+            move(-SPEED); // moves backwards when key pressed is a
+        }
+        if(dir == 1){
+            move(SPEED); // forward when key pressed is d
+        }
+        if(dir== 2 && isOnGround()){
+            setLocation(getX(), getY()-JUMP); // moves up the screen by variable JUMP
+        }
+        if(!isOnGround()){
+            setLocation(getX(), getY()+2); // falls at a rate of 2 units per second
+        }
+    }
+
     // getters
     public boolean isOnGround(){
         if(getY()==306){
@@ -75,6 +91,5 @@ public class Person extends Actor
         return Integer.parseInt(df.format(target)); // returns the integer result. 
     }
 
- 
 
 }

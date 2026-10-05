@@ -52,7 +52,7 @@ public class Player extends Person
         }
 
         // methods
-        
+
         movement(SPEED, JUMP, -1); // passes constant parameters to inherited method `movement`
         attacks();
     }
@@ -94,11 +94,11 @@ public class Player extends Person
     private void punch(){
         if(stamina >= STAMINA_DRAIN_PUNCH){
             if(!onCooldown()){
-                /*
-                 * enemy = getOneIntersectingObject(Enemy);
-                 * enemy.damage(DAMAGE_PUNCH);
-                 * enemy.knockback(KNOCKBACK_PUNCH);
-                 */
+
+                Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
+                enemy.damage(DAMAGE_PUNCH);
+                enemy.knockback(KNOCKBACK_PUNCH);
+
                 setImage("player_punch.png");
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
                 cooldown(COOLDOWN_PUNCH);
