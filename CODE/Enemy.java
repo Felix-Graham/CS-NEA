@@ -162,7 +162,7 @@ public class Enemy extends Person
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
                 cooldown(COOLDOWN_PUNCH);
                 p.knockback(KNOCKBACK_PUNCH);
-
+                p.damage(DAMAGE_PUNCH);
             }
         }
         imgState = 0;
@@ -180,7 +180,7 @@ public class Enemy extends Person
                 stamina = stamina - STAMINA_DRAIN_KICK;
                 cooldown(COOLDOWN_KICK);
                 p.knockback(KNOCKBACK_KICK);
-
+                p.damage(DAMAGE_KICK);
             }
         }
         imgState = 0;
