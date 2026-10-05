@@ -48,3 +48,10 @@ public void cooldown(double t){
     }
 }
 ```
+
+## Accessing Data From Another Class
+Whilst implementing the enemy `Damage Multiplier`, I forgot how to reference data from another class, being `Player`. I looked at https://www.greenfoot.org/topics/2241 to resolve this. This allowed me to implement the following 
+``` java 
+Player p = (Player) getWorld().getObjects(Player.class).get(0);
+int x = p.getX(); // test 
+```

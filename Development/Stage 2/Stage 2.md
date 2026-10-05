@@ -3,8 +3,8 @@ Stage 2 plans to implement the enemy to the game, allowing further stages with i
 
 ## To Do List 
 ### Features 
-- [ ] Create enemy class 
-- [ ] Enemy has appropriate attributes
+- [x] Create enemy class 
+- [x] Enemy has appropriate attributes
 - [ ] Enemy movement (with keyboard)
 - [ ] Enemy attacks (with keyboard)
 ### Tests 
@@ -19,8 +19,12 @@ Stage 2 plans to implement the enemy to the game, allowing further stages with i
 ![[EnemyClassDiagram.svg]]
 
 ## Methods 
+### Decide
 ![[DecisionFlowChart.svg]]
+### runToward()
+![[runToward.svg]]
 
 ## Attributes 
+Identical to player with modification in the constructor with a scalar modifier which will allow a difficulty slider to be implemented.
 
 ## Notes 
