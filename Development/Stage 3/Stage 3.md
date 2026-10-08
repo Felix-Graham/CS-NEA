@@ -1,0 +1,2 @@
+## Description and Goals 
+This stage aims to fully flesh out the data collection system. In planning, this would have been the final part of creating a functioning enemy, wiring it up to decisions. However a lot of this was covered in my Stage 2, when I decided that it would have been easier to implement the decision method at that point in time for purposes such as testing and experimentation. Consequently, this stage has been made redundant. 

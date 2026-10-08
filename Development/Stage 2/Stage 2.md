@@ -60,3 +60,8 @@ public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
 ```
 By passing in the player and storing it as a private global attribute, I could always reference the desired object from anywhere in the code. Because of this I decided that using a global variable to store this object would be the most appropriate way to avoid null pointer exceptions. 
 
+### Decision Based Fighting
+![[fighting.mp4]]
+In this video (fighting.mp4), the enemy, in red, is attacking the player, black. This is achieved by the checking of conditions as outlined above 
+![[#Decide]]
+The issue with some of this is that I did not foresee the repetition of the basic `punch` attack after stamina is below a threshold. This happens because the enemy is constantly checking if its stamina is high enough to kick, which it is not due to its barrage of attacks. I am hoping that this is rectified in future with  a fix to the cooldown system.
