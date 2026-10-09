@@ -33,6 +33,8 @@ public class Enemy extends Person
     public int health = 100;
     private int imgState = 0; // 0 as default, 1 for punch, 2 for kick
     private int imgCountdown = 0;
+    
+    public boolean inhibited_movement = false;
 
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
         this.SPEED = SPEED;
@@ -47,10 +49,13 @@ public class Enemy extends Person
         this.KNOCKBACK_PUNCH = round((Player.KNOCKBACK_PUNCH * DM), "###");
         this.KNOCKBACK_KICK = round((Player.KNOCKBACK_KICK * DM), "###");
 
+        // add self to world variable
+        MyWorld.enemy = this;
     }
 
     public void act()
     {
+        collision(MyWorld.player, MyWorld.enemy);
         imgCountdown++;
         if(cooldown > 0){
             cooldown--;
@@ -203,5 +208,12 @@ public class Enemy extends Person
         }
         // now instead of changing image in a method (happens ~instantly),
         // changes image in act method via this method.
+    }
+
+    // collision
+    public void collide(){
+        // enemy collide will function by setting a condition to true which will inhibit 
+        // movement. This will be set to false by following method
+        inhibited_movement = true;
     }
 }

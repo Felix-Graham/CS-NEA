@@ -15,14 +15,18 @@ public class MyWorld extends World
      */
     public final int PlayerStartX = 137;
     public final int PlayerStartY = 306;
+    
+    public static Enemy enemy;
+    public static Player player;
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        
+
         super(600, 400, 1); 
         prepare();
     }
-    
+
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -35,5 +39,17 @@ public class MyWorld extends World
         // int SPEED, int JUMP, int SM, int DM, int KM
         Enemy enemy = new Enemy(5, 200, 100, 2, 3, player);
         addObject(enemy,395,306);
+    }
+    
+
+
+
+
+    public int modulus(int n){
+        if(n>0){
+            return n;
+        } else{
+            return -n;
+        }
     }
 }

@@ -35,6 +35,13 @@ public class Player extends Person
     change. Each act method this will increment and thus change the image for the 
     sprite.
      */
+    public boolean inhibited_movement = false;
+    public Player(){
+        // player constructor
+        // adds self to world reference variable for simplicity
+        //MyWorld.assign_player(this);
+        MyWorld.player = this;
+    }
     public void act()
     {
         // variables
@@ -55,8 +62,13 @@ public class Player extends Person
 
         movement(SPEED, JUMP, -1); // passes constant parameters to inherited method `movement`
         attacks();
+        collision(MyWorld.player, MyWorld.enemy);
     }
 
+    public void collide(){
+        inhibited_movement = true;
+    }
+    
     private void attacks(){
         MouseInfo mouse = Greenfoot.getMouseInfo(); // calls Greenfoot's MouseInfo class for data such as follows 
         if(mouse != null && mouse.getButton() == 1){ // 1 for left mouse button, 2 for middle, 3 for right 
