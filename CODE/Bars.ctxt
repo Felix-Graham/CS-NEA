@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Bars
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bars\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment2.params=p
+comment2.target=void\ follow(Person)
+comment3.params=dx\ dy
+comment3.target=void\ move_request(int,\ int)
+comment4.params=w\ h\ c
+comment4.target=void\ draw(int,\ int,\ greenfoot.Color)
+comment5.params=pc\ c
+comment5.target=void\ update(int,\ greenfoot.Color)
+comment6.params=target\ format
+comment6.target=int\ round(double,\ java.lang.String)
+numComments=7
