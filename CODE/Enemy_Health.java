@@ -18,17 +18,18 @@ public class Enemy_Health extends Bars
     private final Color bg;
     private final Color fg;
     private GreenfootImage image;
+    private final int hover_space = 250;
 
     public Enemy_Health(int w, int h, Color bg, Color fg){
         this.w = w;
         this.h = h;
-        this.fg = fg;
-        this.bg = bg;
+        this.fg = Color.RED;//fg;
+        this.bg = Color.RED;//bg;
         draw(w, h, bg);
     }
 
     public void act()
     {
-        // Add your action code here.
+        follow(MyWorld.enemy);
     }
 }

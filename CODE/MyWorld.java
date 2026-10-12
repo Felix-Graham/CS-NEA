@@ -39,6 +39,11 @@ public class MyWorld extends World
         // int SPEED, int JUMP, int SM, int DM, int KM
         Enemy enemy = new Enemy(5, 200, 100, 2, 3, player);
         addObject(enemy,395,306);
+        Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
+        addObject(enemy_Health,201,160);
+        enemy_Health.setLocation(302,144);
+        Player_Health player_Health = new Player_Health(150, 15, greenfoot.Color.BLACK, greenfoot.Color.BLACK);
+        addObject(player_Health,308,111);
     }
     
 

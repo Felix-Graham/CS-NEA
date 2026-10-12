@@ -19,7 +19,7 @@ public class Bars extends Actor
     private final Color bg=Color.RED;
     private final Color fg=Color.BLACK; 
     private GreenfootImage image;
-    private final int hover_space=50;
+    private final int hover_space=150;
     
 /*    public Bars(int w, int h){//, Color bg, Color fg){
         this.w = w;
@@ -31,7 +31,6 @@ public class Bars extends Actor
     }
     */
 
-    int fill_pc = 0;
     public void act()
     {/*
         if(Greenfoot.isKeyDown("k")){
@@ -48,7 +47,7 @@ public class Bars extends Actor
         int x = getX();
         int y = getY();
         int next_x = p.getX();
-        int next_y = p.getY() + this.hover_space;
+        int next_y = p.getY() - hover_space;
         // the goal is to have a slow-ish speed at which to follow the person over their head
         // this will thus have a separate function called `move_request()` to handle gradual movement
         // via the act method.
@@ -56,8 +55,21 @@ public class Bars extends Actor
         int tdy = y - next_y;
         // these values will be constantly updated via the act method
         // move_request() will be called to move incrementally to the next_x/y location
-        while(x != next_x && y != next_y){
-            move_request(round(tdx/10, "###"), round(tdy/10, "###"));
+        if(x != next_x && y != next_y){
+            if(x > next_x){
+                // next to the left
+                move_request(-10, 0);
+            }
+            if(y > next_y){
+                // next higher up
+                move_request(0, -10);
+            }
+            if(y < next_y){
+                move_request(0, 10);
+            }
+            if(x < next_x){
+                move_request(10, 0);
+            }
         }
     }
     
