@@ -28,7 +28,7 @@ public class Player extends Person
 
     // Mutable variables
     public int stamina = 100;
-    private int cooldown = 0;
+    public int cooldown = 0;
     public int health = 100;
     private int imgState = 0; // 0 as default, 1 for punch, 2 for kick
     private int imgCountdown = 0; /* theoretically should limit time for image 
@@ -42,6 +42,7 @@ public class Player extends Person
         //MyWorld.assign_player(this);
         MyWorld.player = this;
     }
+
     public void act()
     {
         // variables
@@ -68,7 +69,7 @@ public class Player extends Person
     public void collide(){
         inhibited_movement = true;
     }
-    
+
     private void attacks(){
         MouseInfo mouse = Greenfoot.getMouseInfo(); // calls Greenfoot's MouseInfo class for data such as follows 
         if(mouse != null && mouse.getButton() == 1){ // 1 for left mouse button, 2 for middle, 3 for right 
@@ -105,16 +106,20 @@ public class Player extends Person
 
     private void punch(){
         if(stamina >= STAMINA_DRAIN_PUNCH){
-            if(!onCooldown()){
+            if(cooldown == 0){
+                try{
+                    Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
+                    enemy.damage(DAMAGE_PUNCH);
+                    enemy.knockback(KNOCKBACK_PUNCH);
+                    
+                } catch(Exception e){
 
-                Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
-                enemy.damage(DAMAGE_PUNCH);
-                enemy.knockback(KNOCKBACK_PUNCH);
+                }
 
                 setImage("player_punch.png");
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
-                cooldown(COOLDOWN_PUNCH);
-
+                //cooldown(COOLDOWN_PUNCH, this);
+                cooldown = cooldown + Person.round(COOLDOWN_PUNCH*60, "###");
             }
         }
         imgState = 0;
@@ -122,15 +127,19 @@ public class Player extends Person
 
     private void kick(){
         if(stamina >= STAMINA_DRAIN_KICK){
-            if(!onCooldown()){
-                /*
-                 * enemy = getOneIntersectingObject(Enemy);
-                 * enemy.damage(DAMAGE_KICK);
-                 * enemy.knockback(KNOCKBACK_KICK);
-                 */ 
+            if(cooldown == 0){
+                try{
+                    Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
+                    enemy.damage(DAMAGE_KICK);
+                    enemy.knockback(KNOCKBACK_KICK);
+                } catch(Exception e) {
+
+                }
+
                 setImage("player_kick.png");
                 stamina = stamina - STAMINA_DRAIN_KICK;
-                cooldown(COOLDOWN_KICK);
+                //cooldown(COOLDOWN_KICK, this);
+                cooldown = cooldown + Person.round(COOLDOWN_KICK*60, "###");
             }
         }
         imgState = 0;

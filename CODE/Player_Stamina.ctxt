@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Player_Stamina
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player_Stamina\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=w\ h\ bg\ fg
-comment1.target=Player_Stamina(int,\ int,\ greenfoot.Color,\ greenfoot.Color)
+comment1.params=
+comment1.target=Player_Stamina()
 comment2.params=
 comment2.target=void\ act()
 numComments=3

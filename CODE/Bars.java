@@ -42,12 +42,13 @@ public class Bars extends Actor
         */
     }
 
-    public void follow(Person p){
+    public void follow(Person p, int space){
+        space = space+100; // normalises for player heights
         // passes person such that can follow with p.getX() and p.getY()
         int x = getX();
         int y = getY();
         int next_x = p.getX();
-        int next_y = p.getY() - hover_space;
+        int next_y = p.getY() - space;
         // the goal is to have a slow-ish speed at which to follow the person over their head
         // this will thus have a separate function called `move_request()` to handle gradual movement
         // via the act method.
@@ -90,11 +91,11 @@ public class Bars extends Actor
 
     }
 
-    public void update(int pc, Color c){ // where pc is the percentage of the bar to be filled
+    public void update(int pc, Color c, Bars b){ // where pc is the percentage of the bar to be filled
         // calculate width to fill from given percentage
-        int w = round((this.w*(pc/100)), "###"); // relies on java's auto rounding for int
+        int w = round((b.w*(pc/100)), "###"); // relies on java's auto rounding for int
         this.image.setColor(c);
-        this.image.fillRect(0, 0, w, this.h);
+        this.image.fillRect(0, 0, w, b.h);
     }
     
         public int round(double target, String format){

@@ -157,7 +157,7 @@ public class Enemy extends Person
     // the following is a near-copy paste job from the player class.
     private void punch(){
         if(stamina >= STAMINA_DRAIN_PUNCH){
-            if(!onCooldown()){
+            if(onCooldown(this)){
                 /*
                  * enemy = getOneIntersectingObject(Enemy);
                  * enemy.damage(DAMAGE_PUNCH);
@@ -165,7 +165,8 @@ public class Enemy extends Person
                  */
                 setImage("enemy_punch.png");
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
-                cooldown(COOLDOWN_PUNCH);
+                //cooldown(COOLDOWN_PUNCH, this);
+                cooldown = cooldown + Person.round(COOLDOWN_PUNCH*60, "###");
                 p.knockback(KNOCKBACK_PUNCH);
                 p.damage(DAMAGE_PUNCH);
             }
@@ -175,7 +176,7 @@ public class Enemy extends Person
 
     private void kick(){
         if(stamina >= STAMINA_DRAIN_KICK){
-            if(!onCooldown()){
+            if(!onCooldown(this)){
                 /*
                  * enemy = getOneIntersectingObject(Enemy);
                  * enemy.damage(DAMAGE_KICK);
@@ -183,7 +184,8 @@ public class Enemy extends Person
                  */ 
                 setImage("enemy_kick.png");
                 stamina = stamina - STAMINA_DRAIN_KICK;
-                cooldown(COOLDOWN_KICK);
+                //cooldown(COOLDOWN_KICK, this);
+                cooldown = cooldown + Person.round(COOLDOWN_KICK*60, "###");
                 p.knockback(KNOCKBACK_KICK);
                 p.damage(DAMAGE_KICK);
             }

@@ -30,6 +30,6 @@ public class Enemy_Health extends Bars
 
     public void act()
     {
-        follow(MyWorld.enemy);
+        follow(MyWorld.enemy, 30);
     }
 }
