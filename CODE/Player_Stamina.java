@@ -18,17 +18,17 @@ public class Player_Stamina extends Bars
     private final Color bg;
     private final Color fg;
     private GreenfootImage image;
-    
-    public Player_Stamina(int w, int h, Color bg, Color fg){
-        this.w = w;
-        this.h = h;
-        this.fg = fg;
-        this.bg = bg;
+
+    public Player_Stamina(){
+        this.w = 200;
+        this.h = 15;
+        this.fg = greenfoot.Color.BLACK;
+        this.bg = greenfoot.Color.ORANGE;
         draw(w, h, bg);
     }
 
     public void act()
     {
-        // Add your action code here.
+        follow(MyWorld.player, 60);
     }
 }

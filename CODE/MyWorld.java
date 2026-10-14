@@ -42,8 +42,12 @@ public class MyWorld extends World
         Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
         addObject(enemy_Health,201,160);
         enemy_Health.setLocation(302,144);
-        Player_Health player_Health = new Player_Health(150, 15, greenfoot.Color.BLACK, greenfoot.Color.BLACK);
+        Player_Health player_Health = new Player_Health();
         addObject(player_Health,308,111);
+        Player_Stamina player_Stamina = new Player_Stamina();
+        addObject(player_Stamina,320,83);
+        Player_Cooldown player_Cooldown = new Player_Cooldown();
+        addObject(player_Cooldown,314,47);
     }
     
 

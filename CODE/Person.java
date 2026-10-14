@@ -74,20 +74,19 @@ public class Person extends Actor
         return false;
     }
 
-    public boolean onCooldown(){
-        if(this.cooldown > 0){
+    public boolean onCooldown(Person p){
+        if(p.cooldown > 0){
             return true;
+        } else{
+            return false;
         }
-        return false;
     }
 
     // setters
-    public void cooldown(double t){
+    public void cooldown(double t, Person p){
         double unrounded_cooldown = t*60.0; // converts from seconds to greenfoot ticks
-        this.cooldown = round(unrounded_cooldown, "###"); // sets the cooldown to appropriate integer
-        for(int c = this.cooldown; c>=0; c--){ // same logic as if it were an int
-            this.cooldown--; // reduces by 1 each call
-        }
+        cooldown = round(unrounded_cooldown, "###"); // sets the cooldown to appropriate integer
+        p.cooldown = p.cooldown + cooldown;
     }
 
     public void damage(int d){
@@ -99,7 +98,7 @@ public class Person extends Actor
     }
 
     // misc
-    public int round(double target, String format){
+    public static int round(double target, String format){
         DecimalFormat df = new DecimalFormat(format); // where unused digits are 0
         df.setRoundingMode(RoundingMode.CEILING); // round up 
         return Integer.parseInt(df.format(target)); // returns the integer result. 

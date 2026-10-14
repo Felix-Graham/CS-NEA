@@ -19,16 +19,22 @@ public class Player_Health extends Bars
     private final Color fg;
     private GreenfootImage image;
     
-    public Player_Health(int w, int h, Color bg, Color fg){
-        this.w = w;
-        this.h = h;
-        this.fg = fg;
-        this.bg = bg;
+    public Player_Health(){
+        this.w = 150;
+        this.h = 15;
+        this.fg = greenfoot.Color.BLACK;
+        this.bg = greenfoot.Color.GREEN;
         draw(w, h, bg);
     }
     public void act()
     {
-        follow(MyWorld.player);
-        //move_request();
+        follow(MyWorld.player, 30);
+        update(player_heartbeat(), fg, this);
+    }
+    private int player_heartbeat(){
+        // method for calculating the necessary fill for the bar
+        // from player health
+        int pc = 100-MyWorld.player.health; // already a percentage because out of 100
+        return pc;
     }
 }
