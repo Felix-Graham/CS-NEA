@@ -10,8 +10,8 @@ These are designed to make the experience of playing the game easier because the
 ## To Do List 
 ### Features 
 - [x] Player Health Bar 
-- [ ] Player Stamina Bar 
-- [ ] Player Cooldown Bar (visible when necessary)
+- [x] Player Stamina Bar 
+- [x] Player Cooldown Bar (visible when necessary)
 - [x] Enemy Health Bar 
 - [ ] Play/Pause button
 ### Tests 

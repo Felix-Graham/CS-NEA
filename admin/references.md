@@ -58,3 +58,18 @@ int x = p.getX(); // test
 Note, I ended up not using this after 05/10/2026 when I decided to pass the player class directly to the enemy class, thus removing this error.
 ## Removing Image Backgrounds 
 I used https://remove.bg  to remove the backgrounds of the player sprites. This means that their previously white backgrounds do not block out the other player sprite. Had I not done this it would have been hard to see the other character when they were close.
+
+## Using `try catch` to avoid Null Pointer Errors 
+As a result of my player code's attack methods defining the enemy with 
+``` java 
+Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
+```
+my game would often throw a null pointer exception because the enemy object's methods were to be called. This caused the problem because if the player was not intersecting with the enemy, no object would be returned from `getOneIntersectingObject()` and the rest of the code 
+``` java 
+enemy.damage(DAMAGE_KICK);
+```
+would not work.
+I knew that I could fix this with either `try/catch` or an `if` clause to check if `Enemy` was null. I chose to use the first of these due to it allowing a further split. An if statement would have still executed the code after it whilst this method would have two possible outcomes unique to both scenarios.
+I have used try/catch before in other languages such as C and Python, but I needed to look up how to implement something similar in Java. I learnt how from this web page:
+> [!link]
+> https://www.w3schools.com/java/java_try_catch.asp
