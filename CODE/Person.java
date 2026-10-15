@@ -92,7 +92,7 @@ public class Person extends Actor
     }
 
     public void damage(int d, Person p){
-        p.health = p.health-d;
+        p.this.health = p.health-d;
         p.move(100); // smoke test
     }
 
