@@ -45,25 +45,27 @@ public class Player extends Person
 
     public void act()
     {
-        // variables
-        imgCountdown++;
-        if(cooldown > 0){
-            cooldown--;
-        }
-        if(stamina < STAMINA_MAX){
-            stamina++;
-        }
-        // image changes 
-        if(imgCountdown == 30){
-            changeImage();
-            imgCountdown = 0;
-        }
+        if(!MyWorld.paused()){
+            // variables
+            imgCountdown++;
+            if(cooldown > 0){
+                cooldown--;
+            }
+            if(stamina < STAMINA_MAX){
+                stamina++;
+            }
+            // image changes 
+            if(imgCountdown == 30){
+                changeImage();
+                imgCountdown = 0;
+            }
 
-        // methods
+            // methods
 
-        movement(SPEED, JUMP, -1); // passes constant parameters to inherited method `movement`
-        attacks();
-        collision(MyWorld.player, MyWorld.enemy);
+            movement(SPEED, JUMP, -1); // passes constant parameters to inherited method `movement`
+            attacks();
+            collision(MyWorld.player, MyWorld.enemy);
+        }
     }
 
     public void collide(){
@@ -111,7 +113,7 @@ public class Player extends Person
                     Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
                     enemy.damage(DAMAGE_PUNCH);
                     enemy.knockback(KNOCKBACK_PUNCH);
-                    
+
                 } catch(Exception e){
 
                 }

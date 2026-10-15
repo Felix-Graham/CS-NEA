@@ -33,7 +33,7 @@ public class Enemy extends Person
     public int health = 100;
     private int imgState = 0; // 0 as default, 1 for punch, 2 for kick
     private int imgCountdown = 0;
-    
+
     public boolean inhibited_movement = false;
 
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
@@ -55,22 +55,24 @@ public class Enemy extends Person
 
     public void act()
     {
-        collision(MyWorld.player, MyWorld.enemy);
-        imgCountdown++;
-        if(cooldown > 0){
-            cooldown--;
-        }
-        if(stamina < STAMINA_MAX){
-            stamina++;
-        }
-        // image changes 
-        if(imgCountdown == 30){
-            changeImage();
-            imgCountdown = 0;
-        }
+        if(!MyWorld.paused()){
+            collision(MyWorld.player, MyWorld.enemy);
+            imgCountdown++;
+            if(cooldown > 0){
+                cooldown--;
+            }
+            if(stamina < STAMINA_MAX){
+                stamina++;
+            }
+            // image changes 
+            if(imgCountdown == 30){
+                changeImage();
+                imgCountdown = 0;
+            }
 
-        decide();
+            decide();
 
+        }
     }
 
     public int proximity(){

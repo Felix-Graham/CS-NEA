@@ -30,6 +30,8 @@ public class Enemy_Health extends Bars
 
     public void act()
     {
-        follow(MyWorld.enemy, 30);
+        if(!MyWorld.paused()){
+            follow(MyWorld.enemy, 30);
+        }
     }
 }

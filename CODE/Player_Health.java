@@ -18,7 +18,7 @@ public class Player_Health extends Bars
     private final Color bg;
     private final Color fg;
     private GreenfootImage image;
-    
+
     public Player_Health(){
         this.w = 150;
         this.h = 15;
@@ -26,11 +26,15 @@ public class Player_Health extends Bars
         this.bg = greenfoot.Color.GREEN;
         draw(w, h, bg);
     }
+
     public void act()
     {
-        follow(MyWorld.player, 30);
-        update(player_heartbeat(), fg, this);
+        if(!MyWorld.paused()){
+            follow(MyWorld.player, 30);
+            update(player_heartbeat(), fg, this);
+        }
     }
+
     private int player_heartbeat(){
         // method for calculating the necessary fill for the bar
         // from player health

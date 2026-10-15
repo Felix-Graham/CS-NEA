@@ -29,6 +29,8 @@ public class Player_Stamina extends Bars
 
     public void act()
     {
-        follow(MyWorld.player, 60);
+        if(!MyWorld.paused()){
+            follow(MyWorld.player, 60);
+        }
     }
 }

@@ -15,10 +15,12 @@ public class MyWorld extends World
      */
     public final int PlayerStartX = 137;
     public final int PlayerStartY = 306;
-    
+
     public static Enemy enemy;
     public static Player player;
-    
+
+    private static boolean PAUSED = false;
+
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -31,6 +33,7 @@ public class MyWorld extends World
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
+
     private void prepare()
     {
 
@@ -48,11 +51,31 @@ public class MyWorld extends World
         addObject(player_Stamina,320,83);
         Player_Cooldown player_Cooldown = new Player_Cooldown();
         addObject(player_Cooldown,314,47);
+        PlayPause playPause = new PlayPause();
+        addObject(playPause,60,57);
     }
-    
 
+    // pause management
+    public static void pause(){
+        PAUSED = true; // sets global access variable to true
+    }
 
+    public static boolean paused(){
+        return PAUSED; // encapsulation ensures that only this class can 
+        // modify or directly access the variable, makes program more robust
+    }
 
+    public static void unpause(){
+        PAUSED = false;
+    }
+
+    public static void pause_toggle(){
+        if(PAUSED == true){
+            unpause();
+        } else{
+            pause();
+        }
+    }
 
     public int modulus(int n){
         if(n>0){

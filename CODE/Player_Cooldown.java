@@ -34,12 +34,14 @@ public class Player_Cooldown extends Bars
 
     public void act()
     {
-        follow(MyWorld.player, 80);
-        if(MyWorld.player.cooldown > 0){
-            show();
-            //update(player_heartbeat(), fg, this);
-        } else{
-            hide();
+        if(!MyWorld.paused()){
+            follow(MyWorld.player, 80);
+            if(MyWorld.player.cooldown > 0){
+                show();
+                //update(player_heartbeat(), fg, this);
+            } else{
+                hide();
+            }
         }
     }
 
@@ -52,5 +54,4 @@ public class Player_Cooldown extends Bars
 
     }
 
-  
 }
