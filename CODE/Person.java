@@ -14,8 +14,8 @@ public class Person extends Actor
      * Act - do whatever the Character wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int cooldown = 0;
-    int health = 0;
+    int cooldown;
+    int health;
     final int collision_threshold = 50;
 
     public void act()
@@ -81,6 +81,8 @@ public class Person extends Actor
             return false;
         }
     }
+    
+    
 
     // setters
     public void cooldown(double t, Person p){
@@ -91,7 +93,7 @@ public class Person extends Actor
 
     public void damage(int d, Person p){
         p.health = p.health-d;
-        p.move(100);
+        p.move(100); // smoke test
     }
 
     public void knockback(int k){

@@ -165,7 +165,7 @@ public class Enemy extends Person
             if(cooldown == 0){
 
                 if(MyWorld.modulus((MyWorld.player.getX()-getX())) < RANGE_PUNCH){ 
-                    MyWorld.player.damage(DAMAGE_PUNCH, MyWorld.player);
+                    MyWorld.player.damage(DAMAGE_PUNCH, p);
                     MyWorld.player.knockback(KNOCKBACK_PUNCH);
                 }
 

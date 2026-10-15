@@ -32,7 +32,9 @@ public class Player extends Person
     // Mutable variables
     public int stamina = 100;
     public int cooldown = 0;
+
     public int health = 100;
+    
     private int imgState = 0; // 0 as default, 1 for punch, 2 for kick
     private int imgCountdown = 0; /* theoretically should limit time for image 
     change. Each act method this will increment and thus change the image for the 
