@@ -77,7 +77,7 @@ public class MyWorld extends World
         }
     }
 
-    public int modulus(int n){
+    public static int modulus(int n){
         if(n>0){
             return n;
         } else{

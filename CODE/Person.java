@@ -89,8 +89,9 @@ public class Person extends Actor
         p.cooldown = p.cooldown + cooldown;
     }
 
-    public void damage(int d){
-        this.health = this.health-d;
+    public void damage(int d, Person p){
+        p.health = p.health-d;
+        p.move(100);
     }
 
     public void knockback(int k){

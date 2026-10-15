@@ -25,6 +25,9 @@ public class Player extends Person
     final static int DAMAGE_KICK = 25;
     final static int KNOCKBACK_PUNCH = 3;
     final static int KNOCKBACK_KICK = 7;
+    
+    final static int RANGE_KICK = 500;
+    final static int RANGE_PUNCH = 300;
 
     // Mutable variables
     public int stamina = 100;
@@ -109,13 +112,10 @@ public class Player extends Person
     private void punch(){
         if(stamina >= STAMINA_DRAIN_PUNCH){
             if(cooldown == 0){
-                try{
-                    Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
-                    enemy.damage(DAMAGE_PUNCH);
-                    enemy.knockback(KNOCKBACK_PUNCH);
-
-                } catch(Exception e){
-
+                
+                if(MyWorld.modulus((MyWorld.enemy.getX()-getX())) < RANGE_PUNCH){ 
+                    MyWorld.enemy.damage(DAMAGE_PUNCH, MyWorld.enemy);
+                    MyWorld.enemy.knockback(KNOCKBACK_PUNCH);
                 }
 
                 setImage("player_punch.png");
@@ -130,12 +130,10 @@ public class Player extends Person
     private void kick(){
         if(stamina >= STAMINA_DRAIN_KICK){
             if(cooldown == 0){
-                try{
-                    Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
-                    enemy.damage(DAMAGE_KICK);
-                    enemy.knockback(KNOCKBACK_KICK);
-                } catch(Exception e) {
-
+                
+                if(MyWorld.modulus((MyWorld.enemy.getX()-getX())) < RANGE_KICK){ 
+                    MyWorld.enemy.damage(DAMAGE_KICK, MyWorld.enemy);
+                    MyWorld.enemy.knockback(KNOCKBACK_KICK);
                 }
 
                 setImage("player_kick.png");
