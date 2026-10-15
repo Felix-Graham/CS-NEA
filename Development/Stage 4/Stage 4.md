@@ -13,7 +13,7 @@ These are designed to make the experience of playing the game easier because the
 - [x] Player Stamina Bar 
 - [x] Player Cooldown Bar (visible when necessary)
 - [x] Enemy Health Bar 
-- [ ] Play/Pause button
+- [x] Play/Pause button
 ### Tests 
 - [ ] Does the HUD display accurate data for the health of either character?
 - [ ] Does the HUD display a stamina bar for the player, updated in real time?
@@ -115,3 +115,86 @@ I have since fixed this with the following solution:
 ```
 This fix allowed the bars to properly follow the player and enemy as below:
 ![[health_bars_follow_people.png]]
+
+### Extra Stage 
+Whilst testing my bars' code, I realised that due to a poor choice of method for damaging an opponent, damage is only truly applied if both player and enemy are directly intersecting. This is because of the method which I have used (`getOneIntersectingObject(Enemy.class)`) one returns `enemy` if they are intersecting. To remedy this, I will change my `punch()` and `kick()` method from 
+``` java 
+    private void punch(){
+        if(stamina >= STAMINA_DRAIN_PUNCH){
+            if(cooldown == 0){
+                try{
+                    Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
+                    enemy.damage(DAMAGE_PUNCH);
+                    enemy.knockback(KNOCKBACK_PUNCH);
+
+                } catch(Exception e){
+
+                }
+
+                setImage("player_punch.png");
+                stamina = stamina - STAMINA_DRAIN_PUNCH;
+                //cooldown(COOLDOWN_PUNCH, this);
+                cooldown = cooldown + Person.round(COOLDOWN_PUNCH*60, "###");
+            }
+        }
+        imgState = 0;
+    }
+
+    private void kick(){
+        if(stamina >= STAMINA_DRAIN_KICK){
+            if(cooldown == 0){
+                try{
+                    Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
+                    enemy.damage(DAMAGE_KICK);
+                    enemy.knockback(KNOCKBACK_KICK);
+                } catch(Exception e) {
+
+                }
+
+                setImage("player_kick.png");
+                stamina = stamina - STAMINA_DRAIN_KICK;
+                //cooldown(COOLDOWN_KICK, this);
+                cooldown = cooldown + Person.round(COOLDOWN_KICK*60, "###");
+            }
+        }
+        imgState = 0;
+    }
+```
+to 
+``` java 
+    private void punch(){
+        if(stamina >= STAMINA_DRAIN_PUNCH){
+            if(cooldown == 0){
+            
+                if(MyWorld.enemy.getX() < 5){
+	                MyWorld.enemy.damage(PUNCH_DAMAGE);
+	                MyWorld.enemy.knockback(KNOCKBACK_PUNCH);
+                }
+                
+                setImage("player_punch.png");
+                stamina = stamina - STAMINA_DRAIN_PUNCH;
+                //cooldown(COOLDOWN_PUNCH, this);
+                cooldown = cooldown + Person.round(COOLDOWN_PUNCH*60, "###");
+            }
+        }
+        imgState = 0;
+    }
+
+    private void kick(){
+        if(stamina >= STAMINA_DRAIN_KICK){
+            if(cooldown == 0){
+            
+                if(MyWorld.enemy.getX() < 5){
+	                MyWorld.enemy.damage(KICK_DAMAGE);
+	                MyWorld.enemy.knockback(KNOCKBACK_KICK);
+                }
+
+                setImage("player_kick.png");
+                stamina = stamina - STAMINA_DRAIN_KICK;
+                //cooldown(COOLDOWN_KICK, this);
+                cooldown = cooldown + Person.round(COOLDOWN_KICK*60, "###");
+            }
+        }
+        imgState = 0;
+    }
+```
