@@ -30,13 +30,13 @@ public class Enemy extends Person
     // Mutable variables
     public int stamina = 100;
     private int cooldown = 0;
-    public int health = 100;
+    public static int health = 100;
     private int imgState = 0; // 0 as default, 1 for punch, 2 for kick
     private int imgCountdown = 0;
-    
+
     final static int RANGE_KICK = 50;
     final static int RANGE_PUNCH = 30;
-    
+
     public boolean inhibited_movement = false;
 
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
@@ -76,6 +76,10 @@ public class Enemy extends Person
             decide();
 
         }
+    }
+
+    public void damage(int d){
+        this.health = this.health-d;
     }
 
     public int proximity(){
@@ -165,7 +169,7 @@ public class Enemy extends Person
             if(cooldown == 0){
 
                 if(MyWorld.modulus((MyWorld.player.getX()-getX())) < RANGE_PUNCH){ 
-                    MyWorld.player.damage(DAMAGE_PUNCH, p);
+                    MyWorld.player.damage(DAMAGE_PUNCH);
                     MyWorld.player.knockback(KNOCKBACK_PUNCH);
                 }
 
@@ -183,7 +187,7 @@ public class Enemy extends Person
             if(cooldown == 0){
 
                 if(MyWorld.modulus((MyWorld.player.getX()-getX())) < RANGE_KICK){ 
-                    MyWorld.player.damage(DAMAGE_KICK, MyWorld.player);
+                    MyWorld.player.damage(DAMAGE_KICK);
                     MyWorld.player.knockback(KNOCKBACK_KICK);
                 }
 

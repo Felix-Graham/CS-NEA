@@ -25,7 +25,7 @@ public class Player extends Person
     final static int DAMAGE_KICK = 25;
     final static int KNOCKBACK_PUNCH = 3;
     final static int KNOCKBACK_KICK = 7;
-    
+
     final static int RANGE_KICK = 500;
     final static int RANGE_PUNCH = 300;
 
@@ -33,8 +33,8 @@ public class Player extends Person
     public int stamina = 100;
     public int cooldown = 0;
 
-    public int health = 100;
-    
+    public static int health = 100;
+
     private int imgState = 0; // 0 as default, 1 for punch, 2 for kick
     private int imgCountdown = 0; /* theoretically should limit time for image 
     change. Each act method this will increment and thus change the image for the 
@@ -71,6 +71,10 @@ public class Player extends Person
             attacks();
             collision(MyWorld.player, MyWorld.enemy);
         }
+    }
+
+    public void damage(int d){
+        this.health = this.health-d;
     }
 
     public void collide(){
@@ -114,9 +118,9 @@ public class Player extends Person
     private void punch(){
         if(stamina >= STAMINA_DRAIN_PUNCH){
             if(cooldown == 0){
-                
+
                 if(MyWorld.modulus((MyWorld.enemy.getX()-getX())) < RANGE_PUNCH){ 
-                    MyWorld.enemy.damage(DAMAGE_PUNCH, MyWorld.enemy);
+                    MyWorld.enemy.damage(DAMAGE_PUNCH);
                     MyWorld.enemy.knockback(KNOCKBACK_PUNCH);
                 }
 
@@ -132,9 +136,9 @@ public class Player extends Person
     private void kick(){
         if(stamina >= STAMINA_DRAIN_KICK){
             if(cooldown == 0){
-                
+
                 if(MyWorld.modulus((MyWorld.enemy.getX()-getX())) < RANGE_KICK){ 
-                    MyWorld.enemy.damage(DAMAGE_KICK, MyWorld.enemy);
+                    MyWorld.enemy.damage(DAMAGE_KICK);
                     MyWorld.enemy.knockback(KNOCKBACK_KICK);
                 }
 

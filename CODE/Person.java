@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.io.*;
 
 /**
  * Write a description of class Character here.
@@ -8,14 +9,14 @@ import java.text.DecimalFormat;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Person extends Actor
+public abstract class Person extends Actor
 {
     /**
      * Act - do whatever the Character wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int cooldown;
-    int health;
+    public static int health;
     final int collision_threshold = 50;
 
     public void act()
@@ -81,8 +82,6 @@ public class Person extends Actor
             return false;
         }
     }
-    
-    
 
     // setters
     public void cooldown(double t, Person p){
@@ -92,8 +91,7 @@ public class Person extends Actor
     }
 
     public void damage(int d, Person p){
-        p.this.health = p.health-d;
-        p.move(100); // smoke test
+        this.health = this.health-d;
     }
 
     public void knockback(int k){

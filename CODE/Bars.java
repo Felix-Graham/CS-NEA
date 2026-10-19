@@ -20,26 +20,26 @@ public class Bars extends Actor
     private final Color fg=Color.BLACK; 
     private GreenfootImage image;
     private final int hover_space=150;
-    
-/*    public Bars(int w, int h){//, Color bg, Color fg){
-        this.w = w;
-        this.h = h;
-        this.bg = Color.RED;//bg;
-        this.fg = Color.BLACK;//fg;
 
-        draw(w, h, bg);
+    /*    public Bars(int w, int h){//, Color bg, Color fg){
+    this.w = w;
+    this.h = h;
+    this.bg = Color.RED;//bg;
+    this.fg = Color.BLACK;//fg;
+
+    draw(w, h, bg);
     }
-    */
+     */
 
     public void act()
     {/*
         if(Greenfoot.isKeyDown("k")){
-            fill_pc = fill_pc+10;
+        fill_pc = fill_pc+10;
         } else if(Greenfoot.isKeyDown("j")){
-            fill_pc = fill_pc-10;
+        fill_pc = fill_pc-10;
         }
         update(fill_pc, this.fg);
-        */
+         */
     }
 
     public void follow(Person p, int space){
@@ -73,11 +73,11 @@ public class Bars extends Actor
             }
         }
     }
-    
+
     public void move_request(int dx, int dy){
         setLocation(getX()+dx, getY()+dy);
     }
-    
+
     public void draw(int w, int h, Color c){
         // method to instantiate a bar
         // method will be used by child classes to display them
@@ -93,15 +93,15 @@ public class Bars extends Actor
 
     public void update(int pc, Color c, Bars b){ // where pc is the percentage of the bar to be filled
         // calculate width to fill from given percentage
-        int w = round((b.w*(pc/100)), "###"); // relies on java's auto rounding for int
+        int w = round((b.w*(pc/100)), "###"); // rounds 
         this.image.setColor(c);
-        this.image.fillRect(0, 0, w, b.h);
+        this.image.fillRect(0, 0, w, b.h+5); // addition to height ensures all bar covered
     }
-    
-        public int round(double target, String format){
+
+    public int round(double target, String format){
         DecimalFormat df = new DecimalFormat(format); // where unused digits are 0
         df.setRoundingMode(RoundingMode.CEILING); // round up 
         return Integer.parseInt(df.format(target)); // returns the integer result. 
     }
-    
+
 }
