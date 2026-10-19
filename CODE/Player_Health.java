@@ -38,7 +38,8 @@ public class Player_Health extends Bars
     private int player_heartbeat(){
         // method for calculating the necessary fill for the bar
         // from player health
-        int pc = 100-MyWorld.player.health; // already a percentage because out of 100
-        return pc;
+        return round(100-MyWorld.player.health, "###"); // already a percentage because out of 100
     }
+    
+
 }

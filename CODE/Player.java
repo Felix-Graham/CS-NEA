@@ -17,12 +17,12 @@ public class Player extends Person
     final int SPEED = 5;
     final int JUMP = 70;
     final int STAMINA_MAX = 100;
-    final static int DAMAGE_PUNCH = 15;
+    final static int DAMAGE_PUNCH = 3;
     final int STAMINA_DRAIN_PUNCH = 10;
     final double COOLDOWN_PUNCH = 0.2;
     final double COOLDOWN_KICK = 0.5;
     final int STAMINA_DRAIN_KICK = 20;
-    final static int DAMAGE_KICK = 25;
+    final static int DAMAGE_KICK = 5;
     final static int KNOCKBACK_PUNCH = 3;
     final static int KNOCKBACK_KICK = 7;
 
@@ -74,7 +74,11 @@ public class Player extends Person
     }
 
     public void damage(int d){
-        this.health = this.health-d;
+        if(this.health - d <= 0){
+            this.health = 0;
+        } else{
+            this.health = this.health-d;
+        }
     }
 
     public void collide(){

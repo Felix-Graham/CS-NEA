@@ -28,10 +28,17 @@ public class Enemy_Health extends Bars
         draw(w, h, bg);
     }
 
-    public void act()
+        public void act()
     {
         if(!MyWorld.paused()){
             follow(MyWorld.enemy, 30);
+            update(player_heartbeat(), fg, this);
         }
+    }
+
+    private int player_heartbeat(){
+        // method for calculating the necessary fill for the bar
+        // from player health
+        return round(100-MyWorld.enemy.health, "###"); // already a percentage because out of 100
     }
 }

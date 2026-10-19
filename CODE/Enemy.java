@@ -79,7 +79,11 @@ public class Enemy extends Person
     }
 
     public void damage(int d){
-        this.health = this.health-d;
+        if(this.health - d <= 0){
+            this.health = 0;
+        } else{
+            this.health = this.health-d;
+        }
     }
 
     public int proximity(){

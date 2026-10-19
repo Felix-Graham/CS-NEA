@@ -95,7 +95,7 @@ public class Bars extends Actor
         // calculate width to fill from given percentage
         int w = round((b.w*(pc/100)), "###"); // rounds 
         this.image.setColor(c);
-        this.image.fillRect(0, 0, w, b.h+5); // addition to height ensures all bar covered
+        this.image.fillRect(0, 0, w*2, b.h+5); // addition to height ensures all bar covered
     }
 
     public int round(double target, String format){
