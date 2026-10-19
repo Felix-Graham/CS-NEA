@@ -73,3 +73,7 @@ I knew that I could fix this with either `try/catch` or an `if` clause to check 
 I have used try/catch before in other languages such as C and Python, but I needed to look up how to implement something similar in Java. I learnt how from this web page:
 > [!link]
 > https://www.w3schools.com/java/java_try_catch.asp
+
+## Variable Shadowing 
+I learnt about what variable shadowing is and how it happens from this article:
+https://medium.com/tuanhdotnet/master-variable-shadowing-and-hiding-in-java-uncovering-key-nuances-and-pitfalls-b6eab3d2a41c

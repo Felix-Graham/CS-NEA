@@ -17,8 +17,8 @@ These are designed to make the experience of playing the game easier because the
 ### Tests 
 - [ ] Does the HUD display accurate data for the health of either character?
 - [ ] Does the HUD display a stamina bar for the player, updated in real time?
-- [ ] Does the HUD dynamically display the player's cooldown as a bar?
-- [ ] Does the HUD display a play/pause button is the top left corner for the user?
+- [x] Does the HUD dynamically display the player's cooldown as a bar?
+- [x] Does the HUD display a play/pause button is the top left corner for the user?
 - [ ] Do all of the bars show relevant information which is consistently updated?
 ## Methods 
 Many of these methods will be reused/repurposed for other classes. For example, I will use `Player Health Bar Draw` for other bars such as player stamina and enemy health. The same goes for the update function.
@@ -116,7 +116,7 @@ I have since fixed this with the following solution:
 This fix allowed the bars to properly follow the player and enemy as below:
 ![[health_bars_follow_people.png]]
 
-### Extra Stage 
+### Damage Fixing 
 Whilst testing my bars' code, I realised that due to a poor choice of method for damaging an opponent, damage is only truly applied if both player and enemy are directly intersecting. This is because of the method which I have used (`getOneIntersectingObject(Enemy.class)`) one returns `enemy` if they are intersecting. To remedy this, I will change my `punch()` and `kick()` method from 
 ``` java 
     private void punch(){
@@ -197,4 +197,62 @@ to
         }
         imgState = 0;
     }
+```
+#### Variable Shadowing 
+After a lot of research and smoke testing, I discovered that the root cause of this problem was because of something called variable shadowing (![[references#Variable Shadowing]]). This became obvious when inspecting either the player or enemy characters and finding an extra field which went undeclared in their code:
+![[wtf_health_variables.png]]
+![[no_health_references.png]]
+As I found out, this was the result of declaring `health` and `cooldown` in the parent class, despite this being used to write the methods for both player and enemy. 
+``` java 
+public class Person extends Actor
+{
+    int cooldown;
+    int health;
+    
+    .
+    .
+    .
+    
+    public void damage(int d, Person p){
+        p.health = p.health-d;
+    }
+    
+```
+As of 19/10/2026, I have fixed this. I did so by declaring the `damage()` method in both `Enemy` and `Player` classes following a polymorphic approach. 
+![[damage_in_player.png]]
+This allowed damage to be applied directly to either Persons' static `health` variable as such:
+![[health_not_hidden_working.png]]
+Because of this, I was able to fully implement a dynamically updating health bar for both classes:
+![[accurate_bar_update.png]]
+My research about this error comes from the following two sites. No code from either was copied.
+https://www.geeksforgeeks.org/java/shadowing-in-java/
+https://codingtechroom.com/question/understanding-variable-shadowing-java
+### Damage Below A Threshold 
+Whilst testing, I discovered that I had a small logic error for when the value of health is less than 0. This stemmed from the code:
+``` java 
+private int player_heartbeat(){
+	int pc = 100-MyWorld.player.health;
+	return pc;
+}
+```
+If `MyWorld.player.health` is less than 0, the following would happen:
+$$
+\text{Let } MyWorld.player.health = -50
+
+$$
+$$
+pc = 100-(-50) = 150
+$$
+$$
+\therefore \text{ Health Bar would overfill to 150 }
+$$
+To prevent this, I implemented the following check into the `damage` method:
+``` java 
+public void damage(int d){
+	if(this.health-d <= 0){
+		this.health = 0;
+	} else{
+		this.health = this.health-d;
+	}
+}
 ```
