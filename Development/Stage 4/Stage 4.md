@@ -15,7 +15,7 @@ These are designed to make the experience of playing the game easier because the
 - [x] Enemy Health Bar 
 - [x] Play/Pause button
 ### Tests 
-- [ ] Does the HUD display accurate data for the health of either character?
+- [x] Does the HUD display accurate data for the health of either character?
 - [ ] Does the HUD display a stamina bar for the player, updated in real time?
 - [x] Does the HUD dynamically display the player's cooldown as a bar?
 - [x] Does the HUD display a play/pause button is the top left corner for the user?
@@ -45,6 +45,8 @@ The following is an example of how a bar might be constructed.
 ![[bar_movement.svg]]
 ### Pause 
 ![[pause.svg]]
+### Stamina Bar Update 
+![[stamina_update.svg]]
 
 ## Notes 
 ### Creating the Bars 
@@ -256,3 +258,72 @@ public void damage(int d){
 	}
 }
 ```
+### Bar Fixes 
+The line
+``` java 
+int w = round((b.w*(pc/100)), "###"); // rounds 
+```
+in the method `update()` in `Bars` was causing the bars' updating system to be off. Because I had not noticed the logic error when writing this method, a bar would only appear to update when the Person's health had reached 0. 
+``` java 
+public void update(int pc, Color c, Bars b){ // where pc is the percentage of the bar to be filled
+        // calculate width to fill from given percentage
+        int w = round((b.w*(pc/100)), "###"); // rounds 
+        this.image.setColor(c);
+        this.image.fillRect(0, 0, w, b.h+5); // addition to height ensures all bar covered
+        this.image.fillRect(0, 0, w*2, b.h+5); // addition to height ensures all bar covered
+    }
+```
+$$
+\text{Assume }pc=60
+$$
+$$
+\text{Assume }width=100
+$$
+$$
+w = round\left( 100*\left( \frac{60}{100} \right), \text{ to 3sf} \right)
+$$
+$$
+\text{Due to the nature of the rounding method,}
+$$$$
+\text{this does not produce an intended value for }w \text{, often leaving it to be 100 or 0.}
+$$
+This made the game hard to play because it was not possible to see either characters' health until they were dead.
+![[absolutely_epic_combo.mp4]]
+[[absolutely_epic_combo.mp4]]
+(The player in the video  has been given extended range of attack, such that the bug can be properly seen)
+I fixed it by removing the unnecessary rounding to yield: 
+``` java 
+public void update(int pc, Color c, Bars b){ // where pc is the percentage of the bar to be filled
+        this.image.setColor(c);
+        this.image.fillRect(0, 0, pc*2, b.h+5); // addition to height ensures all bar covered
+    }
+```
+This allowed accurate updating of health bars 
+![[enemy_being_thwarted.mp4]]
+[[enemy_being_thwarted.mp4]]
+
+### Stamina Bar Update 
+For the stamina bar to be updated, it should cover more or less of the yellow background with black. This is a unique challenge which was not present with either health bar. With these the black overlay is actually part of the same image, which was a useful design choice because they will not regenerate and the simplicity of this improves the efficiency of the program because only one GreenfootImage item is being updated. 
+The reason that this would be problematic for `StaminaBar` is that it can not be removed. It is easy to implement `increase_overlay_size()` but difficult to add `decrease_overlay_size()`. Below are some diagrams explaining potential solutions to this problem.
+#### Index System
+![[Index System Stamina.svg]]
+The idea behind this is that the stamina bar would be split into groups of $n$ pixels and stored inside an array. A pointer would hold the location of the "head" of the overlay, meaning that `increase_overlay_size()` would look like 
+``` pseudocode 
+PROCEDURE increase_overlay_size(head)
+	set_overlay(stamina_bar[head+1]);
+END PROCEDURE
+```
+and `decrease_overlay_size()` like so:
+``` pseudocode
+PROCEDURE decrease_overlay_size(head)
+	set_not_overlay(stamina_bar[head])
+	head = head-1
+END PROCEDURE
+```
+The downside of this is that the bar would lack end up sacrificing either efficiency or accuracy for the other.
+#### Separate Overlay 
+![[Overlay as Class stamina.svg]]
+The benefit of this system is it would be very easy to implement, even with the same methods for following allowing it to be an effective overlay. The downside is that it would be a whole new class which would clutter the environment, make the game less resource efficient, and introduce potential new errors.
+
+
+In conclusion, I will use option 2. It will be far easier than implementing a stack system and the clutter will be minimal.
