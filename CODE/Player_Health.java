@@ -29,17 +29,17 @@ public class Player_Health extends Bars
 
     public void act()
     {
+        update(heartbeat(), fg, this);
         if(!MyWorld.paused()){
             follow(MyWorld.player, 30);
-            update(player_heartbeat(), fg, this);
+
         }
     }
 
-    private int player_heartbeat(){
+    private int heartbeat(){
         // method for calculating the necessary fill for the bar
         // from player health
         return round(100-MyWorld.player.health, "###"); // already a percentage because out of 100
     }
-    
 
 }

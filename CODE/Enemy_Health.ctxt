@@ -6,5 +6,5 @@ comment1.target=Enemy_Health(int,\ int,\ greenfoot.Color,\ greenfoot.Color)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
-comment3.target=int\ player_heartbeat()
+comment3.target=int\ heartbeat()
 numComments=4

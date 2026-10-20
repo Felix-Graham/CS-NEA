@@ -23,22 +23,23 @@ public class Enemy_Health extends Bars
     public Enemy_Health(int w, int h, Color bg, Color fg){
         this.w = w;
         this.h = h;
-        this.fg = Color.RED;//fg;
+        this.fg = Color.BLACK;//fg;
         this.bg = Color.RED;//bg;
         draw(w, h, bg);
     }
 
-        public void act()
+    public void act()
     {
+        update(heartbeat(), fg, this);
         if(!MyWorld.paused()){
             follow(MyWorld.enemy, 30);
-            update(player_heartbeat(), fg, this);
+
         }
     }
 
-    private int player_heartbeat(){
+    private int heartbeat(){
         // method for calculating the necessary fill for the bar
-        // from player health
-        return round(100-MyWorld.enemy.health, "###"); // already a percentage because out of 100
+        // from enemy health
+        return 100-MyWorld.enemy.health; // already a percentage because out of 100
     }
 }

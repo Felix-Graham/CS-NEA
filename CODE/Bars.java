@@ -93,7 +93,7 @@ public class Bars extends Actor
 
     public void update(int pc, Color c, Bars b){ // where pc is the percentage of the bar to be filled
         // calculate width to fill from given percentage
-        int w = round((b.w*(pc/100)), "###"); // rounds 
+        int w =pc; // rounds 
         this.image.setColor(c);
         this.image.fillRect(0, 0, w*2, b.h+5); // addition to height ensures all bar covered
     }
