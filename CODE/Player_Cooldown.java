@@ -35,7 +35,7 @@ public class Player_Cooldown extends Bars
     public void act()
     {
         if(!MyWorld.paused()){
-            follow(MyWorld.player, 80);
+            follow(MyWorld.player, 100);
             if(MyWorld.player.cooldown > 0){
                 show();
                 //update(player_heartbeat(), fg, this);

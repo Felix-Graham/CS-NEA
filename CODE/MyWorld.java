@@ -53,6 +53,9 @@ public class MyWorld extends World
         addObject(player_Cooldown,314,47);
         PlayPause playPause = new PlayPause();
         addObject(playPause,60,57);
+        player_Stamina.setLocation(335,77);
+        Stamina_Overlay stamina_Overlay = new Stamina_Overlay();
+        addObject(stamina_Overlay,335,77);
     }
 
     // pause management

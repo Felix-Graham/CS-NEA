@@ -32,7 +32,7 @@ public class Enemy_Health extends Bars
     {
         update(heartbeat(), fg, this);
         if(!MyWorld.paused()){
-            follow(MyWorld.enemy, 30);
+            follow(MyWorld.enemy, 50);
 
         }
     }

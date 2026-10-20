@@ -13,19 +13,16 @@ public class Player_Stamina extends Bars
      * Act - do whatever the Player_Stamina wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private final int w;
-    private final int h;
+    public static final int w=200;
+    public static final int h=15;
     private final Color bg;
-    private final Color fg;
+    public static final Color fg = greenfoot.Color.BLACK;
     private GreenfootImage image;
     private GreenfootImage overlay;
     private int last_stamina=100; // default value before properly called (assumes full)
 
     public Player_Stamina(){
         // main
-        this.w = 200;
-        this.h = 15;
-        this.fg = greenfoot.Color.BLACK;
         this.bg = greenfoot.Color.ORANGE;
         draw(w, h, bg);
         // overlay
@@ -35,7 +32,7 @@ public class Player_Stamina extends Bars
     {
         // current iteration of update() will be unfit
         if(!MyWorld.paused()){
-            follow(MyWorld.player, 30);
+            follow(MyWorld.player, 60);
 
         }
         // update
@@ -56,11 +53,12 @@ public class Player_Stamina extends Bars
         if(diff == 0){
             return; // end function
         }
+        Stamina_Overlay s = new Stamina_Overlay();
         if(diff > 0){
-            // if positive..
-            increase_overlay_size();
+            // if positive...
+            s.increase(diff);
         } else{
-            decrease_overlay_size();
+            s.decrease(-diff);
         }
     }
 }
