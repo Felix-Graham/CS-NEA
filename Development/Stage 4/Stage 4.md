@@ -284,9 +284,11 @@ w = round\left( 100*\left( \frac{60}{100} \right), \text{ to 3sf} \right)
 $$
 $$
 \text{Due to the nature of the rounding method,}
-$$$$
-\text{this does not produce an intended value for }w \text{, often leaving it to be 100 or 0.}
 $$
+$$
+\text{this does not produce an intended value for }w \text{, often leaving it to be 100 or 0.}
+$$ 
+
 This made the game hard to play because it was not possible to see either characters' health until they were dead.
 ![[absolutely_epic_combo.mp4]]
 [[absolutely_epic_combo.mp4]]
