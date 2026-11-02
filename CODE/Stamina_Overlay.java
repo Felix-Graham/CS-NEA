@@ -12,8 +12,8 @@ public class Stamina_Overlay extends Bars
      * Act - do whatever the Stamina_Overlay wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int w;
-    private final int h;
+    public int w;
+    public final int h;
     private final Color c;
     public static GreenfootImage image;
 
