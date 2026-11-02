@@ -327,5 +327,31 @@ The downside of this is that the bar would lack end up sacrificing either effici
 ![[Overlay as Class stamina.svg]]
 The benefit of this system is it would be very easy to implement, even with the same methods for following allowing it to be an effective overlay. The downside is that it would be a whole new class which would clutter the environment, make the game less resource efficient, and introduce potential new errors.
 
-
 In conclusion, I will use option 2. It will be far easier than implementing a stack system and the clutter will be minimal.
+
+#### Implementation Challenges
+![[staminull_pointer.png]]
+I was able to implement `Stamina_Overlay` as a separate class with the same movement method as `Player_Stamina`. This allowed it to be in the same place at the same time. Unfortunately, I had a null pointer error when running the program. This referenced the following code:
+``` java 
+public class Stamina_Overlay extends Bars {
+	// irrelevant code ommitted 
+
+	public int w;
+	public final int h;
+	private final Color c;
+	public static GreenfootImage image;
+	
+	public void increase(int amount){
+		this.w = this.w + amount;
+		if(w > 0){
+		} else {
+			w = 0;
+		}
+		image.fillRect(0, 0, this.w, this.h);
+	}
+}
+```
+With the offending line:
+``` java 
+image.fillRect(0, 0, this.w, this.h);
+```
