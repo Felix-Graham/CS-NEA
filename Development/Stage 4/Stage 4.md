@@ -355,3 +355,36 @@ With the offending line:
 ``` java 
 image.fillRect(0, 0, this.w, this.h);
 ```
+To fix this I tried making all the data static and reference the object, like `Player_Stamina` would reference the `increase()` method by object. 
+``` java 
+public class Stamina_Overlay extends Bars {
+	// irrelevant code ommitted 
+
+	public static int w;
+	public static int h;
+	private static final Color c;
+	public static GreenfootImage image;
+	
+	public void increase(int amount){
+		Stamina_Overlay.w = Stamina_Overlay.w + amount;
+		if(w > 0){
+		} else {
+			w = 0;
+		}
+		Stamina_Overlay.image.fillRect(0, 0, Stamina_Overlay.w, Stamina_Overlay.h);
+	}
+}
+```
+But this didn't seem to help. I then did the opposite, hoping that referencing the class with `this.{}` with the same result.
+In the end I fixed it by properly instantiating `this.image` with the GreenfootImage constructor.
+``` java 
+public Stamina_Overlay() {
+	this.w = 1;
+	this.h = Player_Stamina.h;
+	this.c = Player_Stamina.fg;
+	
+	this.image = new GreenfootImage(this.w, this.h);
+	
+	MyWorld.s = this;
+}
+```
