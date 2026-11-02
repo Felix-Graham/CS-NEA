@@ -59,7 +59,7 @@ public class Player extends Person
             }
 
             if(this.stamina < STAMINA_MAX && this.stamina_increase_delay == 0){
-                this.stamina++;
+                this.stamina+=5;
                 this.stamina_increase_delay = 20;
             } else if(stamina_increase_delay != 0 && stamina_increase_delay > 0){
                 this.stamina_increase_delay--;

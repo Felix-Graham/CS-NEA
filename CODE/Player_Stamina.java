@@ -38,20 +38,18 @@ public class Player_Stamina extends Bars
         // current iteration of update() will be unfit
         if(!MyWorld.paused()){
             follow(MyWorld.player, 60);
-
+            // update
+            stamina_update();
+            last_stamina = MyWorld.player.stamina; // to be at last line of act method
         }
-        // update
-        stamina_update();
-        last_stamina = MyWorld.player.stamina; // to be at last line of act method
     }
 
     private void stamina_update(){
-        int diff = MyWorld.player.stamina - last_stamina;
+        int diff = -2*(MyWorld.player.stamina - last_stamina);
         if(diff == 0){
             return; // end function
         }
-
-        MyWorld.s.augment(diff);
+        MyWorld.s.augment(diff); // where diff is a signed int
 
     }
 }

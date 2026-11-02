@@ -20,9 +20,12 @@ public class Stamina_Overlay extends Bars
     public Stamina_Overlay() {
         this.w = 1;
         this.h = Player_Stamina.h; // height will not vary like width; aims to overlap
-        this.c = Player_Stamina.fg; 
-        this.image = new GreenfootImage (this.w, this.h);
+        this.c = Player_Stamina.fg;
+        setImage(new GreenfootImage (this.w, this.h));
+        this.image = getImage();
         MyWorld.s = this;
+        this.image.setColor(this.c);
+        this.image.fillRect(0, 0, this.w, this.h);
     }
 
     public void act()
@@ -30,6 +33,7 @@ public class Stamina_Overlay extends Bars
         if(!MyWorld.paused()){
             follow(MyWorld.player, 60); // same movement as Player_Stamina thus should overlay
             setLocation(MyWorld.player.getX()-(Player_Stamina.w/2-this.w/2), getY()); // moves to start of stamina bar
+            //this.image.fillRect(0, 0, this.w, this.h);
 
         }
     }
@@ -40,9 +44,10 @@ public class Stamina_Overlay extends Bars
         } else{
             w = 0;
         }
-        //draw(w, h, c);
-        image.setColor(this.c);
-        this.image.fillRect(0, 0, this.w, this.h);
+        setImage(new GreenfootImage (this.w, this.h));
+        this.image = getImage();
+        this.image.setColor(this.c);
+        this.image.fillRect(0, 0, w*2, this.h+5);
 
     }
 
