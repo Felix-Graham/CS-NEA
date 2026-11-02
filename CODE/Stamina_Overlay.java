@@ -13,23 +13,24 @@ public class Stamina_Overlay extends Bars
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public int w;
-    public final int h;
+    public int h;
     private final Color c;
-    public static GreenfootImage image;
+    public GreenfootImage image;
 
     public Stamina_Overlay() {
         this.w = 1;
         this.h = Player_Stamina.h; // height will not vary like width; aims to overlap
         this.c = Player_Stamina.fg; 
-        draw(w, h, c);
+        //draw(w, h, c);
+        this.image = new GreenfootImage (this.w, this.h);
         MyWorld.s = this;
     }
 
     public void act()
     {
         if(!MyWorld.paused()){
-            follow(MyWorld.player, 60); 
-            setLocation(MyWorld.player.getX()-(Player_Stamina.w/2), getY());
+            follow(MyWorld.player, 60); // same movement as Player_Stamina thus should overlay
+            setLocation(MyWorld.player.getX()-(Player_Stamina.w/2-this.w/2), getY()); // moves to start of stamina bar
 
         }
     }
@@ -41,7 +42,7 @@ public class Stamina_Overlay extends Bars
             w = 0;
         }
         //draw(w, h, c);
-        image.fillRect(0, 0, this.w, this.h);
+        this.image.fillRect(0, 0, this.w, this.h);
     
     }
 
