@@ -33,7 +33,6 @@ public class Player_Stamina extends Bars
 
     }
 
-
     public void act()
     {
         // current iteration of update() will be unfit
@@ -52,11 +51,7 @@ public class Player_Stamina extends Bars
             return; // end function
         }
 
-        if(diff > 0){
-            // if positive...
-            MyWorld.s.increase(diff);
-        } else{
-            MyWorld.s.decrease(-diff);
-        }
+        MyWorld.s.augment(diff);
+
     }
 }

@@ -21,7 +21,6 @@ public class Stamina_Overlay extends Bars
         this.w = 1;
         this.h = Player_Stamina.h; // height will not vary like width; aims to overlap
         this.c = Player_Stamina.fg; 
-        //draw(w, h, c);
         this.image = new GreenfootImage (this.w, this.h);
         MyWorld.s = this;
     }
@@ -35,19 +34,16 @@ public class Stamina_Overlay extends Bars
         }
     }
 
-    public void increase(int amount){
+    public void augment(int amount){
         this.w = this.w + amount;
         if(w > 0){
         } else{
             w = 0;
         }
         //draw(w, h, c);
+        image.setColor(this.c);
         this.image.fillRect(0, 0, this.w, this.h);
-    
+
     }
 
-    public void decrease(int amount){
-        this.w += amount;
-        draw(w, h, c);
-    }
 }

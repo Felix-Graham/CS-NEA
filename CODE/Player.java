@@ -48,6 +48,7 @@ public class Player extends Person
         MyWorld.player = this;
     }
 
+    int stamina_increase_delay = 20; // decrease every act(); when 0 increase stamina and set to 30
     public void act()
     {
         if(!MyWorld.paused()){
@@ -56,9 +57,14 @@ public class Player extends Person
             if(cooldown > 0){
                 cooldown--;
             }
-            if(stamina < STAMINA_MAX){
-                stamina++;
+
+            if(this.stamina < STAMINA_MAX && this.stamina_increase_delay == 0){
+                this.stamina++;
+                this.stamina_increase_delay = 20;
+            } else if(stamina_increase_delay != 0 && stamina_increase_delay > 0){
+                this.stamina_increase_delay--;
             }
+            
             // image changes 
             if(imgCountdown == 30){
                 changeImage();
@@ -71,6 +77,10 @@ public class Player extends Person
             attacks();
             collision(MyWorld.player, MyWorld.enemy);
         }
+    }
+
+    private void stamina_increase(){
+
     }
 
     public void damage(int d){
