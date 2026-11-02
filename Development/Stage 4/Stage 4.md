@@ -16,10 +16,10 @@ These are designed to make the experience of playing the game easier because the
 - [x] Play/Pause button
 ### Tests 
 - [x] Does the HUD display accurate data for the health of either character?
-- [ ] Does the HUD display a stamina bar for the player, updated in real time?
+- [x] Does the HUD display a stamina bar for the player, updated in real time?
 - [x] Does the HUD dynamically display the player's cooldown as a bar?
 - [x] Does the HUD display a play/pause button is the top left corner for the user?
-- [ ] Do all of the bars show relevant information which is consistently updated?
+- [x] Do all of the bars show relevant information which is consistently updated?
 ## Methods 
 Many of these methods will be reused/repurposed for other classes. For example, I will use `Player Health Bar Draw` for other bars such as player stamina and enemy health. The same goes for the update function.
 ###  Bar Draw
@@ -388,3 +388,38 @@ public Stamina_Overlay() {
 	MyWorld.s = this;
 }
 ```
+The next problem was that the bar would not update both ways. The above code allowed it to increment accurately, but when I implemented something similar for decrementation, neither would work. I worked out that this was due to the image defined with 
+``` java 
+public Stamina_Overlay(){
+	// irrelevant code ommitted
+	this.image = new GreenfootImage(this.w, this.h);
+}
+// and then being referenced by both methods with 
+public void decrement(int amount){
+	this.w -= amount;
+	this.image.fillRect(0, 0, this.w, this.h);
+}
+public void increment(int amount){
+	this.w += amount;
+	this.image.fillRect(0, 0, this.w, this.h);
+}
+```
+This was problematic because the variable was only being modified with local scope. This would not therefore function as intended. 
+I fixed this, with optimisations, by removing `increment()` and `decrement()` and replacing them with `augment()`. This would take a signed integer as a parameter to alter. 
+``` java 
+public void augment(int amount){
+	this.w = this.w + amount;
+	if(w > 0){
+	} else{ // this is innefficient but improves readability
+		w = 0; 
+	}
+	setImage(new GreenfootImage(this.w, this.h));
+	this.image = getImage();
+	this.image.setColor(this.c);
+	this.image.fillRect(0, 0, w*2, this.h+5); // with w*2 because stamina is out of 100 and stamina bar has width 200. h+5 for better coverage
+}
+```
+By redefining the image, we gain full mutability, which was hard to access through the global variable with two methods. Here is the result:
+![[stamina_overlay_working.mp4]]
+[stamina_overlay_working.mp4]
+This concluded stage 4.
