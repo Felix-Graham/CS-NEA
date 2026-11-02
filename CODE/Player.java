@@ -26,8 +26,8 @@ public class Player extends Person
     final static int KNOCKBACK_PUNCH = 3;
     final static int KNOCKBACK_KICK = 7;
 
-    final static int RANGE_KICK = 500;
-    final static int RANGE_PUNCH = 300;
+    final static int RANGE_KICK = 30;
+    final static int RANGE_PUNCH = 20;
 
     // Mutable variables
     public int stamina = 100;
