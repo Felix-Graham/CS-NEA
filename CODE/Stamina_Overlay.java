@@ -15,12 +15,14 @@ public class Stamina_Overlay extends Bars
     private int w;
     private final int h;
     private final Color c;
+    public static GreenfootImage image;
 
     public Stamina_Overlay() {
         this.w = 1;
         this.h = Player_Stamina.h; // height will not vary like width; aims to overlap
         this.c = Player_Stamina.fg; 
         draw(w, h, c);
+        MyWorld.s = this;
     }
 
     public void act()
@@ -33,14 +35,14 @@ public class Stamina_Overlay extends Bars
     }
 
     public void increase(int amount){
-        this.w = w + amount;
+        this.w = this.w + amount;
         if(w > 0){
-            
         } else{
             w = 0;
-            
         }
-        draw(w, h, c);
+        //draw(w, h, c);
+        image.fillRect(0, 0, this.w, this.h);
+    
     }
 
     public void decrease(int amount){

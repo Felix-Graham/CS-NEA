@@ -18,6 +18,7 @@ public class MyWorld extends World
 
     public static Enemy enemy;
     public static Player player;
+    public static Stamina_Overlay s;
 
     private static boolean PAUSED = false;
 
@@ -55,7 +56,7 @@ public class MyWorld extends World
         addObject(playPause,60,57);
         player_Stamina.setLocation(335,77);
         Stamina_Overlay stamina_Overlay = new Stamina_Overlay();
-        addObject(stamina_Overlay,335,77);
+        addObject(stamina_Overlay,235,77);
     }
 
     // pause management

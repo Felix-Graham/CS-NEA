@@ -20,13 +20,19 @@ public class Player_Stamina extends Bars
     private GreenfootImage image;
     private GreenfootImage overlay;
     private int last_stamina=100; // default value before properly called (assumes full)
+    private Stamina_Overlay s;
 
     public Player_Stamina(){
         // main
         this.bg = greenfoot.Color.ORANGE;
         draw(w, h, bg);
+        Stamina_Overlay s = new Stamina_Overlay();
+
         // overlay
+        //this.s = MyWorld.s;
+
     }
+
 
     public void act()
     {
@@ -40,25 +46,17 @@ public class Player_Stamina extends Bars
         last_stamina = MyWorld.player.stamina; // to be at last line of act method
     }
 
-    private void increase_overlay_size(){
-
-    }
-
-    private void decrease_overlay_size(){
-
-    }
-
     private void stamina_update(){
         int diff = MyWorld.player.stamina - last_stamina;
         if(diff == 0){
             return; // end function
         }
-        Stamina_Overlay s = new Stamina_Overlay();
+
         if(diff > 0){
             // if positive...
-            s.increase(diff);
+            MyWorld.s.increase(diff);
         } else{
-            s.decrease(-diff);
+            MyWorld.s.decrease(-diff);
         }
     }
 }
