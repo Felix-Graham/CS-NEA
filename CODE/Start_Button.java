@@ -16,9 +16,20 @@ public class Start_Button extends Actor
         // should aim to take up displayed play button
     }
 
+    int timer = 60*3; // 3 lots of 60 calls per second
     public void act()
     {
-        play();
+        //play();
+        if(Greenfoot.mouseClicked(this)){
+            // start
+            // switch to other world
+            Greenfoot.setWorld(new MyWorld());
+            MyWorld.pause(); // pause world 
+
+        }
+        // wait three seconds 
+        MyWorld.wait_please(60*3);
+
     }
 
     private void play(){
@@ -26,6 +37,8 @@ public class Start_Button extends Actor
             // start
             // switch to other world
             Greenfoot.setWorld(new MyWorld());
+            MyWorld.pause(); // pause world 
+
         }
     }
 }

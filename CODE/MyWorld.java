@@ -21,6 +21,7 @@ public class MyWorld extends World
     public static Stamina_Overlay s;
 
     private static boolean PAUSED = false;
+    private static int wait=0;
 
     public MyWorld()
     {    
@@ -28,6 +29,14 @@ public class MyWorld extends World
 
         super(600, 400, 1); 
         prepare();
+    }
+
+    public void act(){
+        if(are_we_unpausing()){
+            unpause();
+        } else{
+            this.wait--;
+        }
     }
 
     /**
@@ -78,6 +87,17 @@ public class MyWorld extends World
             unpause();
         } else{
             pause();
+        }
+    }
+
+    public static void wait_please(int t){
+        MyWorld.wait = t;
+    }
+    public boolean are_we_unpausing(){
+        if(this.wait <= 0){
+            return true;
+        } else{
+            return false;
         }
     }
 
