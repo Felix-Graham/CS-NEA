@@ -81,13 +81,13 @@ The title sits above everything else, making it the first thing seen. Its audaci
 ### Stage 2 - Enemy Creation 
 A class called `Enemy` would have been created in order for above stages. This stage populates that class with data, actions and methods.
 
-| Test ID | Test                                                              | Test Data   | Outcome                                                                | Actual Outcome |
-| ------- | ----------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------- | -------------- |
-| 2A      | Is the enemy sprite displayed at their location?                  | Run program | The sprite is displayed wherever the enemy is.                         |                |
-| 2B      | Is the enemy able to move?                                        | Run program | The enemy can move when commanded with keyboard input.                 |                |
-| 2C      | Is the enemy able to move in response to data about the player?   | Run program | The enemy uses the getter methods from stage 2 to decide when to move. |                |
-| 2D      | Can the enemy attack and decide when to through received data?    | Run program | The enemy uses data such as player proximity to "decide" to attack.    |                |
-| 2E      | Does the enemy have data for `health`, `stamina` and `knockback`? | Run program | Yes, with methods to return them.                                      |                |
+| Test ID | Test                                                              | Test Data   | Outcome                                                             | Actual Outcome |
+| ------- | ----------------------------------------------------------------- | ----------- | ------------------------------------------------------------------- | -------------- |
+| 2A      | Is the enemy sprite displayed at their location?                  | Run program | The sprite is displayed wherever the enemy is.                      |                |
+| 2B      | Is the enemy able to move?                                        | Run program | The enemy can move when commanded with keyboard input.              |                |
+| 2C      | Is the enemy able to move in response to data about the player?   | Run program | The enemy uses player getter methods to decide when to move.        |                |
+| 2D      | Can the enemy attack and decide when to through received data?    | Run program | The enemy uses data such as player proximity to "decide" to attack. |                |
+| 2E      | Does the enemy have data for `health`, `stamina` and `knockback`? | Run program | Yes, with methods to return them.                                   |                |
 ### Stage 3 - Data Collection
 
 | Test ID | Test                                                                                                               | Test Data   | Outcome                                                           | Actual Outcome |
