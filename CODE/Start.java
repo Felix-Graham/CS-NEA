@@ -28,9 +28,7 @@ public class Start extends World
     {
         Start_Button start_Button = new Start_Button();
         addObject(start_Button,448,302);
-        Difficulty_Slider difficulty_Slider = new Difficulty_Slider();
         
-        addObject(difficulty_Slider,166,267);
         
         Difficulty_Slider_Cursor difficulty_Slider_Cursor = new Difficulty_Slider_Cursor();
         addObject(difficulty_Slider_Cursor,253,264);
