@@ -17,7 +17,7 @@ public class Difficulty_Slider extends Actor
         setImage(new GreenfootImage(190, 225));
         this.image = getImage();
         this.image.setColor(Color.RED);
-        this.image.setTransparency(10);
+        this.image.setTransparency(30);
         this.image.fillRect(0, 0, 700, 400);
     }
 
