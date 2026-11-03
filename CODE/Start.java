@@ -19,6 +19,7 @@ public class Start extends World
         super(600, 400, 1); 
         prepare();
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -27,5 +28,7 @@ public class Start extends World
     {
         Start_Button start_Button = new Start_Button();
         addObject(start_Button,448,302);
+        Difficulty_Slider difficulty_Slider = new Difficulty_Slider();
+        addObject(difficulty_Slider,166,267);
     }
 }
