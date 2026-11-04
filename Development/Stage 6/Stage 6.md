@@ -23,7 +23,7 @@ Unlike some other methods, the solution for this is not obvious. To develop a me
 The issue is that the given x-value would only be for one side. My current knowledge of Greenfoot leads me to believe that a sprite/image's coordinate system works like this:
 ![[sprite_coordinates.svg]]
 This would make this approach problematic for judging accurate displacement.
-### $\Delta$Centre
+#### $\Delta$Centre
 We can solve the above problem with an approach like this:
 ![[sprite_centre_coord.svg]]
 This solution would allow for each x 'bar' to be calculated with 
