@@ -17,21 +17,38 @@ public abstract class Person extends Actor
      */
     int cooldown;
     public static int health;
-    final int collision_threshold = 50;
+    final int collision_threshold = 20;
 
     public void act()
     {
+        collide(MyWorld.player, MyWorld.enemy);
     }
 
-    public void collision(Player p1, Enemy p2){
+    public int get_collision(Person p1, Person p2){
         // method to avoid player and enemy being too close
         // passes two "people" being player 1 and two
-        // collision will function by inhibiting movement forward when too close
-        int current_delta = modulus(p1.getX() - p2.getX());
-        if(current_delta >= collision_threshold){
-            // then inhibit movement
-            p1.collide();
-            p2.collide();
+        int dx;
+        if(p1.getX() > p2.getX()){
+            dx = p1.getX() - p2.getX();
+        } else{
+            dx = p2.getX() - p1.getX();
+        }
+        
+        return dx;
+    }
+    
+    public void collide(Person p1, Person p2){
+        int dx = get_collision(p1, p2);
+        if(p1.getX() > p2.getX()){
+            while (dx <= collision_threshold){
+                p1.setLocation(p1.getX()+1, p1.getY());
+                p2.setLocation(p1.getX()-1, p1.getY());
+            }
+        } else{
+            while (dx <= collision_threshold){
+                p2.setLocation(p1.getX()+1, p1.getY());
+                p1.setLocation(p1.getX()-1, p1.getY());
+            }
         }
     }
 

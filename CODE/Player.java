@@ -17,7 +17,7 @@ public class Player extends Person
     final int SPEED = 5;
     final int JUMP = 70;
     final int STAMINA_MAX = 100;
-    final static int DAMAGE_PUNCH = 3;
+    final static int DAMAGE_PUNCH = 10;
     final int STAMINA_DRAIN_PUNCH = 10;
     final double COOLDOWN_PUNCH = 0.2;
     final double COOLDOWN_KICK = 0.5;
@@ -26,8 +26,8 @@ public class Player extends Person
     final static int KNOCKBACK_PUNCH = 3;
     final static int KNOCKBACK_KICK = 7;
 
-    final static int RANGE_KICK = 30;
-    final static int RANGE_PUNCH = 20;
+    final static int RANGE_KICK = 130;
+    final static int RANGE_PUNCH = 120;
 
     // Mutable variables
     public int stamina = 100;
@@ -40,6 +40,10 @@ public class Player extends Person
     change. Each act method this will increment and thus change the image for the 
     sprite.
      */
+    
+    public int x_bar1;
+    public int x_bar2; // collision bounds
+    
     public boolean inhibited_movement = false;
     public Player(){
         // player constructor
@@ -75,7 +79,7 @@ public class Player extends Person
 
             movement(SPEED, JUMP, -1); // passes constant parameters to inherited method `movement`
             attacks();
-            collision(MyWorld.player, MyWorld.enemy);
+            //collision(MyWorld.player, MyWorld.enemy);
         }
     }
 
