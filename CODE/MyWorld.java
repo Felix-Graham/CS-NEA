@@ -23,11 +23,14 @@ public class MyWorld extends World
     private static boolean PAUSED = false;
     private static int wait=0;
 
-    public MyWorld()
+    public static int difficulty;
+
+    public MyWorld(int difficulty)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
 
         super(600, 400, 1); 
+        this.difficulty = difficulty;
         prepare();
     }
 
@@ -93,6 +96,7 @@ public class MyWorld extends World
     public static void wait_please(int t){
         MyWorld.wait = t;
     }
+
     public boolean are_we_unpausing(){
         if(this.wait <= 0){
             return true;
