@@ -23,6 +23,7 @@ public class Enemy extends Person
     int KNOCKBACK_PUNCH;
     int KNOCKBACK_KICK;
     int REACTION_TIME;
+    double IMAGE_SCALE;
     // constants
     final int STAMINA_DRAIN_PUNCH = 10;
     final double COOLDOWN_PUNCH = 0.2;
@@ -34,15 +35,13 @@ public class Enemy extends Person
     public static int health = 100;
     private int imgState = 0; // 0 as default, 1 for punch, 2 for kick
     private int imgCountdown = 0;
+    private int reaction = 0;
 
     final static int RANGE_KICK = 40;
     final static int RANGE_PUNCH = 20;
 
     public boolean inhibited_movement = false;
 
-    enum sprites{
-        
-    }
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
         this.SPEED = SPEED;
         this.JUMP = JUMP;
@@ -60,15 +59,27 @@ public class Enemy extends Person
         MyWorld.enemy = this;
 
         int world_difficulty = MyWorld.difficulty;
-        if(world_difficulty == 3){
-            int w = getImage().getWidth()*2;
-            int h = getImage().getHeight()*2;
-            GreenfootImage image = getImage();
-
-            image.scale(w, h);
-            setImage(image);
-
+        switch(world_difficulty){
+            case 1:
+                this.REACTION_TIME = 90; // measured in act() calls 
+                this.IMAGE_SCALE = 0.8;
+                break;
+            case 2:
+                this.REACTION_TIME = 60;
+                this.IMAGE_SCALE = 1;
+                break;
+            case 3: 
+                this.REACTION_TIME = 30;
+                this.IMAGE_SCALE = 1.2;
+                break;
         }
+
+        int w = Person.round(getImage().getWidth()*1.2, "###");
+        int h = Person.round(getImage().getHeight()*1.2, "###");
+        GreenfootImage image = getImage();
+
+        image.scale(w, h);
+        setImage(image);
     }
 
     public void act()
@@ -86,6 +97,12 @@ public class Enemy extends Person
             if(imgCountdown == 30){
                 changeImage();
                 imgCountdown = 0;
+            }
+            
+            if(reaction >= REACTION_TIME){ // loops back infinitely
+                reaction = 0;
+            } else{
+                reaction++;
             }
 
             decide();
@@ -145,8 +162,7 @@ public class Enemy extends Person
          * p.health > this.health
          * proximity < 5
          */
-        //Player p = (Player) getWorld().getObjects(Player.class).get(0);
-
+        boolean react = this.reaction == 0; // checks reaction when called
         boolean staminaDiff = (p.stamina > this.stamina);
         boolean healthDiff = (p.health > this.health);
         int proximity = proximity();
@@ -170,7 +186,7 @@ public class Enemy extends Person
         }
 
         // proximity condition
-        if(proximity < 120){
+        if(proximity < 120 && react){ // adds time to attack (reaction time)
             // attack
             if(cooldown == 0 && stamina > STAMINA_DRAIN_KICK){
                 kick();
@@ -223,19 +239,32 @@ public class Enemy extends Person
         int s = this.imgState; // for easier reference
         switch(s){ // switch case removes need for innefficient if/else
             case 0:
-                setImage("enemy_stand_arms_down.png");
+                GreenfootImage stand_sprite = new GreenfootImage("enemy_stand_arms_down.png");
+                sprite_scale(stand_sprite);
                 break;
             case 1:
-                setImage("enemy_punch.png");
+                GreenfootImage punch_sprite = new GreenfootImage("enemy_punch.png");
+                sprite_scale(punch_sprite);
                 break;
             case 2:
-                setImage("enemy_kick.png");
+                GreenfootImage kick_sprite = new GreenfootImage("enemy_kick.png");
+                sprite_scale(kick_sprite);
+                break;
             default:
-                setImage("enemy_stand_arms_down.png");
+                GreenfootImage default_sprite = new GreenfootImage("enemy_stand_arms_down.png");
+                sprite_scale(default_sprite);
                 break;
         }
         // now instead of changing image in a method (happens ~instantly),
         // changes image in act method via this method.
+    }
+
+    public void sprite_scale(GreenfootImage image){
+        // method to return the scaled image from global IMAGE_SCALE
+        int w = Person.round(image.getWidth()*this.IMAGE_SCALE, "###");
+        int h = Person.round(image.getHeight()*this.IMAGE_SCALE, "###");
+        image.scale(w, h);
+        setImage(image);
     }
 
     // collision
