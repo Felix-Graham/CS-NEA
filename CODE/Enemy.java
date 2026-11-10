@@ -22,6 +22,7 @@ public class Enemy extends Person
     int DAMAGE_KICK;
     int KNOCKBACK_PUNCH;
     int KNOCKBACK_KICK;
+    int REACTION_TIME;
     // constants
     final int STAMINA_DRAIN_PUNCH = 10;
     final double COOLDOWN_PUNCH = 0.2;
@@ -39,6 +40,9 @@ public class Enemy extends Person
 
     public boolean inhibited_movement = false;
 
+    enum sprites{
+        
+    }
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
         this.SPEED = SPEED;
         this.JUMP = JUMP;
@@ -54,6 +58,17 @@ public class Enemy extends Person
 
         // add self to world variable
         MyWorld.enemy = this;
+
+        int world_difficulty = MyWorld.difficulty;
+        if(world_difficulty == 3){
+            int w = getImage().getWidth()*2;
+            int h = getImage().getHeight()*2;
+            GreenfootImage image = getImage();
+
+            image.scale(w, h);
+            setImage(image);
+
+        }
     }
 
     public void act()
@@ -102,11 +117,11 @@ public class Enemy extends Person
 
     private void runToward(){
         //Player p = (Player) getWorld().getObjects(Player.class);
-        int locX = p.getX()+120;
+        int locX = p.getX();
         // left of player where (0, 0) at left of screen 
-        if(locX < this.getX()){ // this.getX() used for clarity over "getX()" on its own
+        if(locX+120 < this.getX()){ // this.getX() used for clarity over "getX()" on its own
             enemovement(SPEED, JUMP, 0); // dir (final parameter) 0 as left, 1 as right
-        } else if(locX > this.getX()){
+        } else if(locX-120 > this.getX()){
             enemovement(SPEED, JUMP, 1);
         }
     }

@@ -13,6 +13,7 @@ public class Start extends World
      * Constructor for objects of class Start.
      * 
      */
+    public static Start_Button sb;
     public Start()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -26,8 +27,8 @@ public class Start extends World
      */
     private void prepare()
     {
-        Start_Button start_Button = new Start_Button();
-        addObject(start_Button,448,302);
+        this.sb = new Start_Button();
+        addObject(this.sb,448,302);
         
         
         Difficulty_Slider_Cursor difficulty_Slider_Cursor = new Difficulty_Slider_Cursor();

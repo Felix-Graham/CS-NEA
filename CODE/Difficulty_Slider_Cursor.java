@@ -14,7 +14,7 @@ public class Difficulty_Slider_Cursor extends Actor
      */
     int movement_amount = 3;
     GreenfootImage image;
-    int third;
+    public static int third;
     public Difficulty_Slider_Cursor(){
         setImage(new GreenfootImage(50, 10));
         this.image = getImage();
@@ -63,7 +63,7 @@ public class Difficulty_Slider_Cursor extends Actor
     }
 
     public int get_third(){
-        int y = this.getY(); // get y level 
+        int y = getY(); // get y level 
         // thirds
         int[] third3 = {160, 230};
         int[] third2 = {230, 300};
@@ -84,7 +84,7 @@ public class Difficulty_Slider_Cursor extends Actor
 
     public void move_with_mouse(){
         MouseInfo m = Greenfoot.getMouseInfo();
-        if(m != null && m.getButton() == 1){
+        if(m != null && m.getButton() == 1 && m.getActor() != Start.sb){
             // assume down
             m = Greenfoot.getMouseInfo(); // constant update
             // if above top
