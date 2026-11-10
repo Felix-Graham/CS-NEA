@@ -3,17 +3,18 @@ As a result of this, I plan to re-purpose this stage into several fixes between 
 
 ## To Do List 
 ### Features 
-- [ ] Player and Enemy collision
-- [ ] Enemy-Player tracking 
-- [ ] Accurate attack ranges 
+- [x] Player and Enemy collision
+- [x] Enemy Reaction Speed
+- [x] Accurate attack ranges 
 ### Tests 
 - [ ] One character moving into the other (stationary) pushes them
 - [ ] Characters moving toward each other are stopped at an appropriate distance
 - [ ] Collision is applied in both directions for each character
 - [ ] A jumping character cannot jump into another 
-- [ ] Enemy can detect player when they are to their left
-- [ ] Enemy can detect player when they are to their right
-- [ ] An attack is only applied when the target is within an appropriate range 
+
+- [x] An enemy's reaction to player movement of variables has a variable delay
+
+- [x] An attack is only applied when the target is within an appropriate range 
 
 ## Methods 
 ### Collision 
@@ -98,3 +99,6 @@ $$
 $$
 
 ## Notes 
+### See Above for Collision 
+### Implementing Collision 
+Whist the theory above works in principal, it did not work in my game. 
