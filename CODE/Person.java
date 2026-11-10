@@ -17,7 +17,7 @@ public abstract class Person extends Actor
      */
     int cooldown;
     public static int health;
-    final int collision_threshold = 200;
+    final int collision_threshold = 20;
 
     public void act()
     {
@@ -41,13 +41,15 @@ public abstract class Person extends Actor
         int dx = get_collision(p1, p2);
         if(p1.getX() > p2.getX()){
             while (dx < collision_threshold){
-                p1.setLocation(p1.getX()+50, p1.getY());
-                p2.setLocation(p1.getX()-50, p1.getY());
+                p1.setLocation(p1.getX()+1, p1.getY());
+                p2.setLocation(p1.getX()-1, p1.getY());
+                dx = get_collision(p1, p2);
             }
         } else{
             while (dx < collision_threshold){
-                p2.setLocation(p1.getX()+50, p1.getY());
-                p1.setLocation(p1.getX()-50, p1.getY());
+                p2.setLocation(p1.getX()+1, p1.getY());
+                p1.setLocation(p1.getX()-1, p1.getY());
+                dx = get_collision(p1, p2);
             }
         }
     }
