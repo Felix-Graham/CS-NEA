@@ -81,6 +81,7 @@ public class Player extends Person
             attacks();
             //collision(MyWorld.player, MyWorld.enemy);
         }
+        force_collision(this);
     }
 
     private void stamina_increase(){

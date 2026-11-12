@@ -108,6 +108,7 @@ public class Enemy extends Person
             decide();
 
         }
+        force_collision(this);
     }
 
     public void damage(int d){

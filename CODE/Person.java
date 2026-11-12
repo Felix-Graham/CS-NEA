@@ -53,6 +53,19 @@ public abstract class Person extends Actor
             }
         }
     }
+    
+    public void force_collision(Person p){
+        Actor intersected = p.getOneIntersectingObject(Person.class); // Actor for Greenfoot class conversion
+        if(intersected != null){
+            // if this actor is 'inside' another 'Person' 
+            // then 'move back'
+            if(intersected.getX() > p.getX()){
+                move(-1);
+            } else if(intersected.getX() < p.getX()){
+                move(1);
+            }
+        }
+    }
 
     public void movement(int SPEED, int JUMP, int dir){ // where dir stands for direction to allow enemy to use
         // dir -1> null / 0> left / 1> right / 2> up
