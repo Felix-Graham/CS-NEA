@@ -12,8 +12,12 @@ public class Start_Button extends Actor
      * Act - do whatever the Start_Button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Start_Button(){
+    private Player player;
+    private Enemy enemy;
+    public Start_Button(Player player, Enemy enemy){
         // should aim to take up displayed play button
+        this.player = player; 
+        this.enemy = enemy;
     }
 
     int timer = 60*3; // 3 lots of 60 calls per second
@@ -23,7 +27,7 @@ public class Start_Button extends Actor
         if(Greenfoot.mouseClicked(this)){
             // start
             // switch to other world
-            World world = new MyWorld(Difficulty_Slider_Cursor.third);
+            World world = new MyWorld(Difficulty_Slider_Cursor.third, this.player, this.enemy);
             //world.difficulty = Difficulty_Slider_Cursor.get_third();
             Greenfoot.setWorld(world);
             MyWorld.pause(); // pause world 

@@ -14,10 +14,14 @@ public class Start extends World
      * 
      */
     public static Start_Button sb;
-    public Start()
+    private Player player;
+    private Enemy enemy;
+    public Start(Player player, Enemy enemy)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(600, 400, 1);
+        this.player = player;
+        this.enemy = enemy;
         prepare();
     }
     
@@ -27,7 +31,7 @@ public class Start extends World
      */
     private void prepare()
     {
-        this.sb = new Start_Button();
+        this.sb = new Start_Button(this.player, this.enemy);
         addObject(this.sb,448,302);
         
         

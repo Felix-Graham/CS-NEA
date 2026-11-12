@@ -25,7 +25,7 @@ public class MyWorld extends World
 
     public static int difficulty;
 
-    public MyWorld(int difficulty)
+    public MyWorld(int difficulty, Player player, Enemy enemy)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
 
@@ -39,6 +39,15 @@ public class MyWorld extends World
             unpause();
         } else{
             this.wait--;
+        }
+        // health condition checking 
+        if(enemy.health <= 0){
+            World win = new WinScreen();
+            Greenfoot.setWorld(win);
+        }
+        if(player.health <= 0){
+            World lose = new LoseScreen();
+            Greenfoot.setWorld(lose);
         }
     }
 
@@ -55,6 +64,7 @@ public class MyWorld extends World
         // int SPEED, int JUMP, int SM, int DM, int KM
         Enemy enemy = new Enemy(5, 200, 100, 2, 3, player);
         addObject(enemy,395,306);
+        
         Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
         addObject(enemy_Health,201,160);
         enemy_Health.setLocation(302,144);
