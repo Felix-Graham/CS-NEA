@@ -7,10 +7,10 @@ As a result of this, I plan to re-purpose this stage into several fixes between 
 - [x] Enemy Reaction Speed
 - [x] Accurate attack ranges 
 ### Tests 
-- [ ] One character moving into the other (stationary) pushes them
+- [x] One character moving into the other (stationary) pushes them
 - [ ] Characters moving toward each other are stopped at an appropriate distance
-- [ ] Collision is applied in both directions for each character
-- [ ] A jumping character cannot jump into another 
+- [x] Collision is applied in both directions for each character
+- [x] A jumping character cannot jump into another 
 
 - [x] An enemy's reaction to player movement of variables has a variable delay
 
@@ -102,3 +102,21 @@ $$
 ### See Above for Collision 
 ### Implementing Collision 
 Whist the theory above works in principal, it did not work in my game. 
+![[bad-collision.png]]
+To fix this I decided to implement a second line of defence, being a hard cut off point. The method above functions by repelling an enemy once they are beyond a mobile threshold. At this point in time I am unsure as to why this fails. This next implementation would utilise the Greenfoot builtin `getOneIntersectingObject()` method.  
+``` pseudocode 
+CLASS Person
+	FUNCTION force_collision
+		IF getOneIntersectingObject() != null THEN 
+			MOVE_BACK()
+		ENDIF 
+	ENDFUNCTION
+ENDCLASS
+```
+This change resulted in a collision system which I was happy with.
+![[better_collision.mp4]]
+[better_collision.mp4]
+
+### Tests 
+One of my tests ("Characters moving toward each other are stopped at an appropriate distance")  was not passed in the above video. But I have decided to move on. 
+If both characters were stopped when moving toward each other I do not think the game would be as fun. I prefer the ability to move 'past' the enemy player because it adds a more dynamic element to the game which does not restrict movement options. As a result I will be removing this test from this stage and moving on to stage 7.
