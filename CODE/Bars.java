@@ -21,27 +21,6 @@ public class Bars extends Actor
     private GreenfootImage image;
     private final int hover_space=150;
 
-    /*    public Bars(int w, int h){//, Color bg, Color fg){
-    this.w = w;
-    this.h = h;
-    this.bg = Color.RED;//bg;
-    this.fg = Color.BLACK;//fg;
-
-    draw(w, h, bg);
-    }
-     */
-
-    public void act()
-    {/*
-        if(Greenfoot.isKeyDown("k")){
-        fill_pc = fill_pc+10;
-        } else if(Greenfoot.isKeyDown("j")){
-        fill_pc = fill_pc-10;
-        }
-        update(fill_pc, this.fg);
-         */
-    }
-
     public void follow(Person p, int space){
         space = space+100; // normalises for player heights
         // passes person such that can follow with p.getX() and p.getY()

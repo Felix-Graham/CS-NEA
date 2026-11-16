@@ -23,8 +23,8 @@ public class Player extends Person
     final double COOLDOWN_KICK = 0.5;
     final int STAMINA_DRAIN_KICK = 20;
     final static int DAMAGE_KICK = 5;
-    final static int KNOCKBACK_PUNCH = 3;
-    final static int KNOCKBACK_KICK = 7;
+    final static int KNOCKBACK_PUNCH = 15;
+    final static int KNOCKBACK_KICK = 25;
 
     final static int RANGE_KICK = 130;
     final static int RANGE_PUNCH = 120;
