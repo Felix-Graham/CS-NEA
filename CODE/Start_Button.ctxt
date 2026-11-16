@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Start_Button
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Start_Button\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=player\ enemy
-comment1.target=Start_Button(Player,\ Enemy)
+comment1.params=
+comment1.target=Start_Button()
 comment2.params=
 comment2.target=void\ act()
 numComments=3

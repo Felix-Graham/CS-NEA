@@ -14,7 +14,7 @@ public class Start_Button extends Actor
      */
     private Player player;
     private Enemy enemy;
-    public Start_Button(Player player, Enemy enemy){
+    public Start_Button(){
         // should aim to take up displayed play button
         this.player = player; 
         this.enemy = enemy;
@@ -27,7 +27,7 @@ public class Start_Button extends Actor
         if(Greenfoot.mouseClicked(this)){
             // start
             // switch to other world
-            World world = new MyWorld(Difficulty_Slider_Cursor.third, this.player, this.enemy);
+            World world = new MyWorld(Difficulty_Slider_Cursor.third);
             //world.difficulty = Difficulty_Slider_Cursor.get_third();
             Greenfoot.setWorld(world);
             MyWorld.pause(); // pause world 

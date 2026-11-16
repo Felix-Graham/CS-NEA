@@ -27,7 +27,7 @@ public class LoseScreen extends World
             preclick_time--;
         } else if(Greenfoot.mouseClicked(this)){
             // if clicked transition to start menu 
-            World start = new Start(this.player, this.enemy); // instance new start menu world 
+            World start = new Start(); // instance new start menu world 
             Greenfoot.setWorld(start); // move to it
         }
     }
@@ -36,7 +36,7 @@ public class LoseScreen extends World
         // because many player/enemy values are static they persist in memory
         // thus to move on we need to alter them to their original state
         // we will do this by creating new objects to pass onto Start() and thus to MyWorld()
-        this.player = new Player();
-        this.enemy = new Enemy(5, 200, 100, 2, 3, player);
+        MyWorld.player.health = 100;
+        MyWorld.enemy.health = 100;
     }
 }
