@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.Random;
 /**
  * Write a description of class Enemy here.
  * 
@@ -43,7 +43,7 @@ public class Enemy extends Person
     public boolean inhibited_movement = false;
 
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
-        this.SPEED = SPEED;
+        //this.SPEED = SPEED;
         this.JUMP = JUMP;
         this.STAMINA_MAX = SM;
         this.p = nemesis;
@@ -59,27 +59,36 @@ public class Enemy extends Person
         MyWorld.enemy = this;
 
         int world_difficulty = MyWorld.difficulty;
+
+        double lower;
+        double upper;
         switch(world_difficulty){
             case 1:
-                this.REACTION_TIME = 90; // measured in act() calls 
-                this.IMAGE_SCALE = 0.8;
+                lower = 0.2;
+                upper = 1;
                 break;
-            case 2:
-                this.REACTION_TIME = 60;
-                this.IMAGE_SCALE = 1;
+            case 3:
+                lower = 1.2;
+                upper = 2;
                 break;
-            case 3: 
-                this.REACTION_TIME = 30;
-                this.IMAGE_SCALE = 1.2;
+            default: // instead of case 2 :. default is average
+                lower = 0.7;
+                upper = 1.3;
                 break;
         }
-
-        int w = Person.round(getImage().getWidth()*1.2, "###");
-        int h = Person.round(getImage().getHeight()*1.2, "###");
+        this.DAMAGE_KICK = this.p.DAMAGE_KICK * get_random_in_range(lower, upper);
+        
+        //int w = Person.round(getImage().getWidth()*1.2, "###");
+        //int h = Person.round(getImage().getHeight()*1.2, "###");
         GreenfootImage image = getImage();
 
-        image.scale(w, h);
+        //image.scale(w, h);
         setImage(image);
+    }
+
+    public double get_random_in_range(double n1, double n2){ // where n1 > n2
+        Random r = new Random();
+        return (r.nextDouble(n2-n1) + n1); // expression modified to fit bounds
     }
 
     public void act()
@@ -98,7 +107,7 @@ public class Enemy extends Person
                 changeImage();
                 imgCountdown = 0;
             }
-            
+
             if(reaction >= REACTION_TIME){ // loops back infinitely
                 reaction = 0;
             } else{
