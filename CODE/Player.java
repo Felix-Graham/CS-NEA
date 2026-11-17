@@ -40,10 +40,10 @@ public class Player extends Person
     change. Each act method this will increment and thus change the image for the 
     sprite.
      */
-    
+
     public int x_bar1;
     public int x_bar2; // collision bounds
-    
+
     public boolean inhibited_movement = false;
     public Player(){
         // player constructor
@@ -52,7 +52,10 @@ public class Player extends Person
         MyWorld.player = this;
     }
 
-    int stamina_increase_delay = 20; // decrease every act(); when 0 increase stamina and set to 30
+    int stamina_increase_delay = 2; // decrease every act(); when 0 increase stamina and set to 30
+    int stamina_increase_amount = 2;
+    int stamina_increase_init_delay = 10;
+    int stamina_comparison = -1; // starts as impossible value 
     public void act()
     {
         if(!MyWorld.paused()){
@@ -62,13 +65,41 @@ public class Player extends Person
                 cooldown--;
             }
 
-            if(this.stamina < STAMINA_MAX && this.stamina_increase_delay == 0){
-                this.stamina+=5;
-                this.stamina_increase_delay = 20;
-            } else if(stamina_increase_delay != 0 && stamina_increase_delay > 0){
-                this.stamina_increase_delay--;
+            // stamina increase 
+            if(!(this.stamina >= this.STAMINA_MAX)){ // if stamina is not full
+
+                if(this.stamina_comparison == -1){ // variable to check if stamina has decreased
+                    this.stamina_comparison = this.stamina;
+                }
+
+                if(this.stamina < this.stamina_comparison){ // stamina has decreased 
+                    this.stamina_increase_init_delay = 60; // resets to start value 
+                    this.stamina_increase_delay = 20;
+                    this.stamina_comparison = this.stamina;
+                } else { // stamina has not lowered                   
+                    if(this.stamina_increase_init_delay <= 0){ // past initial delay
+                        if(this.stamina_increase_delay <= 0){ // can increase
+                            stamina = stamina + this.stamina_increase_amount; // increase stamina
+                            this.stamina_increase_amount = this.stamina_increase_amount*this.stamina_increase_amount; // exponential increase
+                            this.stamina_increase_delay = 20; // reset
+                        } else{ // wait for further increase
+                            this.stamina_increase_delay--;
+                        }
+
+                        if(this.stamina >= this.STAMINA_MAX){ // stamina full .: reset all values
+                            this.stamina_increase_init_delay = 60;
+                            this.stamina_increase_delay = 20;
+                            this.stamina_increase_amount = 2;
+                            this.stamina_comparison = -1;
+                        }
+
+                    } else{ // not past initial delay
+                        this.stamina_increase_init_delay--;
+                    }
+                }
+
             }
-            
+
             // image changes 
             if(imgCountdown == 30){
                 changeImage();
@@ -82,10 +113,6 @@ public class Player extends Person
             //collision(MyWorld.player, MyWorld.enemy);
         }
         force_collision(this);
-    }
-
-    private void stamina_increase(){
-
     }
 
     public void damage(int d){

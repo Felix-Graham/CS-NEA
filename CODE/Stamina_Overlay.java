@@ -42,7 +42,7 @@ public class Stamina_Overlay extends Bars
         this.w = this.w + amount;
         if(w > 0){
         } else{
-            w = 0;
+            w = 1;
         }
         setImage(new GreenfootImage (this.w, this.h));
         this.image = getImage();
