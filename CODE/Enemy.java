@@ -17,18 +17,20 @@ public class Enemy extends Person
     // to be populated
     int SPEED;
     int JUMP;
-    int STAMINA_MAX;
-    int DAMAGE_PUNCH;
+    int DAMAGE_PUNCH; // bla
     int DAMAGE_KICK;
     int KNOCKBACK_PUNCH;
     int KNOCKBACK_KICK;
     int REACTION_TIME;
     double IMAGE_SCALE;
+    int HEALTH_MAX;
+
     // constants
     final int STAMINA_DRAIN_PUNCH = 10;
     final double COOLDOWN_PUNCH = 0.2;
     final double COOLDOWN_KICK = 0.5;
     final int STAMINA_DRAIN_KICK = 20;
+    final int STAMINA_MAX=100; 
     // Mutable variables
     public int stamina = 100;
     private int cooldown = 0;
@@ -43,52 +45,54 @@ public class Enemy extends Person
     public boolean inhibited_movement = false;
 
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
-        //this.SPEED = SPEED;
+        this.SPEED = SPEED;
         this.JUMP = JUMP;
-        this.STAMINA_MAX = SM;
         this.p = nemesis;
-        // DM stands for Damage Multiplier and takes 1 as player attributes
-
-        this.DAMAGE_PUNCH = round((Player.DAMAGE_PUNCH * DM), "###");
-        this.DAMAGE_KICK = round((Player.DAMAGE_KICK * DM), "###");
-        // KM stands for knockback multiplier and takes from player 
-        this.KNOCKBACK_PUNCH = round((Player.KNOCKBACK_PUNCH * DM), "###");
-        this.KNOCKBACK_KICK = round((Player.KNOCKBACK_KICK * DM), "###");
-
         // add self to world variable
         MyWorld.enemy = this;
 
         int world_difficulty = MyWorld.difficulty;
-
         double lower;
         double upper;
+
         switch(world_difficulty){
             case 1:
                 lower = 0.2;
-                upper = 1;
+                upper = 0.8;
                 break;
             case 3:
-                lower = 1.2;
+                lower = 1.4;
                 upper = 2;
                 break;
             default: // instead of case 2 :. default is average
                 lower = 0.7;
-                upper = 1.3;
+                upper = 1.2;
                 break;
         }
-        this.DAMAGE_KICK = this.p.DAMAGE_KICK * get_random_in_range(lower, upper);
-        
-        //int w = Person.round(getImage().getWidth()*1.2, "###");
-        //int h = Person.round(getImage().getHeight()*1.2, "###");
+
+        this.DAMAGE_KICK = Person.round(this.p.DAMAGE_KICK * get_random_in_range(lower, upper), "###");
+        this.DAMAGE_PUNCH = Person.round(this.p.DAMAGE_PUNCH * get_random_in_range(lower, upper), "###");
+        this.KNOCKBACK_KICK = Person.round(this.p.KNOCKBACK_KICK * get_random_in_range(lower, upper), "###");
+        this.KNOCKBACK_PUNCH = Person.round(this.p.KNOCKBACK_PUNCH * get_random_in_range(lower, upper), "###");
+        this.SPEED = Person.round(this.p.SPEED * get_random_in_range(lower, upper)-1, "###");
+
+        this.HEALTH_MAX = Person.round(this.p.health * get_random_in_range(lower, upper), "###");
+        this.health = HEALTH_MAX;
+
+        this.IMAGE_SCALE  = get_random_in_range(lower, upper);
+        int w = Person.round(getImage().getWidth()*IMAGE_SCALE, "###");
+        int h = Person.round(getImage().getHeight()*IMAGE_SCALE, "###"); // defined by one variable for continuity
         GreenfootImage image = getImage();
 
-        //image.scale(w, h);
+        image.scale(w, h);
         setImage(image);
     }
 
     public double get_random_in_range(double n1, double n2){ // where n1 > n2
         Random r = new Random();
-        return (r.nextDouble(n2-n1) + n1); // expression modified to fit bounds
+        double rd = r.nextDouble(); // 0 -> 1
+        double result = rd*(n2-n1)+n1;
+        return result;
     }
 
     public void act()
@@ -96,22 +100,23 @@ public class Enemy extends Person
         if(!MyWorld.paused()){
             //collision(MyWorld.player, MyWorld.enemy);
             imgCountdown++;
-            if(cooldown > 0){
-                cooldown--;
+            if(this.cooldown > 0){
+                this.cooldown--;
             }
-            if(stamina < STAMINA_MAX){
-                stamina++;
+            if(this.stamina < this.STAMINA_MAX){
+                this.stamina++;
             }
             // image changes 
-            if(imgCountdown == 30){
+            if(this.imgCountdown >= 30){
                 changeImage();
-                imgCountdown = 0;
-            }
-
-            if(reaction >= REACTION_TIME){ // loops back infinitely
-                reaction = 0;
+                this.imgCountdown = 0;
             } else{
-                reaction++;
+                this.imgCountdown++;
+            }
+            if(this.reaction >= this.REACTION_TIME){ // loops back infinitely
+                this.reaction = 0;
+            } else{
+                this.reaction++;
             }
 
             decide();
@@ -200,12 +205,12 @@ public class Enemy extends Person
             // attack
             if(cooldown == 0 && stamina > STAMINA_DRAIN_KICK){
                 kick();
-                imgState = 2;
+                this.imgState = 2;
             } else if(cooldown == 0 && stamina > STAMINA_DRAIN_PUNCH){
                 punch();
-                imgState = 1;
+                this.imgState = 1;
             }
-            imgState = 0;
+            this.imgState = 0;
         }
     }
     // the following is a near-copy paste job from the player class.
@@ -218,13 +223,15 @@ public class Enemy extends Person
                     MyWorld.player.knockback(KNOCKBACK_PUNCH);
                 }
 
-                setImage("enemy_punch.png");
+                //setImage("enemy_punch.png");
+                this.imgState = 1;
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
                 //cooldown(COOLDOWN_KICK, this);
                 cooldown = cooldown + Person.round(COOLDOWN_PUNCH*60, "###");
             }
+        } else {
+            this.imgState = 0;
         }
-        imgState = 0;
     }
 
     private void kick(){
@@ -236,13 +243,15 @@ public class Enemy extends Person
                     MyWorld.player.knockback(KNOCKBACK_KICK);
                 }
 
-                setImage("enemy_kick.png");
+                //setImage("enemy_kick.png");
+                this.imgState = 2;
                 stamina = stamina - STAMINA_DRAIN_KICK;
                 //cooldown(COOLDOWN_KICK, this);
                 cooldown = cooldown + Person.round(COOLDOWN_KICK*60, "###");
             }
+        } else{
+            this.imgState = 0;
         }
-        imgState = 0;
     }
 
     private void changeImage(){

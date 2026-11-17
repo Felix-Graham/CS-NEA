@@ -40,6 +40,6 @@ public class Enemy_Health extends Bars
     private int heartbeat(){
         // method for calculating the necessary fill for the bar
         // from enemy health
-        return 100-MyWorld.enemy.health; // already a percentage because out of 100
+        return MyWorld.enemy.HEALTH_MAX-MyWorld.enemy.health; // already a percentage because out of 100
     }
 }
