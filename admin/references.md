@@ -77,3 +77,43 @@ I have used try/catch before in other languages such as C and Python, but I need
 ## Variable Shadowing 
 I learnt about what variable shadowing is and how it happens from this article:
 https://medium.com/tuanhdotnet/master-variable-shadowing-and-hiding-in-java-uncovering-key-nuances-and-pitfalls-b6eab3d2a41c
+
+## Random Numbers 
+I read this [https://www.geeksforgeeks.org/java/generating-random-numbers-in-java/] article about random numbers in Java on Tuesday the 17th of November (09:25 AM). From this I plan to use the `java.util.Random` library with the `Random.nextInt()` method. This is the example which I will be using to help me:
+``` java 
+import java.util.Random;
+
+public class Geeks{
+    
+    public static void main(String[] args) {
+        
+        // Creating the instance of Random class
+        Random r= new Random();
+
+        // Generate random integers in range 0 to 999
+        int r1 = r.nextInt(1000);
+        int r2 = r.nextInt(1000);
+
+        // Printing random integers
+        System.out.println("Random Integers: " + r1);
+        System.out.println("Random Integers: " + r2);
+
+        // Generate random doubles
+        double rd1 = r.nextDouble();
+        double rd2 = r.nextDouble();
+
+        // Printing random doubles
+        System.out.println("Random Doubles: " + rd1);
+        System.out.println("Random Doubles: " + rd2);
+    }
+}
+```
+My code will therefore look like 
+``` java 
+public int get_random_in_range(int n1, int n2){ // where n2 > n1
+	import java.util.Random;
+	Random r = new Random();
+	int result = r.nextInt(n2-n1) + n1;
+	return result;
+}
+```
