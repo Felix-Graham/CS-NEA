@@ -68,19 +68,21 @@ public class MyWorld extends World
         addObject(enemy,395,306);
         
         Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
-        addObject(enemy_Health,201,160);
-        enemy_Health.setLocation(302,144);
+        addObject(enemy_Health,512,126);
+
         Player_Health player_Health = new Player_Health();
-        addObject(player_Health,308,111);
+        addObject(player_Health,91,126);
+        
         Player_Stamina player_Stamina = new Player_Stamina();
-        addObject(player_Stamina,320,83);
+        addObject(player_Stamina,116,148);
+        
         Player_Cooldown player_Cooldown = new Player_Cooldown();
         addObject(player_Cooldown,314,47);
         PlayPause playPause = new PlayPause();
         addObject(playPause,60,57);
-        player_Stamina.setLocation(335,77);
+
         Stamina_Overlay stamina_Overlay = new Stamina_Overlay();
-        addObject(stamina_Overlay,235,77);
+        addObject(stamina_Overlay,18,148);
     }
 
     // pause management

@@ -31,7 +31,7 @@ public class Player_Health extends Bars
     {
 
         if(!MyWorld.paused()){
-            follow(MyWorld.player, 30);
+            //follow(MyWorld.player, 30);
             update(heartbeat(), fg, this);
         }
     }
