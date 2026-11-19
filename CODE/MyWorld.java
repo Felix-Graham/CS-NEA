@@ -20,10 +20,12 @@ public class MyWorld extends World
     public static Player player;
     public static Stamina_Overlay s;
 
-    private static boolean PAUSED = false;
+    private static boolean paused = false;
     private static int wait=0;
 
     public static int difficulty;
+    
+    private boolean pause_state; // non static for local influence
 
     public MyWorld(int difficulty)
     {    
@@ -32,6 +34,7 @@ public class MyWorld extends World
         super(600, 400, 1); 
         this.difficulty = difficulty;
         prepare();
+        paused = pause_state;
     }
 
     public void act(){
@@ -66,16 +69,16 @@ public class MyWorld extends World
         // int SPEED, int JUMP, int SM, int DM, int KM
         Enemy enemy = new Enemy(5, 200, 100, 2, 3, player);
         addObject(enemy,395,306);
-        
+
         Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
         addObject(enemy_Health,512,126);
 
         Player_Health player_Health = new Player_Health();
         addObject(player_Health,91,126);
-        
+
         Player_Stamina player_Stamina = new Player_Stamina();
         addObject(player_Stamina,116,148);
-        
+
         Player_Cooldown player_Cooldown = new Player_Cooldown();
         addObject(player_Cooldown,314,47);
         PlayPause playPause = new PlayPause();
@@ -86,24 +89,26 @@ public class MyWorld extends World
     }
 
     // pause management
-    public static void pause(){
-        PAUSED = true; // sets global access variable to true
+    public void pause(){
+        this.pause_state = true; // sets global access variable to true
     }
 
     public static boolean paused(){
-        return PAUSED; // encapsulation ensures that only this class can 
+        return MyWorld.paused; // encapsulation ensures that only this class can 
         // modify or directly access the variable, makes program more robust
     }
 
-    public static void unpause(){
-        PAUSED = false;
+    public void unpause(){
+        this.pause_state = false;
     }
 
-    public static void pause_toggle(){
-        if(PAUSED == true){
+    public void pause_toggle(){
+        if(MyWorld.paused == true){
             unpause();
+            MyWorld.paused = false;
         } else{
             pause();
+            MyWorld.paused = true; // sets global access variable to true
         }
     }
 

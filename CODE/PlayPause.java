@@ -14,10 +14,16 @@ public class PlayPause extends Actor
      */
     public void act()
     {
-        if(Greenfoot.mousePressed(this)){
-            MyWorld.pause_toggle();
+        if(Greenfoot.mousePressed(this) || Greenfoot.isKeyDown("p")){
+            MyWorld w = getWorldOfType(MyWorld.class);
+            w.pause_toggle();
         }
-        
+        if(MyWorld.paused()){
+            GreenfootImage image = new GreenfootImage(100, 100);
+            image.setColor(Color.RED);
+            image.fill();
+            this.setImage(image);
+        }
     }
     
 

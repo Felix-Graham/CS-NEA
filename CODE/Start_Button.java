@@ -27,10 +27,11 @@ public class Start_Button extends Actor
         if(Greenfoot.mouseClicked(this)){
             // start
             // switch to other world
-            World world = new MyWorld(Difficulty_Slider_Cursor.third);
+            MyWorld world = new MyWorld(Difficulty_Slider_Cursor.third);
             //world.difficulty = Difficulty_Slider_Cursor.get_third();
             Greenfoot.setWorld(world);
-            MyWorld.pause(); // pause world 
+            MyWorld w = getWorldOfType(MyWorld.class);
+            w.pause_toggle();
 
         }
         // wait three seconds 
