@@ -15,8 +15,8 @@ public class PlayPause extends Actor
     public void act()
     {
         if(Greenfoot.mousePressed(this) || Greenfoot.isKeyDown("p")){
-            MyWorld w = getWorldOfType(MyWorld.class);
-            w.pause_toggle();
+            MyWorld.pause();
+            MyWorld.paused = true;
         }
         if(MyWorld.paused()){
             GreenfootImage image = new GreenfootImage(100, 100);

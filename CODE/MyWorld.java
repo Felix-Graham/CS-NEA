@@ -20,27 +20,30 @@ public class MyWorld extends World
     public static Player player;
     public static Stamina_Overlay s;
 
-    private static boolean paused = false;
-    private static int wait=0;
+    public static boolean paused = true;
+    public static int wait=60*3; // initial wait period
 
     public static int difficulty;
-    
-    private boolean pause_state; // non static for local influence
 
-    public MyWorld(int difficulty)
+    //private boolean pause_state = true; // non static for local influence
+
+    public MyWorld(int difficulty, int initial_wait)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
 
         super(600, 400, 1); 
         this.difficulty = difficulty;
+        this.wait = initial_wait;
+        this.paused = false;
         prepare();
-        paused = pause_state;
+        //paused = pause_state;
     }
 
     public void act(){
-        if(are_we_unpausing()){
+        if(wait <= 0){
             unpause();
         } else{
+            pause();
             this.wait--;
         }
         // health condition checking 
@@ -55,11 +58,6 @@ public class MyWorld extends World
             Greenfoot.setWorld(lose);
         }
     }
-
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
 
     private void prepare()
     {
@@ -89,8 +87,8 @@ public class MyWorld extends World
     }
 
     // pause management
-    public void pause(){
-        this.pause_state = true; // sets global access variable to true
+    public static void pause(){
+        MyWorld.paused = true; // sets global access variable to true
     }
 
     public static boolean paused(){
@@ -99,16 +97,18 @@ public class MyWorld extends World
     }
 
     public void unpause(){
-        this.pause_state = false;
+        this.paused = false;
     }
 
     public void pause_toggle(){
         if(MyWorld.paused == true){
             unpause();
             MyWorld.paused = false;
+            this.paused = false;
         } else{
             pause();
             MyWorld.paused = true; // sets global access variable to true
+            this.paused = true;
         }
     }
 
@@ -124,6 +124,7 @@ public class MyWorld extends World
         }
     }
 
+    // modulus accessible from all classes in world
     public static int modulus(int n){
         if(n>0){
             return n;

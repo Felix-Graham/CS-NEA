@@ -17,7 +17,7 @@ public class Enemy extends Person
     // to be populated
     int SPEED;
     int JUMP;
-    int DAMAGE_PUNCH; // bla
+    int DAMAGE_PUNCH; // to be populated by difficulty
     int DAMAGE_KICK;
     int KNOCKBACK_PUNCH;
     int KNOCKBACK_KICK;
