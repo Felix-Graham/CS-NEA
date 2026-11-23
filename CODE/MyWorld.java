@@ -20,24 +20,31 @@ public class MyWorld extends World
     public static Player player;
     public static Stamina_Overlay s;
 
-    private static boolean PAUSED = false;
-    private static int wait=0;
+    public static boolean paused = true;
+    public static int wait=60*3; // initial wait period
 
     public static int difficulty;
 
-    public MyWorld(int difficulty)
+    //private boolean pause_state = true; // non static for local influence
+
+    public MyWorld(int difficulty, int initial_wait)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
 
         super(600, 400, 1); 
         this.difficulty = difficulty;
+        this.wait = initial_wait;
+        this.paused = false;
         prepare();
+        //paused = pause_state;
     }
 
     public void act(){
-        if(are_we_unpausing()){
+        if(wait <= 0){
             unpause();
+            this.paused = false;
         } else{
+            pause();
             this.wait--;
         }
         // health condition checking 
@@ -53,11 +60,6 @@ public class MyWorld extends World
         }
     }
 
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-
     private void prepare()
     {
 
@@ -66,16 +68,16 @@ public class MyWorld extends World
         // int SPEED, int JUMP, int SM, int DM, int KM
         Enemy enemy = new Enemy(5, 200, 100, 2, 3, player);
         addObject(enemy,395,306);
-        
+
         Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
         addObject(enemy_Health,512,126);
 
         Player_Health player_Health = new Player_Health();
         addObject(player_Health,91,126);
-        
+
         Player_Stamina player_Stamina = new Player_Stamina();
         addObject(player_Stamina,116,148);
-        
+
         Player_Cooldown player_Cooldown = new Player_Cooldown();
         addObject(player_Cooldown,314,47);
         PlayPause playPause = new PlayPause();
@@ -87,23 +89,27 @@ public class MyWorld extends World
 
     // pause management
     public static void pause(){
-        PAUSED = true; // sets global access variable to true
+        MyWorld.paused = true; // sets global access variable to true
     }
 
     public static boolean paused(){
-        return PAUSED; // encapsulation ensures that only this class can 
+        return MyWorld.paused; // encapsulation ensures that only this class can 
         // modify or directly access the variable, makes program more robust
     }
 
     public static void unpause(){
-        PAUSED = false;
+        MyWorld.paused = false;
     }
 
     public static void pause_toggle(){
-        if(PAUSED == true){
-            unpause();
+        if(MyWorld.paused == true){
+            MyWorld.unpause();
+            MyWorld.paused = false;
+            MyWorld.paused = false;
         } else{
             pause();
+            MyWorld.paused = true; // sets global access variable to true
+            MyWorld.paused = true;
         }
     }
 
@@ -119,6 +125,7 @@ public class MyWorld extends World
         }
     }
 
+    // modulus accessible from all classes in world
     public static int modulus(int n){
         if(n>0){
             return n;

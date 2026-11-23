@@ -17,7 +17,7 @@ public class Enemy extends Person
     // to be populated
     int SPEED;
     int JUMP;
-    int DAMAGE_PUNCH; // bla
+    int DAMAGE_PUNCH; // to be populated by difficulty
     int DAMAGE_KICK;
     int KNOCKBACK_PUNCH;
     int KNOCKBACK_KICK;
@@ -39,10 +39,12 @@ public class Enemy extends Person
     private int imgCountdown = 0;
     private int reaction = 0;
 
-    final static int RANGE_KICK = 40;
-    final static int RANGE_PUNCH = 20;
+    final static int RANGE_KICK = 100;
+    final static int RANGE_PUNCH = 80;
 
     public boolean inhibited_movement = false;
+
+    private boolean read_pause_state = MyWorld.paused();
 
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
         this.SPEED = SPEED;
@@ -97,7 +99,9 @@ public class Enemy extends Person
 
     public void act()
     {
-        if(!MyWorld.paused()){
+        read_pause_state = MyWorld.paused;
+
+        if(read_pause_state == false){
             //collision(MyWorld.player, MyWorld.enemy);
             imgCountdown++;
             if(this.cooldown > 0){
@@ -201,7 +205,7 @@ public class Enemy extends Person
         }
 
         // proximity condition
-        if(proximity < 120 && react){ // adds time to attack (reaction time)
+        if(proximity < 150 && react){ // adds time to attack (reaction time)
             // attack
             if(cooldown == 0 && stamina > STAMINA_DRAIN_KICK){
                 kick();

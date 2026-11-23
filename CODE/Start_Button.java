@@ -18,23 +18,19 @@ public class Start_Button extends Actor
         // should aim to take up displayed play button
         this.player = player; 
         this.enemy = enemy;
+        // player and enemy passed in 
     }
 
-    int timer = 60*3; // 3 lots of 60 calls per second
     public void act()
     {
-        //play();
         if(Greenfoot.mouseClicked(this)){
             // start
             // switch to other world
-            World world = new MyWorld(Difficulty_Slider_Cursor.third);
-            //world.difficulty = Difficulty_Slider_Cursor.get_third();
-            Greenfoot.setWorld(world);
-            MyWorld.pause(); // pause world 
-
+            MyWorld world = new MyWorld(Difficulty_Slider_Cursor.third, 3*60); // new world with starting 
+            // wait time of 3 seconds (3*60acts/s)
+            Greenfoot.setWorld(world); // sets world
+            // this class now cannot do anything 
         }
-        // wait three seconds 
-        MyWorld.wait_please(60*3);
 
     }
 }
