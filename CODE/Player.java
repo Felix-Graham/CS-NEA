@@ -45,6 +45,9 @@ public class Player extends Person
     public int x_bar2; // collision bounds
 
     public boolean inhibited_movement = false;
+
+    private boolean read_pause_state = MyWorld.paused();
+
     public Player(){
         // player constructor
         // adds self to world reference variable for simplicity
@@ -58,7 +61,8 @@ public class Player extends Person
     int stamina_comparison = -1; // starts as impossible value 
     public void act()
     {
-        if(MyWorld.paused == false){
+        read_pause_state = MyWorld.paused();
+        if(read_pause_state == false){
             // variables
             imgCountdown++;
             if(cooldown > 0){

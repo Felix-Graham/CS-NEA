@@ -44,6 +44,8 @@ public class Enemy extends Person
 
     public boolean inhibited_movement = false;
 
+    private boolean read_pause_state = MyWorld.paused();
+
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
         this.SPEED = SPEED;
         this.JUMP = JUMP;
@@ -97,7 +99,9 @@ public class Enemy extends Person
 
     public void act()
     {
-        if(MyWorld.paused == false){
+        read_pause_state = MyWorld.paused;
+
+        if(read_pause_state == false){
             //collision(MyWorld.player, MyWorld.enemy);
             imgCountdown++;
             if(this.cooldown > 0){
