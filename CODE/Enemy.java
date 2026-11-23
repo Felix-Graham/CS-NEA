@@ -39,8 +39,8 @@ public class Enemy extends Person
     private int imgCountdown = 0;
     private int reaction = 0;
 
-    final static int RANGE_KICK = 40;
-    final static int RANGE_PUNCH = 20;
+    final static int RANGE_KICK = 100;
+    final static int RANGE_PUNCH = 80;
 
     public boolean inhibited_movement = false;
 
@@ -97,7 +97,7 @@ public class Enemy extends Person
 
     public void act()
     {
-        if(!MyWorld.paused()){
+        if(MyWorld.paused == false){
             //collision(MyWorld.player, MyWorld.enemy);
             imgCountdown++;
             if(this.cooldown > 0){
@@ -201,7 +201,7 @@ public class Enemy extends Person
         }
 
         // proximity condition
-        if(proximity < 120 && react){ // adds time to attack (reaction time)
+        if(proximity < 150 && react){ // adds time to attack (reaction time)
             // attack
             if(cooldown == 0 && stamina > STAMINA_DRAIN_KICK){
                 kick();

@@ -15,16 +15,23 @@ public class PlayPause extends Actor
     public void act()
     {
         if(Greenfoot.mousePressed(this) || Greenfoot.isKeyDown("p")){
-            MyWorld.pause();
-            MyWorld.paused = true;
+            if(MyWorld.paused == true){
+                MyWorld.paused = false;
+            } else{
+                MyWorld.paused = true;
+            }
         }
         if(MyWorld.paused()){
             GreenfootImage image = new GreenfootImage(100, 100);
             image.setColor(Color.RED);
             image.fill();
             this.setImage(image);
+        } else{
+            GreenfootImage image = new GreenfootImage(100, 100);
+            image.setColor(Color.GREEN);
+            image.fill();
+            this.setImage(image);
         }
     }
-    
 
 }

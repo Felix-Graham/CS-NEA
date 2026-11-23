@@ -42,6 +42,7 @@ public class MyWorld extends World
     public void act(){
         if(wait <= 0){
             unpause();
+            this.paused = false;
         } else{
             pause();
             this.wait--;
@@ -96,19 +97,19 @@ public class MyWorld extends World
         // modify or directly access the variable, makes program more robust
     }
 
-    public void unpause(){
-        this.paused = false;
+    public static void unpause(){
+        MyWorld.paused = false;
     }
 
-    public void pause_toggle(){
+    public static void pause_toggle(){
         if(MyWorld.paused == true){
-            unpause();
+            MyWorld.unpause();
             MyWorld.paused = false;
-            this.paused = false;
+            MyWorld.paused = false;
         } else{
             pause();
             MyWorld.paused = true; // sets global access variable to true
-            this.paused = true;
+            MyWorld.paused = true;
         }
     }
 

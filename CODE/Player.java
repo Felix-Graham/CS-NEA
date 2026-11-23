@@ -58,7 +58,7 @@ public class Player extends Person
     int stamina_comparison = -1; // starts as impossible value 
     public void act()
     {
-        if(!MyWorld.paused()){
+        if(MyWorld.paused == false){
             // variables
             imgCountdown++;
             if(cooldown > 0){
