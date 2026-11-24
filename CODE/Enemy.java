@@ -101,7 +101,7 @@ public class Enemy extends Person
     {
         read_pause_state = MyWorld.paused;
 
-        if(Person.local_pause == true){
+        if(Person.local_pause){
             //collision(MyWorld.player, MyWorld.enemy);
             imgCountdown++;
             if(this.cooldown > 0){

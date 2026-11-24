@@ -18,7 +18,7 @@ public abstract class Person extends Actor
     int cooldown;
     public static int health;
     final int collision_threshold = 20;
-    public static boolean local_pause = false;
+    public static boolean local_pause = MyWorld.paused;
 
     public void act()
     {

@@ -19,7 +19,7 @@ public class PlayPause extends Actor
         if(p_pause_cooldown <= 0){
             p_pause_cooldown = 10;
 
-            if(Greenfoot.isKeyDown("p")){
+            if(Greenfoot.getKey() == "p"){
                 p_pause = !p_pause; // flips from true -> false or false -> true
             }
         } else {
@@ -27,8 +27,8 @@ public class PlayPause extends Actor
         }
         
         if(Greenfoot.mousePressed(this) || p_pause){
-            MyWorld.pause_toggle();
-            //Person.local_pause = !Person.local_pause; // flips from true -> false or false -> true
+            //MyWorld.pause_toggle();
+            Person.local_pause = !Person.local_pause; // flips from true -> false or false -> true
         } else{
             //MyWorld.paused = !MyWorld.paused;
         }

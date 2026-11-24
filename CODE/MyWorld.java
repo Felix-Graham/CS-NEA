@@ -20,7 +20,7 @@ public class MyWorld extends World
     public static Player player;
     public static Stamina_Overlay s;
 
-    public static boolean paused = true;
+    public static boolean paused;
     public static int wait=60*3; // initial wait period
 
     public static int difficulty;
@@ -33,19 +33,22 @@ public class MyWorld extends World
 
         super(600, 400, 1); 
         this.difficulty = difficulty;
-        this.wait = initial_wait;
-        this.paused = false;
+        MyWorld.wait = initial_wait;
+        MyWorld.paused = true;
         prepare();
         //paused = pause_state;
     }
 
     public void act(){
-        if(wait <= 0){
-            unpause();
-            this.paused = false;
+        if(MyWorld.wait <= 0){
+            //unpause();
+            MyWorld.paused = false;
+            //Person.local_pause = false;
         } else{
-            pause();
-            this.wait--;
+            //pause();
+            MyWorld.paused = true;
+            Person.local_pause = true;
+            MyWorld.wait--;
         }
         // health condition checking 
         if(enemy.health <= 0){
@@ -113,7 +116,7 @@ public class MyWorld extends World
     }
 
     public boolean are_we_unpausing(){
-        if(this.wait <= 0){
+        if(MyWorld.wait <= 0){
             return true;
         } else{
             return false;
