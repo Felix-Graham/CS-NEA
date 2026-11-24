@@ -36,7 +36,7 @@ public class Player_Stamina extends Bars
     public void act()
     {
         // current iteration of update() will be unfit
-        if(!MyWorld.paused()){
+        if(!MyWorld.pause_state()){
             ///follow(MyWorld.player, 60);
             // update
             stamina_update();

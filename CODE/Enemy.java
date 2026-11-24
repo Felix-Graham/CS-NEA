@@ -44,8 +44,6 @@ public class Enemy extends Person
 
     public boolean inhibited_movement = false;
 
-    private boolean read_pause_state = MyWorld.paused();
-
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
         this.SPEED = SPEED;
         this.JUMP = JUMP;
@@ -72,18 +70,18 @@ public class Enemy extends Person
                 break;
         }
 
-        this.DAMAGE_KICK = Person.round(this.p.DAMAGE_KICK * get_random_in_range(lower, upper), "###");
-        this.DAMAGE_PUNCH = Person.round(this.p.DAMAGE_PUNCH * get_random_in_range(lower, upper), "###");
-        this.KNOCKBACK_KICK = Person.round(this.p.KNOCKBACK_KICK * get_random_in_range(lower, upper), "###");
-        this.KNOCKBACK_PUNCH = Person.round(this.p.KNOCKBACK_PUNCH * get_random_in_range(lower, upper), "###");
-        this.SPEED = Person.round(this.p.SPEED * get_random_in_range(lower, upper)-1, "###");
+        this.DAMAGE_KICK = MyWorld.round(this.p.DAMAGE_KICK * get_random_in_range(lower, upper), "###");
+        this.DAMAGE_PUNCH = MyWorld.round(this.p.DAMAGE_PUNCH * get_random_in_range(lower, upper), "###");
+        this.KNOCKBACK_KICK = MyWorld.round(this.p.KNOCKBACK_KICK * get_random_in_range(lower, upper), "###");
+        this.KNOCKBACK_PUNCH = MyWorld.round(this.p.KNOCKBACK_PUNCH * get_random_in_range(lower, upper), "###");
+        this.SPEED = MyWorld.round(this.p.SPEED * get_random_in_range(lower, upper)-1, "###");
 
-        this.HEALTH_MAX = Person.round(this.p.health * get_random_in_range(lower, upper), "###");
+        this.HEALTH_MAX = MyWorld.round(this.p.health * get_random_in_range(lower, upper), "###");
         this.health = HEALTH_MAX;
 
         this.IMAGE_SCALE  = get_random_in_range(lower, upper);
-        int w = Person.round(getImage().getWidth()*IMAGE_SCALE, "###");
-        int h = Person.round(getImage().getHeight()*IMAGE_SCALE, "###"); // defined by one variable for continuity
+        int w = MyWorld.round(getImage().getWidth()*IMAGE_SCALE, "###");
+        int h = MyWorld.round(getImage().getHeight()*IMAGE_SCALE, "###"); // defined by one variable for continuity
         GreenfootImage image = getImage();
 
         image.scale(w, h);
@@ -99,9 +97,7 @@ public class Enemy extends Person
 
     public void act()
     {
-        read_pause_state = MyWorld.paused;
-
-        if(Person.local_pause){
+        if(!MyWorld.pause_state()){ // placeholder for MyWorld.pause_state()
             //collision(MyWorld.player, MyWorld.enemy);
             imgCountdown++;
             if(this.cooldown > 0){
@@ -125,8 +121,8 @@ public class Enemy extends Person
 
             decide();
 
+            force_collision(this);
         }
-        force_collision(this);
     }
 
     public void damage(int d){
@@ -205,17 +201,19 @@ public class Enemy extends Person
         }
 
         // proximity condition
-        if(proximity < 150 && react){ // adds time to attack (reaction time)
+        if(proximity < 90 && react){ // adds time to attack (reaction time)
             // attack
             if(cooldown == 0 && stamina > STAMINA_DRAIN_KICK){
                 kick();
-                this.imgState = 2;
             } else if(cooldown == 0 && stamina > STAMINA_DRAIN_PUNCH){
                 punch();
-                this.imgState = 1;
             }
+        } else {
             this.imgState = 0;
+
         }
+        //this.imgState = 0;
+
     }
     // the following is a near-copy paste job from the player class.
     private void punch(){
@@ -224,14 +222,14 @@ public class Enemy extends Person
 
                 if(MyWorld.modulus((MyWorld.player.getX()-getX())) < RANGE_PUNCH){ 
                     MyWorld.player.damage(DAMAGE_PUNCH);
-                    MyWorld.player.knockback(KNOCKBACK_PUNCH);
+                    MyWorld.player.knockback(KNOCKBACK_PUNCH, this);
                 }
 
                 //setImage("enemy_punch.png");
                 this.imgState = 1;
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
                 //cooldown(COOLDOWN_KICK, this);
-                cooldown = cooldown + Person.round(COOLDOWN_PUNCH*60, "###");
+                cooldown = cooldown + MyWorld.round(COOLDOWN_PUNCH*60, "###");
             }
         } else {
             this.imgState = 0;
@@ -244,14 +242,14 @@ public class Enemy extends Person
 
                 if(MyWorld.modulus((MyWorld.player.getX()-getX())) < RANGE_KICK){ 
                     MyWorld.player.damage(DAMAGE_KICK);
-                    MyWorld.player.knockback(KNOCKBACK_KICK);
+                    MyWorld.player.knockback(KNOCKBACK_KICK, this);
                 }
 
                 //setImage("enemy_kick.png");
                 this.imgState = 2;
                 stamina = stamina - STAMINA_DRAIN_KICK;
                 //cooldown(COOLDOWN_KICK, this);
-                cooldown = cooldown + Person.round(COOLDOWN_KICK*60, "###");
+                cooldown = cooldown + MyWorld.round(COOLDOWN_KICK*60, "###");
             }
         } else{
             this.imgState = 0;
@@ -262,8 +260,8 @@ public class Enemy extends Person
         int s = this.imgState; // for easier reference
         switch(s){ // switch case removes need for innefficient if/else
             case 0:
-                GreenfootImage stand_sprite = new GreenfootImage("enemy_stand_arms_down.png");
-                sprite_scale(stand_sprite);
+                GreenfootImage stand_sprite = new GreenfootImage("enemy_stand_arms_down.png"); // required image
+                sprite_scale(stand_sprite); // scales and sets the passed image 
                 break;
             case 1:
                 GreenfootImage punch_sprite = new GreenfootImage("enemy_punch.png");
@@ -284,8 +282,8 @@ public class Enemy extends Person
 
     public void sprite_scale(GreenfootImage image){
         // method to return the scaled image from global IMAGE_SCALE
-        int w = Person.round(image.getWidth()*this.IMAGE_SCALE, "###");
-        int h = Person.round(image.getHeight()*this.IMAGE_SCALE, "###");
+        int w = MyWorld.round(image.getWidth()*this.IMAGE_SCALE, "###");
+        int h = MyWorld.round(image.getHeight()*this.IMAGE_SCALE, "###");
         image.scale(w, h);
         setImage(image);
     }
