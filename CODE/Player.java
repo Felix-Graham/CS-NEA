@@ -62,7 +62,7 @@ public class Player extends Person
     public void act()
     {
         read_pause_state = MyWorld.paused();
-        if(read_pause_state == false){
+        if(Person.local_pause){
             // variables
             imgCountdown++;
             if(cooldown > 0){

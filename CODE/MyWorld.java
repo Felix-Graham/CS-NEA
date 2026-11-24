@@ -90,6 +90,7 @@ public class MyWorld extends World
     // pause management
     public static void pause(){
         MyWorld.paused = true; // sets global access variable to true
+        Person.local_pause = true;
     }
 
     public static boolean paused(){
@@ -99,18 +100,12 @@ public class MyWorld extends World
 
     public static void unpause(){
         MyWorld.paused = false;
+        Person.local_pause = false;
     }
 
     public static void pause_toggle(){
-        if(MyWorld.paused == true){
-            MyWorld.unpause();
-            MyWorld.paused = false;
-            MyWorld.paused = false;
-        } else{
-            pause();
-            MyWorld.paused = true; // sets global access variable to true
-            MyWorld.paused = true;
-        }
+        MyWorld.paused = !MyWorld.paused;
+        Person.local_pause = !Person.local_pause;
     }
 
     public static void wait_please(int t){
