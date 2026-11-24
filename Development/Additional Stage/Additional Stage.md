@@ -1,3 +1,8 @@
+> [!important]
+> local pausing?
+
+
+
 In this stage I plan to work and and improve features in my game. This can cover any area and should contribute to either user experience or depth of the game. 
 
 ## To Do List 
@@ -5,10 +10,13 @@ In this stage I plan to work and and improve features in my game. This can cover
 For each feature at least one test will be written to demonstrate its functionality. [[Additional Stage#Better Pausing]] 
 - [x] Health and Stamina bars with fixed position [[Additional Stage#Fixed Position]]
 - [ ] Better pause command 
+- [ ] Directional knockback
 ### Tests 
 - [x] Bars do not move
 - [x] Bars update 
 - [x] Stamina overlay stays as it shoud
+- [ ] Pressing '`p`' toggles the paused state of the game 
+- [ ] Knockback is applied to either Person away from the aggressor
 
 ## Designing 
 ### Fixed Position
