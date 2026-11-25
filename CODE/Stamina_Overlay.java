@@ -30,7 +30,7 @@ public class Stamina_Overlay extends Bars
 
     public void act()
     {
-        if(!MyWorld.paused()){
+        if(!MyWorld.pause_state()){
             //follow(MyWorld.player, 60); // same movement as Player_Stamina thus should overlay
             //setLocation(MyWorld.player.getX()-(Player_Stamina.w/2-this.w/2), getY()); // moves to start of stamina bar
             //this.image.fillRect(0, 0, this.w, this.h);

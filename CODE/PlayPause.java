@@ -13,26 +13,25 @@ public class PlayPause extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private boolean p_pause = false;
-    private int p_pause_cooldown = 10; // 1/6 of a second between possible presses of key
+    private int p_pause_cooldown = 30;
     public void act()
     {
-        if(p_pause_cooldown <= 0){
-            p_pause_cooldown = 10;
+        if(Greenfoot.isKeyDown("p") && p_pause_cooldown == 0){
 
-            if(Greenfoot.getKey() == "p"){
-                p_pause = !p_pause; // flips from true -> false or false -> true
-            }
-        } else {
+            p_pause = !p_pause; // flips from true -> false or false -> true
+            p_pause_cooldown = 30; // reset
+
+        }
+
+        if(p_pause_cooldown > 0){ // tends toward 0
             p_pause_cooldown--;
         }
-        
+
         if(Greenfoot.mousePressed(this) || p_pause){
-            //MyWorld.pause_toggle();
-            Person.local_pause = !Person.local_pause; // flips from true -> false or false -> true
-        } else{
-            //MyWorld.paused = !MyWorld.paused;
-        }
-        if(MyWorld.paused() || Person.local_pause || p_pause){
+            MyWorld.pause_toggle();
+        } 
+
+        if(MyWorld.pause_state() || p_pause){
             GreenfootImage image = new GreenfootImage(100, 100);
             image.setColor(Color.RED);
             image.fill();

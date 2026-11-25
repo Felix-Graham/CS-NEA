@@ -46,8 +46,6 @@ public class Player extends Person
 
     public boolean inhibited_movement = false;
 
-    private boolean read_pause_state = MyWorld.paused();
-
     public Player(){
         // player constructor
         // adds self to world reference variable for simplicity
@@ -61,8 +59,7 @@ public class Player extends Person
     int stamina_comparison = -1; // starts as impossible value 
     public void act()
     {
-        read_pause_state = MyWorld.paused();
-        if(Person.local_pause || MyWorld.paused()){
+        if(!MyWorld.pause_state()){ // placeholder for MyWorld.pause_state()
             // variables
             imgCountdown++;
             if(cooldown > 0){
@@ -115,8 +112,9 @@ public class Player extends Person
             movement(SPEED, JUMP, -1); // passes constant parameters to inherited method `movement`
             attacks();
             //collision(MyWorld.player, MyWorld.enemy);
+
+            force_collision(this);
         }
-        force_collision(this);
     }
 
     public void damage(int d){
@@ -171,13 +169,13 @@ public class Player extends Person
 
                 if(MyWorld.modulus((MyWorld.enemy.getX()-getX())) < RANGE_PUNCH){ 
                     MyWorld.enemy.damage(DAMAGE_PUNCH);
-                    MyWorld.enemy.knockback(KNOCKBACK_PUNCH);
+                    MyWorld.enemy.knockback(KNOCKBACK_PUNCH, this);
                 }
 
                 setImage("player_punch.png");
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
                 //cooldown(COOLDOWN_PUNCH, this);
-                cooldown = cooldown + Person.round(COOLDOWN_PUNCH*60, "###");
+                cooldown = cooldown + MyWorld.round(COOLDOWN_PUNCH*60, "###");
             }
         }
         imgState = 0;
@@ -189,13 +187,13 @@ public class Player extends Person
 
                 if(MyWorld.modulus((MyWorld.enemy.getX()-getX())) < RANGE_KICK){ 
                     MyWorld.enemy.damage(DAMAGE_KICK);
-                    MyWorld.enemy.knockback(KNOCKBACK_KICK);
+                    MyWorld.enemy.knockback(KNOCKBACK_KICK, this);
                 }
 
                 setImage("player_kick.png");
                 stamina = stamina - STAMINA_DRAIN_KICK;
                 //cooldown(COOLDOWN_KICK, this);
-                cooldown = cooldown + Person.round(COOLDOWN_KICK*60, "###");
+                cooldown = cooldown + MyWorld.round(COOLDOWN_KICK*60, "###");
             }
         }
         imgState = 0;

@@ -77,10 +77,5 @@ public class Bars extends Actor
         this.image.fillRect(0, 0, w*2, b.h+5); // addition to height ensures all bar covered
     }
 
-    public int round(double target, String format){
-        DecimalFormat df = new DecimalFormat(format); // where unused digits are 0
-        df.setRoundingMode(RoundingMode.CEILING); // round up 
-        return Integer.parseInt(df.format(target)); // returns the integer result. 
-    }
 
 }

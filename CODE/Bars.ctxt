@@ -9,6 +9,4 @@ comment3.params=w\ h\ c
 comment3.target=void\ draw(int,\ int,\ greenfoot.Color)
 comment4.params=pc\ c\ b
 comment4.target=void\ update(int,\ greenfoot.Color,\ Bars)
-comment5.params=target\ format
-comment5.target=int\ round(double,\ java.lang.String)
-numComments=6
+numComments=5

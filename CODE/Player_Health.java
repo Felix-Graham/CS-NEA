@@ -30,7 +30,7 @@ public class Player_Health extends Bars
     public void act()
     {
 
-        if(!MyWorld.paused()){
+        if(!MyWorld.pause_state()){
             //follow(MyWorld.player, 30);
             update(heartbeat(), fg, this);
         }
@@ -39,7 +39,7 @@ public class Player_Health extends Bars
     private int heartbeat(){
         // method for calculating the necessary fill for the bar
         // from player health
-        return round(100-MyWorld.player.health, "###"); // already a percentage because out of 100
+        return MyWorld.round(100-MyWorld.player.health, "###"); // already a percentage because out of 100
     }
 
 }

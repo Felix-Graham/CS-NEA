@@ -18,11 +18,12 @@ public abstract class Person extends Actor
     int cooldown;
     public static int health;
     final int collision_threshold = 20;
-    public static boolean local_pause = MyWorld.paused;
 
     public void act()
     {
-        collide(MyWorld.player, MyWorld.enemy);
+        if(!MyWorld.pause_state()){
+            collide(MyWorld.player, MyWorld.enemy);
+        }
     }
 
     public int get_collision(Person p1, Person p2){
@@ -34,10 +35,10 @@ public abstract class Person extends Actor
         } else{
             dx = p2.getX() - p1.getX();
         }
-        
+
         return dx;
     }
-    
+
     public void collide(Person p1, Person p2){
         int dx = get_collision(p1, p2);
         if(p1.getX() > p2.getX()){
@@ -54,7 +55,7 @@ public abstract class Person extends Actor
             }
         }
     }
-    
+
     public void force_collision(Person p){
         Actor intersected = p.getOneIntersectingObject(Person.class); // Actor for Greenfoot class conversion
         if(intersected != null){
@@ -119,7 +120,7 @@ public abstract class Person extends Actor
     // setters
     public void cooldown(double t, Person p){
         double unrounded_cooldown = t*60.0; // converts from seconds to greenfoot ticks
-        cooldown = round(unrounded_cooldown, "###"); // sets the cooldown to appropriate integer
+        cooldown = MyWorld.round(unrounded_cooldown, "###"); // sets the cooldown to appropriate integer
         p.cooldown = p.cooldown + cooldown;
     }
 
@@ -127,23 +128,18 @@ public abstract class Person extends Actor
         this.health = this.health-d;
     }
 
-    public void knockback(int k){
-        move(-k);
+    public void knockback(int k, Person aggressor){
+        // code copied from Enemy runToward() and modified
+        int locX = aggressor.getX(); // gets aggressor x
+        if(locX < this.getX()+10){ // if aggressor left of this
+            move(1); 
+        } else if(locX > this.getX()-10){ // if aggressor right of this
+            move(-1);
+        }// the if clauses above feature +/-10 so that if the aggressor is very 
+        // close they do not get stuck
     }
 
     // misc
-    public static int round(double target, String format){
-        DecimalFormat df = new DecimalFormat(format); // where unused digits are 0
-        df.setRoundingMode(RoundingMode.CEILING); // round up 
-        return Integer.parseInt(df.format(target)); // returns the integer result. 
-    }
-
-    public int modulus(int n){
-        if(n>0){
-            return n;
-        } else{
-            return -n;
-        }
-    }
+    
 
 }
