@@ -19,6 +19,8 @@ public class Start_Button extends Actor
         this.player = player; 
         this.enemy = enemy;
         // player and enemy passed in 
+        GreenfootImage image = new GreenfootImage(60, 90); // covers doorway
+        setImage(image); // sets blank/transparent image
     }
 
     public void act()

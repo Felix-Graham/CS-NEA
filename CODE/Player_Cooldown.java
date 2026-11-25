@@ -50,8 +50,9 @@ public class Player_Cooldown extends Bars
     }
 
     private void hide(){
-        draw(w, h, hbg);
-
+        //draw(w, h, hbg);
+        GreenfootImage i = new GreenfootImage(1, 1);
+        setImage(i);
     }
 
 }

@@ -32,7 +32,7 @@ public class Start extends World
     private void prepare()
     {
         this.sb = new Start_Button();
-        addObject(this.sb,448,302);
+        addObject(this.sb,326,152);
         
         
         Difficulty_Slider_Cursor difficulty_Slider_Cursor = new Difficulty_Slider_Cursor();

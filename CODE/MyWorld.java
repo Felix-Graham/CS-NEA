@@ -73,7 +73,7 @@ public class MyWorld extends World
         addObject(enemy,395,306);
 
         Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
-        addObject(enemy_Health,512,126);
+        addObject(enemy_Health,517,38);
 
         Player_Health player_Health = new Player_Health();
         addObject(player_Health,91,126);
