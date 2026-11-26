@@ -34,6 +34,9 @@ public class Start extends World
         this.sb = new Start_Button();
         addObject(this.sb,326,152);
         
+        Test t = new Test(40, 60);
+        addObject(t, 300, 200);
+        
         
         Difficulty_Slider_Cursor difficulty_Slider_Cursor = new Difficulty_Slider_Cursor();
         addObject(difficulty_Slider_Cursor,253,264);
