@@ -219,3 +219,55 @@ $171715 Dark Bollard
 $593c36 Intimidating Red Brick 
 
 $53564d Building Concrete Grey 
+##### Result 
+![[pub front.jpg]]
+#### Enemy 
+I would like to take inspiration from Robert Webb's 'Sir Digby Chicken Ceaser' to emphasize this rough and untidy look with all the added chaos. I feel that this presentation of a character encapsulates the energy of my game.
+
+##### Reference Image 1
+![[sir digby chicken ceaser.png]]
+I like the face of glee of our protagonist in the picture, it accurately portrays the sort of people who might be regulars at this pub. 
+$7c512e Jacket 
+
+$cfa189 Hair Light 
+
+$321102 Hair Dark 
+
+$bb9797 Hat Middle 
+
+$eab8af Skin 
+
+$544969 Collar  
+
+$68260e Moustache 
+
+$b1968b Eye White 
+
+$695f53 Iris 
+
+$bc8d79 Teeth
+
+##### Reference Image 2
+![[sdcc.png]]
+Despite this being a blurry image it is a great reference for our enemy's entire body. I will use the same colours as are listed above.
+
+##### Notes 
+Unlike with drawing the worlds (menus) where the dimensions were easy to see, I didn't have many options to discover the dimensions of the current player and enemy sprites, which also included blank-space to their lefts and rights. To therefore find the dimensions I created a very quick and simple class called `Test`:
+``` java 
+public Test {
+	public Test(int h, int w){
+		GreenfootImage i = new GreenfootImage(h, w);
+		i.setColor(Color.RED);
+		i.fill()
+		setImage(i);
+	}
+}
+```
+![[player sizing.png]]
+
+With this I was able to deduce the approximate size to be 80x160. 
+##### Result 
+![[sir chicken digby ceaser.png]]
+I have resized this image such that it fits.
+
+#### Player 

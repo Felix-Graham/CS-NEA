@@ -117,3 +117,5 @@ public int get_random_in_range(int n1, int n2){ // where n2 > n1
 	return result;
 }
 ```
+## Drawing 
+All of the art in the game (as of 26/11/2026) has been drawn by me using Krita.
