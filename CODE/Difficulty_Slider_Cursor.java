@@ -12,25 +12,22 @@ public class Difficulty_Slider_Cursor extends Actor
      * Act - do whatever the Difficulty_Slider_Cursor wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int movement_amount = 2;
-    GreenfootImage image;
-    public static int third;
-    public Difficulty_Slider_Cursor(){
+    int movement_amount = 2; // speed to move with keyboard input
+    public static int third; // the third the hand is in
 
-    }
 
     public void act()
     {
-        move_with_mouse();
-        keyboard_movement();
-        this.third = get_third();
+        move_with_mouse(); // accept mouse movement
+        keyboard_movement(); // accept keyboard movement
+        this.third = get_third(); // update third variable
     }
 
     public void keyboard_movement(){
-        if(Greenfoot.isKeyDown("d") && getX() < 355){
-            this.setLocation(this.getX()+movement_amount, this.getY());
+        if(Greenfoot.isKeyDown("d") && getX() < 355){ // if key down is 'd' and is still in range
+            this.setLocation(this.getX()+movement_amount, this.getY()); // move right by speed
         } 
-        if(Greenfoot.isKeyDown("a") && getX() > 285){
+        if(Greenfoot.isKeyDown("a") && getX() > 285){ // if key down is 'a' and is still in range
             this.setLocation(this.getX()-movement_amount, this.getY());
         }
     }
@@ -51,7 +48,7 @@ public class Difficulty_Slider_Cursor extends Actor
     }
 
     public void move_with_mouse(){
-        MouseInfo m = Greenfoot.getMouseInfo();
+        MouseInfo m = Greenfoot.getMouseInfo(); // get a new mouse info object
         if(m != null && m.getButton() == 1 && m.getActor() != Start.sb){ // has info, left click. not on start button
             // assume down
             m = Greenfoot.getMouseInfo(); // constant update

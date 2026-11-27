@@ -12,20 +12,14 @@ public class Start_Button extends Actor
      * Act - do whatever the Start_Button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private Player player;
-    private Enemy enemy;
-    public Start_Button(){
-        // should aim to take up displayed play button
-        this.player = player; 
-        this.enemy = enemy;
-        // player and enemy passed in 
+    public Start_Button(){ // constructor
         GreenfootImage image = new GreenfootImage(60, 90); // covers doorway
         setImage(image); // sets blank/transparent image
     }
 
     public void act()
     {
-        if(Greenfoot.mouseClicked(this)){
+        if(Greenfoot.mouseClicked(this)){ // if clicked (any mouse button)
             // start
             // switch to other world
             MyWorld world = new MyWorld(Difficulty_Slider_Cursor.third, 3*60); // new world with starting 

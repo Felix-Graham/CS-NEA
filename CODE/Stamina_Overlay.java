@@ -30,24 +30,19 @@ public class Stamina_Overlay extends Bars
 
     public void act()
     {
-        if(!MyWorld.pause_state()){
-            //follow(MyWorld.player, 60); // same movement as Player_Stamina thus should overlay
-            //setLocation(MyWorld.player.getX()-(Player_Stamina.w/2-this.w/2), getY()); // moves to start of stamina bar
-            //this.image.fillRect(0, 0, this.w, this.h);
-
-        }
+        // act not applicable: all update methods called from outside this class
     }
 
     public void augment(int amount){
-        this.w = this.w + amount;
+        this.w = this.w + amount; // increases width by the given amount
         if(w > 0){
-        } else{
+        } else{ // if width is not greater than 0 (-1) set as 1 for continuity correction
             w = 1;
         }
-        setImage(new GreenfootImage (this.w, this.h));
-        this.image = getImage();
-        this.image.setColor(this.c);
-        this.image.fillRect(0, 0, w*2, this.h+5);
+        setImage(new GreenfootImage (this.w, this.h)); // creates a new sprite for this image
+        this.image = getImage(); // gets this image as a variable to edit etc
+        this.image.setColor(this.c); // set the image colour
+        this.image.fillRect(0, 0, w*2, this.h+5); // fills the image
 
     }
 

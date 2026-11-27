@@ -7,15 +7,15 @@ import java.text.DecimalFormat;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Bars extends Actor
+public abstract class Bars extends Actor
 {
     /**
      * Act - do whatever the Bars wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    private final int w=100;
-    private final int h=10;
+    private final int w=1;
+    private final int h=1; // default constructor values
     private final Color bg=Color.RED;
     private final Color fg=Color.BLACK; 
     private GreenfootImage image;
@@ -54,7 +54,7 @@ public class Bars extends Actor
     }
 
     public void move_request(int dx, int dy){
-        setLocation(getX()+dx, getY()+dy);
+        setLocation(getX()+dx, getY()+dy); // sets location by change
     }
 
     public void draw(int w, int h, Color c){

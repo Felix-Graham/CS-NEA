@@ -15,21 +15,19 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    public final int PlayerStartX = 137;
-    public final int PlayerStartY = 306;
 
-    public static Enemy enemy;
-    public static Player player;
-    public static Stamina_Overlay s;
+    public static Enemy enemy; // enemy placeholder variable
+    public static Player player; // all of these are public static and 
+    public static Stamina_Overlay s; // can thus be accessed from anywhere
 
-    public static boolean paused;
+    private static boolean paused; // encapsulation-based variables controls pause state
 
     public static int wait; // used for initial wait period
 
-    public static int difficulty;
+    public static int difficulty; // difficulty populated by Difficulty Slider
 
 
-    public MyWorld(int difficulty, int initial_wait)
+    public MyWorld(int difficulty, int initial_wait) // constructor with parameters for difficulty and initial wait
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
@@ -51,15 +49,17 @@ public class MyWorld extends World
         }
 
         // health condition checking 
-        if(enemy.health <= 0){
-            WinScreen win = new WinScreen();
-            win.reset_values();
-            Greenfoot.setWorld(win);
+        if(enemy.health <= 0){ // if enemy dies
+            WinScreen win = new WinScreen(); // new win screen
+            win.reset_values(); // reset variables, this is necessary because they are static and thus 
+            // semi-permanent in memory. Done in this line because the next line `MyWorld` loses influence
+            // as it is no longer the set world
+            Greenfoot.setWorld(win); // sets world to win
         }
-        if(player.health <= 0){
-            LoseScreen lose = new LoseScreen();
-            lose.reset_values();
-            Greenfoot.setWorld(lose);
+        if(player.health <= 0){ // if player dies
+            LoseScreen lose = new LoseScreen(); // new lose screen
+            lose.reset_values(); // reset values
+            Greenfoot.setWorld(lose); // sets the world to the lose screen
         }
     }
 
@@ -67,9 +67,9 @@ public class MyWorld extends World
     {
 
         Player player = new Player();
-        addObject(player,PlayerStartX,PlayerStartY);
+        addObject(player,137,306);
         // int SPEED, int JUMP, int SM, int DM, int KM
-        Enemy enemy = new Enemy(5, 200, 100, 2, 3, player);
+        Enemy enemy = new Enemy(5, 200, player);
         addObject(enemy,395,306);
 
         Enemy_Health enemy_Health = new Enemy_Health(150, 15, greenfoot.Color.RED, greenfoot.Color.RED);
@@ -98,7 +98,7 @@ public class MyWorld extends World
     }
 
     public static void pause_toggle(){
-        MyWorld.paused = !MyWorld.paused;
+        MyWorld.paused = !MyWorld.paused; // flips from true -> false and vice versa
     }
 
     public static void pause_wait(int t){ // function for dynamic wait periods

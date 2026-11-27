@@ -8,20 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Start extends World
 {
-
     /**
      * Constructor for objects of class Start.
      * 
      */
-    public static Start_Button sb;
-    private Player player;
-    private Enemy enemy;
+    public static Start_Button sb = new Start_Button(); // creates object to be accessed by `Difficulty_Slider_Cursor`
     public Start()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
-        this.player = player;
-        this.enemy = enemy;
         prepare();
     }
     
@@ -31,15 +26,10 @@ public class Start extends World
      */
     private void prepare()
     {
-        this.sb = new Start_Button();
-        addObject(this.sb,326,152);
+        addObject(this.sb,326,152); // adds to world in the relevant position
 
-        
-        Difficulty_Slider_Cursor difficulty_Slider_Cursor = new Difficulty_Slider_Cursor();
-        addObject(difficulty_Slider_Cursor,253,264);
-        difficulty_Slider_Cursor.setLocation(264,260);
-
-        difficulty_Slider_Cursor.setLocation(274,281);
-        difficulty_Slider_Cursor.setLocation(286,292);
+        Difficulty_Slider_Cursor difficulty_Slider_Cursor = new Difficulty_Slider_Cursor(); // new object
+        addObject(difficulty_Slider_Cursor,253,264); // adds to world at location
+        difficulty_Slider_Cursor.setLocation(289,292);
     }
 }

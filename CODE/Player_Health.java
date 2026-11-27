@@ -13,26 +13,20 @@ public class Player_Health extends Bars
      * Act - do whatever the Player_Health wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private final int w;
-    private final int h;
-    private final Color bg;
-    private final Color fg;
+    private final int w=150;
+    private final int h=15;
+    private final Color bg=Color.GREEN;
+    private final Color fg=Color.BLACK;
     private GreenfootImage image;
 
     public Player_Health(){
-        this.w = 150;
-        this.h = 15;
-        this.fg = greenfoot.Color.BLACK;
-        this.bg = greenfoot.Color.GREEN;
-        draw(w, h, bg);
+        draw(w, h, bg); // draw bar from inherited method
     }
 
     public void act()
     {
-
-        if(!MyWorld.pause_state()){
-            //follow(MyWorld.player, 30);
-            update(heartbeat(), fg, this);
+        if(!MyWorld.pause_state()){ // if world not paused
+            update(heartbeat(), fg, this); // update
         }
     }
 

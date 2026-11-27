@@ -30,11 +30,8 @@ public class Enemy_Health extends Bars
 
     public void act()
     {
-        update(heartbeat(), fg, this);
-        if(!MyWorld.pause_state()){
-            //follow(MyWorld.enemy, 50);
-
-        }
+        update(heartbeat(), fg, this); // enemy health will not change if game paused so does not
+        // need a pause clause
     }
 
     private int heartbeat(){

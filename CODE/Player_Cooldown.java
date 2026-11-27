@@ -13,46 +13,35 @@ public class Player_Cooldown extends Bars
      * Act - do whatever the Player_Cooldown wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private final int w;
-    private final int h;
-    private final Color bg;
-    private final Color fg;
-    private final Color hfg;
-    private final Color hbg;
+    private final int w=100;
+    private final int h=15;
+    private final Color bg=Color.BLUE; // both the same as it is displayed for such short amount of time
+    private final Color fg=Color.BLUE; // an overlay/decrementation would be irrelevant
     private GreenfootImage image;
 
     public Player_Cooldown(){
-        this.w = 100;
-        this.h = 15;
-        this.fg = greenfoot.Color.BLUE;
-        this.bg = greenfoot.Color.BLUE;
-        this.hbg = greenfoot.Color.WHITE;
-        this.hfg = greenfoot.Color.PINK;
-        draw(w, h, bg);
-
+        draw(w, h, bg); // draws self
     }
 
     public void act()
     {
-        if(!MyWorld.pause_state()){
-            follow(MyWorld.player, 100);
-            if(MyWorld.player.cooldown > 0){
-                show();
-                //update(player_heartbeat(), fg, this);
+        if(!MyWorld.pause_state()){ // if not paused
+            follow(MyWorld.player, 100); // follow player
+            if(MyWorld.player.cooldown > 0){ // if Player's cooldown is not 0 
+                show(); // display this
             } else{
-                hide();
+                hide(); // otherwise do not
             }
         }
     }
 
     private void show(){
-        draw(w, h, bg);
+        draw(w, h, bg); // draws new self
     }
 
     private void hide(){
-        //draw(w, h, hbg);
-        GreenfootImage i = new GreenfootImage(1, 1);
-        setImage(i);
+        GreenfootImage i = new GreenfootImage(1, 1); // new blank image of minimal dimensions and no colour
+        setImage(i); // sets to invisible
     }
 
 }

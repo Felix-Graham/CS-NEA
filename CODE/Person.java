@@ -9,47 +9,36 @@ import java.io.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Person extends Actor
-{
+public abstract class Person extends Actor // abstract class meaning we cannot construct a `Person` object
+{ // this is intended because it is designed solely as a parent class
     /**
      * Act - do whatever the Character wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int cooldown;
     public static int health;
-    final int collision_threshold = 20;
-
-    public void act()
-    {
-        if(!MyWorld.pause_state()){
-            collide(MyWorld.player, MyWorld.enemy);
-        }
-    }
+    final int collision_threshold = 20; // variables created to be inherited
+    
+    // act() method not applicable to abstract class
 
     public int get_collision(Person p1, Person p2){
         // method to avoid player and enemy being too close
         // passes two "people" being player 1 and two
-        int dx;
-        if(p1.getX() > p2.getX()){
-            dx = p1.getX() - p2.getX();
-        } else{
-            dx = p2.getX() - p1.getX();
-        }
-
+        int dx = MyWorld.modulus(p1.getX() - p2.getX());
         return dx;
     }
 
     public void collide(Person p1, Person p2){
-        int dx = get_collision(p1, p2);
-        if(p1.getX() > p2.getX()){
-            while (dx < collision_threshold){
-                p1.setLocation(p1.getX()+1, p1.getY());
+        int dx = get_collision(p1, p2); // gets distance between two people
+        if(p1.getX() > p2.getX()){ // p2 further left of p1
+            while (dx < collision_threshold){ // while the distance is less than optimal (threshold)
+                p1.setLocation(p1.getX()+1, p1.getY()); // move each one apart
                 p2.setLocation(p1.getX()-1, p1.getY());
-                dx = get_collision(p1, p2);
+                dx = get_collision(p1, p2); // refresh dx
             }
         } else{
-            while (dx < collision_threshold){
-                p2.setLocation(p1.getX()+1, p1.getY());
+            while (dx < collision_threshold){ 
+                p2.setLocation(p1.getX()+1, p1.getY()); // moves each apart in relevant directions (left-most goes left)
                 p1.setLocation(p1.getX()-1, p1.getY());
                 dx = get_collision(p1, p2);
             }
@@ -102,14 +91,14 @@ public abstract class Person extends Actor
     }
 
     // getters
-    public boolean isOnGround(){
+    public boolean isOnGround(){ // method to get if a `Person` child is on the ground
         if(getY()==306){
             return true;
         }
         return false;
     }
 
-    public boolean onCooldown(Person p){
+    public boolean onCooldown(Person p){ // method to get if a `Person` child's cooldown is not 0
         if(p.cooldown > 0){
             return true;
         } else{
@@ -125,7 +114,7 @@ public abstract class Person extends Actor
     }
 
     public void damage(int d, Person p){
-        this.health = this.health-d;
+        this.health = this.health-d; // polymorphic method for a `Person` child to be damaged
     }
 
     public void knockback(int k, Person aggressor){
@@ -138,8 +127,4 @@ public abstract class Person extends Actor
         }// the if clauses above feature +/-10 so that if the aggressor is very 
         // close they do not get stuck
     }
-
-    // misc
-    
-
 }
