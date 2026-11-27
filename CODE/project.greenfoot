@@ -1,10 +1,11 @@
 #Greenfoot project file
+class.Difficulty_Slider_Cursor.image=hand.png
 class.Enemy.image=sir\ chicken\ digby\ ceaser.png
 class.LoseScreen.image=lose_screen.png
 class.MyWorld.image=pub\ background.jpg
 class.PlayPause.image=tux.png
-class.Player.image=player_stand_arms_down.png
-class.Start.image=pub\ front.jpg
+class.Player.image=ginger.png
+class.Start.image=maximum\ aids.png
 class.Start_Button.image=button-purple.png
 class.WinScreen.image=win_screen.png
 dependency1.from=LoseScreen

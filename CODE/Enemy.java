@@ -44,6 +44,19 @@ public class Enemy extends Person
 
     public boolean inhibited_movement = false;
 
+    private GreenfootImage stand_sprite;
+    private GreenfootImage kick_sprite;
+    private GreenfootImage punch_sprite;
+
+    private void spriting(){
+        GreenfootImage i = new GreenfootImage("sir chicken digby ceaser.png");
+        this.stand_sprite = sprite_scale(i);
+        i = new GreenfootImage("sdcc_punch.png");
+        this.punch_sprite = sprite_scale(i);
+        i = new GreenfootImage("sdcc_kick.png");
+        this.kick_sprite = sprite_scale(i);
+    }
+
     public Enemy(int SPEED, int JUMP, int SM, int DM, int KM, Player nemesis){
         this.SPEED = SPEED;
         this.JUMP = JUMP;
@@ -80,12 +93,8 @@ public class Enemy extends Person
         this.health = HEALTH_MAX;
 
         this.IMAGE_SCALE  = get_random_in_range(lower, upper);
-        int w = MyWorld.round(getImage().getWidth()*IMAGE_SCALE, "###");
-        int h = MyWorld.round(getImage().getHeight()*IMAGE_SCALE, "###"); // defined by one variable for continuity
-        GreenfootImage image = getImage();
-
-        image.scale(w, h);
-        setImage(image);
+        spriting();
+        setImage(this.stand_sprite);
     }
 
     public double get_random_in_range(double n1, double n2){ // where n1 > n2
@@ -260,32 +269,29 @@ public class Enemy extends Person
         int s = this.imgState; // for easier reference
         switch(s){ // switch case removes need for innefficient if/else
             case 0:
-                GreenfootImage stand_sprite = new GreenfootImage("enemy_stand_arms_down.png"); // required image
-                sprite_scale(stand_sprite); // scales and sets the passed image 
+                setImage(this.stand_sprite); // scales and sets the passed image 
                 break;
             case 1:
-                GreenfootImage punch_sprite = new GreenfootImage("enemy_punch.png");
-                sprite_scale(punch_sprite);
+                setImage(this.punch_sprite);
                 break;
             case 2:
-                GreenfootImage kick_sprite = new GreenfootImage("enemy_kick.png");
-                sprite_scale(kick_sprite);
+                setImage(this.kick_sprite);
                 break;
             default:
-                GreenfootImage default_sprite = new GreenfootImage("enemy_stand_arms_down.png");
-                sprite_scale(default_sprite);
+                setImage(this.stand_sprite);
                 break;
         }
         // now instead of changing image in a method (happens ~instantly),
         // changes image in act method via this method.
     }
 
-    public void sprite_scale(GreenfootImage image){
+    public GreenfootImage sprite_scale(GreenfootImage image){
         // method to return the scaled image from global IMAGE_SCALE
         int w = MyWorld.round(image.getWidth()*this.IMAGE_SCALE, "###");
         int h = MyWorld.round(image.getHeight()*this.IMAGE_SCALE, "###");
         image.scale(w, h);
-        setImage(image);
+        return image;
+        //setImage(image);
     }
 
     // collision

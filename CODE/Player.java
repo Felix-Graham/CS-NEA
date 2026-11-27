@@ -28,6 +28,8 @@ public class Player extends Person
 
     final static int RANGE_KICK = 130;
     final static int RANGE_PUNCH = 120;
+    
+    final static int IMAGE_SCALE =1;
 
     // Mutable variables
     public int stamina = 100;
@@ -41,16 +43,30 @@ public class Player extends Person
     sprite.
      */
 
+    private GreenfootImage stand_sprite;
+    private GreenfootImage kick_sprite;
+    private GreenfootImage punch_sprite;
+
     public int x_bar1;
     public int x_bar2; // collision bounds
 
     public boolean inhibited_movement = false;
+
+    private void spriting(){
+        GreenfootImage i = new GreenfootImage("ginger.png");
+        this.stand_sprite = sprite_scale(i);
+        i = new GreenfootImage("ginger_punch.png");
+        this.punch_sprite = i;
+        i = new GreenfootImage("ginger_kick.png");
+        this.kick_sprite = i;
+    }
 
     public Player(){
         // player constructor
         // adds self to world reference variable for simplicity
         //MyWorld.assign_player(this);
         MyWorld.player = this;
+        spriting();
     }
 
     int stamina_increase_delay = 2; // decrease every act(); when 0 increase stamina and set to 30
@@ -148,15 +164,15 @@ public class Player extends Person
         int s = this.imgState; // for easier reference
         switch(s){ // switch case removes need for innefficient if/else
             case 0:
-                setImage("player_stand_arms_down.png");
+                setImage(this.stand_sprite);
                 break;
             case 1:
-                setImage("player_punch.png");
+                setImage(this.punch_sprite);
                 break;
             case 2:
-                setImage("player_kick.png");
+                setImage(this.kick_sprite);
             default:
-                setImage("player_stand_arms_down.png");
+                setImage(this.stand_sprite);
                 break;
         }
         // now instead of changing image in a method (happens ~instantly),
@@ -172,7 +188,7 @@ public class Player extends Person
                     MyWorld.enemy.knockback(KNOCKBACK_PUNCH, this);
                 }
 
-                setImage("player_punch.png");
+                setImage(this.punch_sprite);
                 stamina = stamina - STAMINA_DRAIN_PUNCH;
                 //cooldown(COOLDOWN_PUNCH, this);
                 cooldown = cooldown + MyWorld.round(COOLDOWN_PUNCH*60, "###");
@@ -190,12 +206,21 @@ public class Player extends Person
                     MyWorld.enemy.knockback(KNOCKBACK_KICK, this);
                 }
 
-                setImage("player_kick.png");
+                setImage(this.kick_sprite);
                 stamina = stamina - STAMINA_DRAIN_KICK;
                 //cooldown(COOLDOWN_KICK, this);
                 cooldown = cooldown + MyWorld.round(COOLDOWN_KICK*60, "###");
             }
         }
         imgState = 0;
+    }
+
+    public GreenfootImage sprite_scale(GreenfootImage image){
+        // method to return the scaled image from global IMAGE_SCALE
+        int w = MyWorld.round(image.getWidth()*this.IMAGE_SCALE, "###");
+        int h = MyWorld.round(image.getHeight()*this.IMAGE_SCALE, "###");
+        image.scale(w, h);
+        return image;
+        //setImage(image);
     }
 }

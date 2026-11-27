@@ -33,12 +33,13 @@ public class Start extends World
     {
         this.sb = new Start_Button();
         addObject(this.sb,326,152);
-        
-        
+
         
         Difficulty_Slider_Cursor difficulty_Slider_Cursor = new Difficulty_Slider_Cursor();
         addObject(difficulty_Slider_Cursor,253,264);
         difficulty_Slider_Cursor.setLocation(264,260);
 
+        difficulty_Slider_Cursor.setLocation(274,281);
+        difficulty_Slider_Cursor.setLocation(286,292);
     }
 }
