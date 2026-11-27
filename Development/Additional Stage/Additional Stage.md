@@ -8,7 +8,7 @@ For each feature at least one test will be written to demonstrate its functional
 - [x] Better pause command 
 - [x] Directional knockback
 - [ ] Enemy image changes as scaled 
-- [ ] Better sprites and background
+- [x] Better sprites and background
 ### Tests 
 - [x] Bars do not move
 - [x] Bars update 
@@ -16,8 +16,8 @@ For each feature at least one test will be written to demonstrate its functional
 - [ ] Pressing '`p`' toggles the paused state of the game 
 - [x] Knockback is applied to either Person away from the aggressor
 - [ ] Enemy image changes when necessary with scale applied 
-- [ ] Sprites rendered look professional and convey the feel of the game 
-- [ ] Background makes the setting feel as the title implies 
+- [x] Sprites rendered look professional and convey the feel of the game 
+- [x] Background makes the setting feel as the title implies 
 
 ## Designing 
 ### Fixed Position
@@ -268,6 +268,30 @@ public Test {
 With this I was able to deduce the approximate size to be 80x160. 
 ##### Result 
 ![[sir chicken digby ceaser.png]]
+![[sdcc_punch.png]]
+![[sdcc_kick.png]]
 I have resized this image such that it fits.
 
 #### Player 
+With this direction I wanted to also re-create Ginger from the same skit. He is often written as Sir Digby Chicken Ceaser's side-kick and weaker counterpart, going along with any ridiculous plan Digby comes up with. This could possibly add a sense of drama between friends or just silly nature into the game. 
+##### Reference Image 1
+![[ginger ref.png]]
+I will use this as a reference image with Krita's system for this. As a result I will not need to find hex values in this image.
+##### Result 
+![[Development/Additional Stage/Art/ginger.png]]
+![[ginger_kick.png]]
+![[ginger_punch.png]]
+
+#### Difficulty Slider 
+Although I much prefer the new background (drawn above), it created a lack of room for the difficulty slider and start button. Here is how I will or have addressed these issues:
+
+##### Start Button 
+Using a GreenfootImage I have mapped the start button onto the door in the start screen background. This means that when clicking the start button the game starts. 
+I like this approach because it gives the game a more natural start, being the player choosing to enter the evidently dubious venue. This could however be problematic for new players who are unsure how to start the game. To resolve this I could add a tutorial or sign saying something like 'Entrance'.
+
+##### Difficulty Slider
+Unlike the start button, I have completely re-designed how this functions. Outside the building in the start menu there is now an amusingly designed stand run by a man with three different items. 
+![[maximum aids.png]]
+These things are designed to imply an increase in difficulty with each step right. First is some half finished, broken glasses of apple juice, then to the right of that a full glass and finally a luminous green bucket. This hand:
+![[hand.png|74]]
+will move from left to right under each of these wares. This makes the difficulty-by-thirds system far more obvious and adds to the style of the game.
